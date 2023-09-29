@@ -1,4 +1,4 @@
-import { Button } from './Button'
+
 const people = [
   {
     name: 'Leslie Alexander',
@@ -59,7 +59,7 @@ const people = [
   // More people...
 ]
 
-export default function Artists() {
+export default function Home() {
   return (
     <div className="bg-gray-900 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -93,11 +93,7 @@ export default function Artists() {
             </li>
           ))}
         </ul>
-        <div className="flex mt-10 justify-center">
-          <Button href="/artists" color="blue" className="mt-5">
-            <span>See all</span>
-          </Button>
-        </div>
+ 
       </div>
     </div>
   )
