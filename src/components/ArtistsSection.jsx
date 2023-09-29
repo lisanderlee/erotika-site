@@ -1,4 +1,6 @@
 import { Button } from './Button'
+import { ArtistsItem } from '@/components/ArtistItem'
+
 const people = [
   {
     name: 'Leslie Alexander',
@@ -77,23 +79,16 @@ export default function Artists() {
           className="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 xl:grid-cols-4"
         >
           {people.map((person) => (
-            <li key={person.name}>
-              <img
-                className="aspect-[14/13] w-full rounded-2xl object-cover"
-                src={person.imageUrl}
-                alt=""
-              />
-              <h3 className="mt-6 text-lg font-semibold leading-8 tracking-tight text-white">
-                {person.name}
-              </h3>
-              <p className="text-base leading-7 text-gray-300">{person.role}</p>
-              <p className="text-sm leading-6 text-gray-500">
-                {person.location}
-              </p>
-            </li>
+            <ArtistsItem
+              key={person.name}
+              image={person.imageUrl}
+              name={person.name}
+              location={person.location}
+              role={person.role}
+            />
           ))}
         </ul>
-        <div className="flex mt-10 justify-center">
+        <div className="mt-10 flex justify-center">
           <Button href="/artists" color="blue" className="mt-5">
             <span>See all</span>
           </Button>

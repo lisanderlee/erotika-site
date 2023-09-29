@@ -1,10 +1,10 @@
-import { CallToAction } from '@/components/CallToAction'
-import { Sponsors } from '@/components/Sponsors'
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
-import { Hero } from '@/components/Hero'
-import Artists from '@/components/Artists'
-import { About } from '@/components/About'
+import { CallToAction } from '@/components/CallToActionSection'
+import { Sponsors } from '@/components/SponsorsSection'
+import { Footer } from '@/components/FooterSection'
+import { Header } from '@/components/HeaderSection'
+import { Hero } from '@/components/HeroSection'
+import Artists from '@/components/ArtistsSection'
+import { About } from '@/components/AboutSection'
 
 export default function Home() {
   return (

@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { Container } from '@/components/Container'
 import GoogleMap from './GoogleMap'
 import FloatingPanel from './FloatingPanel'
-import { Sponsors } from './Sponsors'
+import { Sponsors } from './SponsorsSection'
 
 export function Hero() {
   return (
