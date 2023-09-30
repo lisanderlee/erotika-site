@@ -1,0 +1,461 @@
+[
+{
+  "Id": "ART12345",
+  "Name": "Eldrin",
+  "LastName":"Moonshadow",
+  "Gender": "Male",
+  "ContactNumber": "+1234567890",
+  "Location": "Silverwood, Elven Kingdom",
+  "Nationality": "Elven",
+  "Bio": "Eldrin Moonshadow is a renowned elven artist known for his ethereal paintings that capture the essence of the mystical forests of Silverwood.",
+  "Category": "Painter",
+  "PresentingVenue": "Elven Art Gallery, Silverwood",
+  "PortfolioLink": "https://www.elvenarts.com/eldrin",
+  "InstagramLink": "https://www.instagram.com/eldrin_moonshadow",
+  "FacebookLink": "https://www.facebook.com/eldrin.moonshadow.arts",
+  "LinkedInLink": "https://www.linkedin.com/in/eldrin-moonshadow",
+  "Images": [
+    {
+      "id": "IMG001",
+      "Name": "Whispers of the Forest",
+      "url": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3276&q=80"
+    },
+    {
+      "id": "IMG1102",
+      "Name": "Golden Sunburst Ring",
+      "url": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3474&q=80"
+    },
+    {
+      "id": "IMG1103",
+      "Name": "Golden Sunburst Ring",
+      "url": "https://images.unsplash.com/photo-1608501821300-4f99e58bba77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80"
+    },
+    {
+      "id": "IMG1104",
+      "Name": "Golden Sunburst Ring",
+      "url": "https://images.unsplash.com/photo-1671955100866-f73c4b2d79a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80"
+    }
+  ]
+},
+{
+  "Id": "ART12346",
+  "Name": "Liliana",
+  "LastName":"Starlight",
+  "Gender": "Female",
+  "ContactNumber": "+1234567891",
+  "Location": "Celestial Tower, Starryville",
+  "Nationality": "Starian",
+  "Bio": "Liliana Starlight is a celebrated sculptor from Starryville, known for her mesmerizing sculptures that shimmer and glow, reflecting the beauty of the cosmos.",
+  "Category": "Sculptor",
+  "PresentingVenue": "Cosmic Art Museum, Starryville",
+  "PortfolioLink": "https://www.starryarts.com/liliana",
+  "InstagramLink": "https://www.instagram.com/liliana_starlight",
+  "FacebookLink": "https://www.facebook.com/liliana.starlight.sculptures",
+  "LinkedInLink": "https://www.linkedin.com/in/liliana-starlight",
+  "Images": [
+    {
+      "id": "IMG101",
+      "Name": "Galactic Harmony",
+      "url": "https://images.unsplash.com/photo-1570158268183-d296b2892211?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3456&q=80"
+    },
+    {
+      "id": "IMG1102",
+      "Name": "Golden Sunburst Ring",
+      "url": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3474&q=80"
+    },
+    {
+      "id": "IMG1103",
+      "Name": "Golden Sunburst Ring",
+      "url": "https://images.unsplash.com/photo-1608501821300-4f99e58bba77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80"
+    },
+    {
+      "id": "IMG1104",
+      "Name": "Golden Sunburst Ring",
+      "url": "https://images.unsplash.com/photo-1671955100866-f73c4b2d79a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80"
+    }
+  ]
+},
+  {
+    "Id": "ART12347",
+    "Name": "Aria",
+    "LastName": "Skydancer",
+    "Gender": "Female",
+    "ContactNumber": "+1234567892",
+    "Location": "Cloudtop Heights, Skyrealm",
+    "Nationality": "Skyfolk",
+    "Bio": "Aria Skydancer is a famed dancer from Skyrealm, known for her aerial performances amidst the clouds.",
+    "Category": "Dancer",
+    "PresentingVenue": "Skytheater, Cloudtop Heights",
+    "PortfolioLink": "https://www.skyarts.com/aria",
+    "InstagramLink": "https://www.instagram.com/aria_skydancer",
+    "FacebookLink": "https://www.facebook.com/aria.skydancer",
+    "LinkedInLink": "https://www.linkedin.com/in/aria-skydancer",
+    "Images": [
+      {
+        "id": "IMG201",
+        "Name": "Aerial Elegance",
+        "url": "https://images.unsplash.com/photo-1530452540414-c17a65a637fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3376&q=80"
+      },
+      {
+        "id": "IMG1102",
+        "Name": "Golden Sunburst Ring",
+        "url": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3474&q=80"
+      },
+      {
+        "id": "IMG1103",
+        "Name": "Golden Sunburst Ring",
+        "url": "https://images.unsplash.com/photo-1608501821300-4f99e58bba77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80"
+      },
+      {
+        "id": "IMG1104",
+        "Name": "Golden Sunburst Ring",
+        "url": "https://images.unsplash.com/photo-1671955100866-f73c4b2d79a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80"
+      }
+    ]
+  },
+  {
+    "Id": "ART12348",
+    "Name": "Orion",
+    "LastName": "Stargazer",
+    "Gender": "Male",
+    "ContactNumber": "+1234567893",
+    "Location": "Astral Observatory, Cosmopolis",
+    "Nationality": "Cosmian",
+    "Bio": "Orion Stargazer is a renowned astronomer and artist, capturing the wonders of the universe in his detailed paintings.",
+    "Category": "Painter",
+    "PresentingVenue": "Galactic Gallery, Cosmopolis",
+    "PortfolioLink": "https://www.cosmicarts.com/orion",
+    "InstagramLink": "https://www.instagram.com/orion_stargazer",
+    "FacebookLink": "https://www.facebook.com/orion.stargazer",
+    "LinkedInLink": "https://www.linkedin.com/in/orion-stargazer",
+    "Images": [
+      {
+        "id": "IMG301",
+        "Name": "Galaxy's Whisper",
+        "url": "https://images.unsplash.com/photo-1496203695688-3b8985780d6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3395&q=80"
+      },
+      {
+        "id": "IMG1102",
+        "Name": "Golden Sunburst Ring",
+        "url": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3474&q=80"
+      },
+      {
+        "id": "IMG1103",
+        "Name": "Golden Sunburst Ring",
+        "url": "https://images.unsplash.com/photo-1608501821300-4f99e58bba77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80"
+      },
+      {
+        "id": "IMG1104",
+        "Name": "Golden Sunburst Ring",
+        "url": "https://images.unsplash.com/photo-1671955100866-f73c4b2d79a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80"
+      }
+    ]
+  },
+  {
+    "Id": "ART12349",
+    "Name": "Luna",
+    "LastName": "Moonbeam",
+    "Gender": "Female",
+    "ContactNumber": "+1234567894",
+    "Location": "Moonlit Cove, Luminaria",
+    "Nationality": "Luminarian",
+    "Bio": "Luna Moonbeam is a talented harpist, her melodies echoing the gentle sounds of moonlit nights.",
+    "Category": "Musician",
+    "PresentingVenue": "Luminaria Concert Hall",
+    "PortfolioLink": "https://www.luminarts.com/luna",
+    "InstagramLink": "https://www.instagram.com/luna_moonbeam",
+    "FacebookLink": "https://www.facebook.com/luna.moonbeam.harpist",
+    "LinkedInLink": "https://www.linkedin.com/in/luna-moonbeam",
+    "Images": [
+      {
+        "id": "IMG401",
+        "Name": "Moonlit Melody",
+        "url": "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80"
+      },
+      {
+        "id": "IMG1102",
+        "Name": "Golden Sunburst Ring",
+        "url": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3474&q=80"
+      },
+      {
+        "id": "IMG1103",
+        "Name": "Golden Sunburst Ring",
+        "url": "https://images.unsplash.com/photo-1608501821300-4f99e58bba77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80"
+      },
+      {
+        "id": "IMG1104",
+        "Name": "Golden Sunburst Ring",
+        "url": "https://images.unsplash.com/photo-1671955100866-f73c4b2d79a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80"
+      }
+    ]
+  },
+    
+  {
+      "Id": "ART12350",
+      "Name": "Cassandra",
+      "LastName": "Stoneheart",
+      "Gender": "Female",
+      "ContactNumber": "+1234567895",
+      "Location": "Granite Hall, Stoneland",
+      "Nationality": "Stonian",
+      "Bio": "Cassandra Stoneheart is a master sculptor, known for her lifelike statues carved from the hardest of stones.",
+      "Category": "Sculptor",
+      "PresentingVenue": "Stoneland Art Museum",
+      "PortfolioLink": "https://www.stonearts.com/cassandra",
+      "InstagramLink": "https://www.instagram.com/cassandra_stoneheart",
+      "FacebookLink": "https://www.facebook.com/cassandra.stoneheart",
+      "LinkedInLink": "https://www.linkedin.com/in/cassandra-stoneheart",
+      "Images": [
+        {
+          "id": "IMG501",
+          "Name": "Guardian of Stoneland",
+          "url": "https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3376&q=80"
+        },
+        {
+          "id": "IMG1102",
+          "Name": "Golden Sunburst Ring",
+          "url": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3474&q=80"
+        },
+        {
+          "id": "IMG1103",
+          "Name": "Golden Sunburst Ring",
+          "url": "https://images.unsplash.com/photo-1608501821300-4f99e58bba77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80"
+        },
+        {
+          "id": "IMG1104",
+          "Name": "Golden Sunburst Ring",
+          "url": "https://images.unsplash.com/photo-1671955100866-f73c4b2d79a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80"
+        }
+      ]
+    },
+    {
+      "Id": "ART12351",
+      "Name": "Faelan",
+      "LastName": "Windwhisper",
+      "Gender": "Male",
+      "ContactNumber": "+1234567896",
+      "Location": "Whispering Woods, Forestia",
+      "Nationality": "Forestian",
+      "Bio": "Faelan Windwhisper is a flutist whose melodies resonate with the very soul of the forest.",
+      "Category": "Musician",
+      "PresentingVenue": "Forestia Music Grove",
+      "PortfolioLink": "https://www.forestiamusic.com/faelan",
+      "InstagramLink": "https://www.instagram.com/faelan_windwhisper",
+      "FacebookLink": "https://www.facebook.com/faelan.windwhisper",
+      "LinkedInLink": "https://www.linkedin.com/in/faelan-windwhisper",
+      "Images": [
+        {
+          "id": "IMG601",
+          "Name": "Forest's Lullaby",
+          "url": "https://images.unsplash.com/photo-1446511437394-36cdff3ae1b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80"
+        },
+        {
+          "id": "IMG1102",
+          "Name": "Golden Sunburst Ring",
+          "url": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3474&q=80"
+        },
+        {
+          "id": "IMG1103",
+          "Name": "Golden Sunburst Ring",
+          "url": "https://images.unsplash.com/photo-1608501821300-4f99e58bba77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80"
+        },
+        {
+          "id": "IMG1104",
+          "Name": "Golden Sunburst Ring",
+          "url": "https://images.unsplash.com/photo-1671955100866-f73c4b2d79a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80"
+        }
+      ]
+    },
+    {
+      "Id": "ART12352",
+      "Name": "Seraphina",
+      "LastName": "Lightweaver",
+      "Gender": "Female",
+      "ContactNumber": "+1234567897",
+      "Location": "Lighthouse Studio, Sunport",
+      "Nationality": "Solarian",
+      "Bio": "Seraphina Lightweaver is a renowned painter, capturing the brilliance of sunlight in her radiant artworks.",
+      "Category": "Painter",
+      "PresentingVenue": "Solarian Art Gallery",
+      "PortfolioLink": "https://www.solarianarts.com/seraphina",
+      "InstagramLink": "https://www.instagram.com/seraphina_lightweaver",
+      "FacebookLink": "https://www.facebook.com/seraphina.lightweaver",
+      "LinkedInLink": "https://www.linkedin.com/in/seraphina-lightweaver",
+      "Images": [
+        {
+          "id": "IMG701",
+          "Name": "Dawn's First Light",
+          "url": "https://images.unsplash.com/photo-1499229694635-fc626e0d9c01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3464&q=80"
+        },
+        {
+          "id": "IMG1102",
+          "Name": "Golden Sunburst Ring",
+          "url": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3474&q=80"
+        },
+        {
+          "id": "IMG1103",
+          "Name": "Golden Sunburst Ring",
+          "url": "https://images.unsplash.com/photo-1608501821300-4f99e58bba77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80"
+        },
+        {
+          "id": "IMG1104",
+          "Name": "Golden Sunburst Ring",
+          "url": "https://images.unsplash.com/photo-1671955100866-f73c4b2d79a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80"
+        }
+      ]
+    },
+
+      {
+        "Id": "ART12353",
+        "Name": "Thalos",
+        "LastName": "Deepsea",
+        "Gender": "Male",
+        "ContactNumber": "+1234567898",
+        "Location": "Coral Palace, Oceanus",
+        "Nationality": "Merfolk",
+        "Bio": "Thalos Deepsea is a famed underwater photographer, capturing the mysteries and wonders of the deep blue.",
+        "Category": "Photographer",
+        "PresentingVenue": "Oceanus Underwater Gallery",
+        "PortfolioLink": "https://www.oceanusphotos.com/thalos",
+        "InstagramLink": "https://www.instagram.com/thalos_deepsea",
+        "FacebookLink": "https://www.facebook.com/thalos.deepsea",
+        "LinkedInLink": "https://www.linkedin.com/in/thalos-deepsea",
+        "Images": [
+          {
+            "id": "IMG801",
+            "Name": "Abyssal Beauty",
+            "url": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3220&q=80"
+          },
+          {
+            "id": "IMG1102",
+            "Name": "Golden Sunburst Ring",
+            "url": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3474&q=80"
+          },
+          {
+            "id": "IMG1103",
+            "Name": "Golden Sunburst Ring",
+            "url": "https://images.unsplash.com/photo-1608501821300-4f99e58bba77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80"
+          },
+          {
+            "id": "IMG1104",
+            "Name": "Golden Sunburst Ring",
+            "url": "https://images.unsplash.com/photo-1671955100866-f73c4b2d79a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80"
+          }
+        ]
+      },
+      {
+        "Id": "ART12354",
+        "Name": "Lyria",
+        "LastName": "Songbird",
+        "Gender": "Female",
+        "ContactNumber": "+1234567899",
+        "Location": "Melody Peak, Harmonia",
+        "Nationality": "Harmonian",
+        "Bio": "Lyria Songbird is a celebrated singer, her voice echoing the harmonies of nature.",
+        "Category": "Singer",
+        "PresentingVenue": "Harmonia Concert Hall",
+        "PortfolioLink": "https://www.harmoniamusic.com/lyria",
+        "InstagramLink": "https://www.instagram.com/lyria_songbird",
+        "FacebookLink": "https://www.facebook.com/lyria.songbird",
+        "LinkedInLink": "https://www.linkedin.com/in/lyria-songbird",
+        "Images": [
+          {
+            "id": "IMG901",
+            "Name": "Echoes of the Valley",
+            "url": "https://images.unsplash.com/photo-1485463598028-44d6c47bf23f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3305&q=80"
+          },
+          {
+            "id": "IMG1102",
+            "Name": "Golden Sunburst Ring",
+            "url": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3474&q=80"
+          },
+          {
+            "id": "IMG1103",
+            "Name": "Golden Sunburst Ring",
+            "url": "https://images.unsplash.com/photo-1608501821300-4f99e58bba77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80"
+          },
+          {
+            "id": "IMG1104",
+            "Name": "Golden Sunburst Ring",
+            "url": "https://images.unsplash.com/photo-1671955100866-f73c4b2d79a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80"
+          }
+        ]
+      },
+      {
+        "Id": "ART12355",
+        "Name": "Ignis",
+        "LastName": "Flareforge",
+        "Gender": "Male",
+        "ContactNumber": "+1234567800",
+        "Location": "Lava Studios, Vulcania",
+        "Nationality": "Vulcanian",
+        "Bio": "Ignis Flareforge is a glassblower, crafting exquisite pieces using the heat of volcanoes.",
+        "Category": "Craftsman",
+        "PresentingVenue": "Vulcania Artisan Market",
+        "PortfolioLink": "https://www.vulcaniacrafts.com/ignis",
+        "InstagramLink": "https://www.instagram.com/ignis_flareforge",
+        "FacebookLink": "https://www.facebook.com/ignis.flareforge",
+        "LinkedInLink": "https://www.linkedin.com/in/ignis-flareforge",
+        "Images": [
+          {
+            "id": "IMG1001",
+            "Name": "Fiery Chalice",
+            "url": "https://images.unsplash.com/photo-1632765854612-9b02b6ec2b15?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2586&q=80"
+          },
+          {
+            "id": "IMG1102",
+            "Name": "Golden Sunburst Ring",
+            "url": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3474&q=80"
+          },
+          {
+            "id": "IMG1103",
+            "Name": "Golden Sunburst Ring",
+            "url": "https://images.unsplash.com/photo-1608501821300-4f99e58bba77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80"
+          },
+          {
+            "id": "IMG1104",
+            "Name": "Golden Sunburst Ring",
+            "url": "https://images.unsplash.com/photo-1671955100866-f73c4b2d79a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80"
+          }
+        ]
+      },
+      {
+        "Id": "ART12356",
+        "Name": "Aurelia",
+        "LastName": "Sunweaver",
+        "Gender": "Female",
+        "ContactNumber": "+1234567801",
+        "Location": "Golden Atelier, Solara",
+        "Nationality": "Solarite",
+        "Bio": "Aurelia Sunweaver is a goldsmith, creating radiant jewelry infused with sunlight.",
+        "Category": "Jeweler",
+        "PresentingVenue": "Solara Jewelry Boutique",
+        "PortfolioLink": "https://www.solarajewels.com/aurelia",
+        "InstagramLink": "https://www.instagram.com/aurelia_sunweaver",
+        "FacebookLink": "https://www.facebook.com/aurelia.sunweaver",
+        "LinkedInLink": "https://www.linkedin.com/in/aurelia-sunweaver",
+        "Images": [
+          {
+            "id": "IMG1101",
+            "Name": "Sunrise Pendant",
+            "url": "https://images.unsplash.com/photo-1508185140592-283327020902?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3456&q=80"
+          },
+          {
+            "id": "IMG1102",
+            "Name": "Golden Sunburst Ring",
+            "url": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3474&q=80"
+          },
+          {
+            "id": "IMG1103",
+            "Name": "Golden Sunburst Ring",
+            "url": "https://images.unsplash.com/photo-1608501821300-4f99e58bba77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80"
+          },
+          {
+            "id": "IMG1104",
+            "Name": "Golden Sunburst Ring",
+            "url": "https://images.unsplash.com/photo-1671955100866-f73c4b2d79a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80"
+          }
+        ]
+      } 
+]
+
