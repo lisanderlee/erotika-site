@@ -23,6 +23,8 @@ const lexend = Lexend({
   display: 'swap',
   variable: '--font-lexend',
 })
+import { Layout } from '@/components/Layout'
+
 
 export default function RootLayout({ children }) {
   return (
@@ -34,7 +36,9 @@ export default function RootLayout({ children }) {
         lexend.variable,
       )}
     >
-      <body className="flex h-full flex-col">{children}</body>
+      <body className="flex h-full flex-col"> <Layout>{children}</Layout></body>
     </html>
   )
 }
+
+

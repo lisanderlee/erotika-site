@@ -9,16 +9,13 @@ import { About } from '@/components/AboutSection'
 export default function Home() {
   return (
     <>
-      <Header />
       <main>
         <Hero />
         <Sponsors />
-
         <About />
         <Artists />
         <CallToAction />
       </main>
-      <Footer />
     </>
   )
 }
