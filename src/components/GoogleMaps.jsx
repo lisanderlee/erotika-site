@@ -2,22 +2,25 @@
 import { Wrapper } from '@googlemaps/react-wrapper'
 import { useRef, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
+import useStore from './store'
 import events from '@/events.json'
 
-export default function App() {
+export default function GoogleMaps() {
   return (
-    <Wrapper
-      apiKey={process.env.NEXT_PUBLIC_MAP_API_KEY}
-      version="beta"
-      libraries={['marker']}
-    >
-      <MyMap />
-    </Wrapper>
+    <>
+      <Wrapper
+        apiKey={'AIzaSyDEQKofubScbt-9dVPCKlRwAHw5WKFV7-w'}
+        version="beta"
+        libraries={['marker']}
+      >
+        <MyMap />
+      </Wrapper>
+    </>
   )
 }
 
 const mapOptions = {
-  mapId: process.env.NEXT_PUBLIC_MAP_ID,
+  mapId: '6bd0060de5b1673a',
   center: { lat: 25.792903, lng: -80.20021 },
   zoom: 12,
   disableDefaultUI: true,
@@ -41,7 +44,7 @@ function MyMap() {
 
 function Locations({ map }) {
   const [highlight, setHighlight] = useState()
-
+  const { setSelected } = useStore();
   return (
     <>
       {events.map((event) => (
@@ -49,7 +52,7 @@ function Locations({ map }) {
           key={event.EventId}
           map={map}
           position={event.EventPosition}
-          onClick={() => setHighlight(event.EventId)}
+          onClick={() => setSelected(event.EventId)}
         >
           <div
             className={`marker  ${
@@ -58,13 +61,16 @@ function Locations({ map }) {
             onMouseEnter={() => setHighlight(event.EventId)}
             onMouseLeave={() => setHighlight(null)}
           >
-            <h2>{event.EventName}</h2>
-            <div>{event.VenueName}c</div>
+            <h2 className=" line-clamp-1 text-sm font-semibold text-pink-300">
+              {event.EventName}
+            </h2>
+            {/* 
             {highlight === event.EventID ? (
-              <div className="five-day">
+              <div className="expanded-marker">
+                <h4>{event.VenueName}</h4>
                 <p>{event.EventStartDate}</p>
               </div>
-            ) : null}
+            ) : null} */}
           </div>
         </Marker>
       ))}
