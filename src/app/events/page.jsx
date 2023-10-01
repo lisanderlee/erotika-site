@@ -20,7 +20,6 @@ export default function Home() {
 
       <ul role="list">
         {events.map((event) => (
-          
           <EventItem
             key={event.EventId}
             id={event.EventId}

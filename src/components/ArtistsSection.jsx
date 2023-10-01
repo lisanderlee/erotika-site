@@ -1,8 +1,8 @@
 import { Button } from './Button'
 import { ArtistsItem } from '@/components/ArtistItem'
 import Link from 'next/link'
-import artists from "@/artists.json"
-
+import artists from '@/artists.json'
+import { Suspense } from 'react'
 export default function Artists() {
   return (
     <div className="bg-gray-900 py-24 sm:py-32">
@@ -22,13 +22,13 @@ export default function Artists() {
         >
           {artists.slice(0, 8).map((artist) => (
             <Link key={artist.Id} href={`/artists/${artist.Id}`}>
-            <ArtistsItem
-              key={artist.Id}
-              image={artist.Images[0].url}
-              name={artist.Name +" "+ artist.LastName}
-              location={artist.Nationality}
-              role={artist.Category}
-            />
+              <ArtistsItem
+                key={artist.Id}
+                image={artist.Images[0].url}
+                name={artist.Name + ' ' + artist.LastName}
+                location={artist.Nationality}
+                role={artist.Category}
+              />
             </Link>
           ))}
         </ul>

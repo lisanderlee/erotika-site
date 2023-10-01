@@ -15,7 +15,7 @@ export function EventItem({
     <>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <li key={key}>
-          <div className="mx-auto mt-16 max-w-2xl rounded-3xl bg-white ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
+          <div className="mx-auto mt-6 max-w-2xl rounded-3xl bg-white ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
             <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-xs lg:flex-shrink-0">
               <img
                 className="aspect-[3/3] w-full rounded-2xl object-cover"

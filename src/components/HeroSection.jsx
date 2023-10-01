@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Container } from '@/components/Container'
 import GoogleMap from './GoogleMap'
-import FloatingPanel from './FloatingPanel'
+import FloatingPanel from './EventsFloatingPanel'
 import { Sponsors } from './SponsorsSection'
 
 export function Hero() {
@@ -14,7 +14,7 @@ export function Hero() {
         2023 <br></br>The Erotika <br></br>Biennale
       </h1> */}
       <div className='absolute z-10 top-32 right-10'>
-      <FloatingPanel />
+      {/* <FloatingPanel /> */}
       </div>
   
     </div>
