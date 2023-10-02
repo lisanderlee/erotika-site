@@ -35,7 +35,10 @@ export default function MainLayout({ children }) {
         lexend.variable,
       )}
     >
-      <body className="flex h-full flex-col">{children}</body>
+      <body className="flex h-full flex-col">
+ 
+        <Layout>{children}</Layout>
+      </body>
     </html>
   )
 }

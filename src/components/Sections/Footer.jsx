@@ -6,7 +6,7 @@ import { NavLink } from '@/components/NavLink'
 
 export function Footer() {
   return (
-    <footer className="bg-slate-50">
+    <footer className="">
       <Container>
         <div className="py-16">
           <Logo className="mx-auto h-10 w-auto" />
@@ -17,7 +17,7 @@ export function Footer() {
               <NavLink href="/artists">Artists</NavLink>
               <NavLink href="/digital">Digital Experiece</NavLink>
               <NavLink href="#pricing">Partner</NavLink>
-              <NavLink href="#pricing">Admin</NavLink>
+              <NavLink href="/auth/">Admin</NavLink>
             </div>
           </nav>
         </div>

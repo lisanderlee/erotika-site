@@ -12,6 +12,7 @@ export const metadata = {
 export default function Login() {
   return (
     <SlimLayout>
+    <div className='h-screen'>
       <div className="flex">
         <Link href="/" aria-label="Home">
           <Logo className="h-10 w-auto" />
@@ -53,6 +54,7 @@ export default function Login() {
           </Button>
         </div>
       </form>
+      </div>
     </SlimLayout>
   )
 }
