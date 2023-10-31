@@ -31,7 +31,7 @@ module.exports = {
       },
       fontFamily: {
         sans: 'var(--font-inter)',
-        display: 'var(--font-lexend)',
+        display: 'var(--font-righteous)',
       },
       maxWidth: {
         '2xl': '40rem',

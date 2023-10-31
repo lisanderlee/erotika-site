@@ -99,10 +99,10 @@ export function Header() {
               <Logo className="h-10 w-auto" />
             </Link>
             <div className="hidden  md:flex md:gap-x-6">
-              {/* <NavLink href="/events">Events</NavLink>
+              <NavLink href="/events">Events</NavLink>
               <NavLink href="/about">About</NavLink>
               <NavLink href="/artists">Artists</NavLink>
-              <NavLink href="/digital">Digital Experiece</NavLink> */}
+              <NavLink href="/digital">Digital Experiece</NavLink>
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
@@ -112,9 +112,9 @@ export function Header() {
                 Get your tickets 
               </span>
             </Button>
-            {/* <div className="-mr-1 md:hidden">
+            <div className="-mr-1 md:hidden">
               <MobileNavigation />
-            </div> */}
+            </div>
           </div>
         </nav>
       </Container>
