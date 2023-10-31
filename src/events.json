@@ -5,6 +5,7 @@
     "ContactLastName": "Doe",
     "ContactPhone": "+1234567890",
     "VenueLocation": "123 Fantasy St, Imaginary City, Dreamland",
+    "EventPosition": { "lat":25.798841, "lng":-80.225544},
     "VenueName": "Dreamland Arena",
     "EventName": "Fantasy Fest 2023",
     "EventDescription": "A magical event filled with wonders and performances from top fantasy artists.",
@@ -41,6 +42,7 @@
       "ContactLastName": "Wonders",
       "ContactPhone": "+1234567891",
       "VenueLocation": "456 Magic Ave, Wonderland, Fairyland",
+      "EventPosition": { "lat":  25.788698, "lng": -80.132330 },
       "VenueName": "Wonderland Dome",
       "EventName": "Wonderland Music Bash 2023",
       "EventDescription": "Experience the enchanting melodies of Wonderland's finest artists.",
@@ -76,6 +78,7 @@
       "ContactLastName": "Pan",
       "ContactPhone": "+1234567892",
       "VenueLocation": "789 Neverland Blvd, Neverland",
+      "EventPosition": { "lat":   25.807093, "lng": -80.210524 },
       "VenueName": "Neverland Open Ground",
       "EventName": "Neverland Adventure Fest 2023",
       "EventDescription": "Join us for an adventurous day filled with games, music, and fun.",
@@ -112,6 +115,7 @@
       "ContactLastName": "Dream",
       "ContactPhone": "+1234567893",
       "VenueLocation": "101 Sleepy Lane, Dreamville, Slumberland",
+      "EventPosition": { "lat": 25.802770, "lng": -80.209170 },
       "VenueName": "Dreamville Castle",
       "EventName": "Dreamville Ball 2023",
       "EventDescription": "A royal ball with enchanting dances and mesmerizing music.",
@@ -147,6 +151,7 @@
       "ContactLastName": "Wizard",
       "ContactPhone": "+1234567894",
       "VenueLocation": "202 Mystic Woods, Magicland",
+      "EventPosition": { "lat":   25.775869, "lng": -80.225102 },
       "VenueName": "Magicland Forest Clearing",
       "EventName": "Magicland Spellcasting Contest 2023",
       "EventDescription": "Witness the greatest wizards and witches showcase their spellcasting prowess.",
@@ -182,6 +187,7 @@
       "ContactLastName": "Baggins",
       "ContactPhone": "+1234567895",
       "VenueLocation": "303 Shire Road, Hobbiton, Middle-Earth",
+      "EventPosition": { "lat": 25.852768, "lng": -80.150169 },
       "VenueName": "The Green Dragon Inn",
       "EventName": "Hobbiton Feast 2023",
       "EventDescription": "A grand feast with delightful food, drinks, and traditional hobbit music.",
@@ -217,6 +223,7 @@
       "ContactLastName": "Mermaid",
       "ContactPhone": "+1234567896",
       "VenueLocation": "404 Undersea Palace, Atlantica, Ocean Kingdom",
+      "EventPosition": { "lat": 25.792778, "lng": -80.200184 },
       "VenueName": "King Triton's Hall",
       "EventName": "Undersea Ball 2023",
       "EventDescription": "A mesmerizing ball under the sea with magical performances and dances.",
@@ -246,9 +253,5 @@
         }
       ]
     }
-  
-  
-
-
   ]
   

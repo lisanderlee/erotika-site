@@ -1,4 +1,4 @@
-import { Inter, Lexend, Righteous } from 'next/font/google'
+import { Inter, Lexend } from 'next/font/google'
 import clsx from 'clsx'
 
 import '@/styles/tailwind.css'
@@ -12,18 +12,18 @@ export const metadata = {
     'Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.',
 }
 
-const righteous = Righteous({
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-righteous',
-})
-
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
 })
+
+const lexend = Lexend({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-lexend',
+})
+import { Layout } from '@/components/Layout'
 
 export default function MainLayout({ children }) {
   return (
@@ -32,10 +32,13 @@ export default function MainLayout({ children }) {
       className={clsx(
         'h-full scroll-smooth  bg-slate-950 antialiased',
         inter.variable,
-        righteous.variable,
+        lexend.variable,
       )}
     >
-      <body className="flex h-full flex-col">{children}</body>
+      <body className="flex h-full flex-col">
+ 
+        <Layout>{children}</Layout>
+      </body>
     </html>
   )
 }
