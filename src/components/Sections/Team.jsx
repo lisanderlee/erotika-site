@@ -1,5 +1,5 @@
 import Federica from "@/images/Federica.png"
-import Tam from "@/images/Tam.png"
+import Tam from "@/images/tam.png"
 import Lisandro from "@/images/Lisandro.png"
 import Image from "next/image"
 const people = [

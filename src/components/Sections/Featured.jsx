@@ -8,7 +8,7 @@ export default function Featured() {
   return (
     <div className="relative overflow-hidden lg:mt-24">
       <div className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
-      <h2 className="font-display  w-100 text-center mb-16 text-5xl tracking-tight text-pink-300 sm:text-4xl">
+      <h2 className="font-display  w-100 text-center mb-16 text-6xl tracking-tight text-pink-300 sm:text-4xl">
             Proudly partnering with
           </h2>
           <Carousel>
