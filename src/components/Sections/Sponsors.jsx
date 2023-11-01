@@ -12,7 +12,7 @@ import logoTuple from '@/images/logos/tuple.svg'
 export function Sponsors() {
   return (
     <Container >
-        <div className=" pt-52 mt-10 lg:mt-14">
+        <div className=" pt-52 mt-10 lg:mt-0">
           <p className="font-display  text-center  text-lg text-pink-300">Our Sponsors</p>
           <ul
             role="list"

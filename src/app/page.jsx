@@ -8,7 +8,7 @@ import { Header } from '@/components/Sections/Header'
 import { Footer } from '@/components/Sections/Footer'
 import Featured from '@/components/Sections/Featured'
 import { motion, useScroll, useSpring, stagger } from 'framer-motion'
-
+import Team from '@/components/Sections/Team'
 export default function Home() {
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, {
@@ -30,33 +30,43 @@ export default function Home() {
       },
     },
   }
-
+  const sectionVariants1 = {
+    offscreen: {
+      y: -2,
+      opacity: 0,
+    },
+    onscreen: {
+      y: 0,
+      opacity:1,
+      transition: {
+        ease: 'easeOut',
+        duration: 0.1,
+        damping: 10,
+      },
+    },
+  }
   return (
     <>
       <header>
-        <motion.div
-          className="h-full"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0, delay: stagger(2) }}
-        >
+     
           <Header />
-        </motion.div>
+      
       </header>
       <main>
         <motion.div
-          variants={sectionVariants}
+          variants={sectionVariants1}
           initial="offscreen"
           whileInView="onscreen"
         >
           <Hero />
         </motion.div>
-        <motion.div
+        {/* <motion.div
           variants={sectionVariants}
           initial="offscreen"
           whileInView="onscreen"
         >
           <Sponsors />
-        </motion.div>
+        </motion.div> */}
         <motion.div
           variants={sectionVariants}
           initial="offscreen"
@@ -77,6 +87,13 @@ export default function Home() {
           whileInView="onscreen"
         >
           <About />
+        </motion.div>
+        <motion.div
+          variants={sectionVariants}
+          initial="offscreen"
+          whileInView="onscreen"
+        >
+          <Team />
         </motion.div>
       </main>
       <footer>
