@@ -2,23 +2,25 @@ import Link from 'next/link'
 import { Button } from '../Button'
 import tam from '@/images/tam.png'
 import Image from 'next/image'
+import instagram from '@/images/instagram.svg'
+import lockupimage from '@/images/asset.svg'
 export function About() {
   return (
     <div className="relative overflow-hidden lg:mt-24">
       <div className="mx-auto max-w-7xl px-6 pb-32 pt-32 sm:pt-60 lg:px-8 lg:pt-0">
-        <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
+        <div className="mx-auto max-w-2xl    gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
           <Image
-            className="h-full w-full object-cover object-center sm:rounded-lg"
-            src={tam}
-            width={900}
+            className="rounded-2xl object-cover  object-center"
+            src={lockupimage}
+            width={700}
             height={500}
             alt="Picture of the author"
             loading="lazy"
           />
           <div className="mt-12  w-full max-w-xl lg:mt-0 lg:shrink-0 xl:max-w-2xl">
-            <h1 className="font-display text-4xl tracking-tight text-pink-300 sm:text-6xl">
+            {/* <h1 className="font-display text-4xl tracking-tight text-pink-300 sm:text-6xl">
               About
-            </h1>
+            </h1> */}
             <p className="relative mt-6 text-lg leading-8 text-pink-100 sm:max-w-md lg:max-w-none">
               The Erotika Biennale is brought to you by ClitSplash, a female
               founded artistic collective that stands for liberation, equal
@@ -33,9 +35,21 @@ export function About() {
               artists, safe, fair, inclusive and able to kindle all sorts of
               artwork, is our mission.
             </p>
-            <Button href="/register" color="violet" className="mt-10">
-              ClitSplash
-            </Button>
+            <div className="mt-10  flex flex-row items-center">
+              <Button href="/register" color="violet">
+                ClitSplash
+              </Button>
+              <Link href="https://twitter.com" aria-label="TaxPal on Twitter">
+                <Image
+                  src={instagram}
+                  width={20}
+                  height={20}
+                  alt="Picture of the author"
+                  loading="lazy"
+                  className="ml-5"
+                />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

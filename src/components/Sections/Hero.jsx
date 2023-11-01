@@ -1,7 +1,9 @@
 import bodyImage from '@/images/body.svg'
 import Image from 'next/image'
 
+
 export default function Hero() {
+
 
 
   return (
@@ -9,7 +11,7 @@ export default function Hero() {
       <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
         <div className="px-6 pb-6 pt-10 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pt-48 xl:col-span-6">
           <div className="mx-auto max-w-2xl lg:mx-0">
-            <p className="mt-24 font-display tracking-tight text-violet-600  sm:text-xl lg:mt-0 lg:text-2xl ">
+            <p className="mt-24 font-display tracking-tight text-pink-300	 sm:text-xl lg:mt-0 lg:text-2xl ">
               The Erotika Biennale: A Decentralized Erotic Experience
               Celebrating Miami&apos;s Erotic Culture.
             </p>

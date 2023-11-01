@@ -38,5 +38,5 @@ module.exports = {
       },
     },
   },
-  plugins: [formsPlugin, headlessuiPlugin, "flowbite/plugin"],
+  plugins: [formsPlugin, headlessuiPlugin,"flowbite/plugin"],
 }

@@ -91,31 +91,32 @@ function MobileNavigation() {
 
 export function Header() {
   return (
-    <header className="py-5 absolute  z-10 w-screen">
+    <header className="absolute z-10  w-screen py-5">
       <Container>
-        <nav className=" z-50 flex justify-between">
-          <div className="flex items-center md:gap-x-12">
+        <nav className=" z-50  flex items-center justify-between">
+          <div className="flex  md:gap-x-12">
             <Link href="/" aria-label="Home">
               <Logo className="h-10 w-auto" />
             </Link>
-            <div className="hidden  md:flex md:gap-x-6">
-              {/* <NavLink href="/events">Events</NavLink>
+            {/* <div className="hidden w-100 items-center  justify-items-center md:flex md:gap-x-6"> */}
+
+            {/* <NavLink href="/events">Events</NavLink>
               <NavLink href="/about">About</NavLink>
               <NavLink href="/artists">Artists</NavLink>
               <NavLink href="/digital">Digital Experiece</NavLink> */}
-            </div>
+            {/* </div> */}
           </div>
-          <div className="flex items-center gap-x-5 md:gap-x-8">
-          
+          <p className="rounded-full bg-indigo-500/70 px-3 py-1 text-sm font-light leading-6  text-white ring-1 ring-inset ring-indigo-500/20">
+            Coming soon February 2024
+          </p>
+          {/* <div className="flex items-center gap-x-5 md:gap-x-8">
             <Button href="/register" color="violet">
-              <span>
-                Get your tickets 
-              </span>
+              <span>Get your tickets</span>
             </Button>
-            {/* <div className="-mr-1 md:hidden">
+            <div className="-mr-1 md:hidden">
               <MobileNavigation />
-            </div> */}
-          </div>
+            </div>
+          </div> */}
         </nav>
       </Container>
     </header>
