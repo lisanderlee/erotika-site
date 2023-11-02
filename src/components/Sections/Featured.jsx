@@ -17,6 +17,8 @@ export default function Featured() {
           renderCenterRightControls={renderCenterRightControls}
           pagingDotsClassName={pagingDotsClassName}
           autoplay
+         
+       
         >
           <Museum />
           <Eleven />
@@ -29,7 +31,7 @@ export default function Featured() {
 
 function Museum() {
   return (
-    <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
+    <div className="mx-auto max-w-2xl p-16 gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
       <Image
         className=" rounded-2xl object-cover object-center "
         src={museum}
@@ -55,7 +57,7 @@ function Museum() {
 
 function Eleven() {
   return (
-    <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
+    <div className="mx-auto max-w-2xl p-16 gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
       <Image
         className="rounded-2xl object-cover object-center "
         src={eleven}
@@ -83,7 +85,7 @@ function Eleven() {
 
 function Wilzig() {
   return (
-    <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
+    <div className="mx-auto max-w-2xl  p-16 gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
       <Image
         className="rounded-2xl object-cover object-center "
         src={world}
