@@ -1,7 +1,7 @@
 import Federica from "@/images/Federica.png"
 import Tam from "@/images/tam.png"
 import Lisandro from "@/images/Lisandro.png"
-import Gladys from "@/images/Gladys.png"
+import Gladys from "@/images/gladys.png"
 import Image from "next/image"
 const people = [
   {
