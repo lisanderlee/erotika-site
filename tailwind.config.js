@@ -8,6 +8,7 @@ module.exports = {
     "./node_modules/flowbite-react/**/*.js",
     "./pages/**/*.{ts,tsx,js,jsx}",
     "./public/**/*.html",
+    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
           ],
   theme: {
     fontSize: {
@@ -38,5 +39,5 @@ module.exports = {
       },
     },
   },
-  plugins: [formsPlugin, headlessuiPlugin,"flowbite/plugin"],
+  plugins: [formsPlugin, headlessuiPlugin,require('flowbite/plugin')],
 }

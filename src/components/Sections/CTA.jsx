@@ -27,9 +27,14 @@ export function CallToAction() {
               activations, delivering an unforgettable and never seen before
               journey.
             </p>
-            <Button href="/register" color="violet" className="mt-10">
-              Be a partner
-            </Button>
+            <div className='flex flex-row'>
+            <a  target='_blank' href="https://docs.google.com/forms/d/17U4nQC4NmQDeHGe1eUN-5DqL2fSSxeINtgz1pQ5_oLk/viewform?edit_requested=true" className="mt-10 mr-5  group inline-flex items-center justify-center rounded-full py-4 px-8 text-sm lg:text-lg font-semibold focus:outline-none focus-visible:outline-2 ' bg-violet-600 text-white hover:text-slate-100 hover:bg-violet-400 active:bg-violet-800 active:text-violet-100 focus-visible:outline-blue-600 focus-visible:outline-offset-2">
+            For Partners
+            </a>
+            <a target='_blank' href="https://docs.google.com/forms/d/1MGwkbWZ8mdiAJ58tvA7ip47ZEHir4qZ-i0uvz-A7i9I/viewform?edit_requested=true" className="mt-10   group inline-flex items-center justify-center rounded-full py-4 px-8 text-sm lg:text-lg font-semibold focus:outline-none focus-visible:outline-2 ' bg-violet-600 text-white hover:text-slate-100 hover:bg-violet-400 active:bg-violet-800 active:text-violet-100 focus-visible:outline-blue-600 focus-visible:outline-offset-2">
+            For Artists
+            </a>
+            </div>
           </div>
           <Image
             className="h-full w-full object-cover object-center sm:rounded-lg"

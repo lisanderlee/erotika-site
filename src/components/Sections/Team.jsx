@@ -1,6 +1,7 @@
 import Federica from "@/images/Federica.png"
 import Tam from "@/images/tam.png"
 import Lisandro from "@/images/Lisandro.png"
+import Gladys from "@/images/Gladys.png"
 import Image from "next/image"
 const people = [
   {
@@ -9,7 +10,7 @@ const people = [
     twitterUrl: '#',
     linkedinUrl: '#',
     imageUrl:
-      Federica,
+      Gladys,
     bio: 'Art Curator and professor with a Master&apos;s in Art History, Gladys specializes in art-tech intersections, focusing on contemporary art and themes like feminism and cultural memory. She&apos;s notable in the NFT space for contributing to various projects and introducing over 100 artists to NFTs.',
   },
   {
@@ -42,17 +43,16 @@ const people = [
   // More people...
 ]
 
+
 export default function Team() {
   return (
-    <div className=" py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className=" ">
+      <div className="mx-auto max-w-7xl px-6 mt-32 mb-20 lg:px-8">
         <div className="mx-auto max-w-2xl sm:text-center">
-          <h2 className="font-display text-4xl tracking-tight text-pink-300 sm:text-4xl">
-            The Team
-          </h2>
+          <h2 className="text-7xl font-display tracking-tight text-pink-300 sm:text-45l">Meet the team</h2>
           <p className="mt-6 text-lg leading-8 text-pink-100">
-            We’re a dynamic group of individuals who are passionate about what
-            we do and dedicated to delivering the best experiences.
+            We’re a dynamic group of individuals who are passionate about what we do and dedicated to delivering the
+            best experiences.
           </p>
         </div>
         <ul
@@ -60,27 +60,12 @@ export default function Team() {
           className="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 lg:max-w-4xl lg:gap-x-8 xl:max-w-none"
         >
           {people.map((person) => (
-            <li
-              key={person.name}
-              className="flex h-80 flex-col gap-6 xl:flex-row"
-            >
-              <Image
-                className="aspect-[4/5] w-52 flex-none rounded-2xl object-cover"
-                src= {person.imageUrl}
-                alt=""
-                width={275}
-                height={357}
-              />
+            <li key={person.name} className="flex flex-col gap-6 xl:flex-row">
+              <Image className="aspect-[4/5] w-52 flex-none rounded-2xl object-cover" src={person.imageUrl} alt=""  />
               <div className="flex-auto">
-                <h3 className="font-display text-lg leading-8 tracking-tight text-pink-300">
-                  {person.name}
-                </h3>
-                <p className="text-base leading-7 text-pink-100">
-                  {person.role}
-                </p>
-                <p className="mt-6 text-sm leading-7 text-pink-100">
-                  {person.bio}
-                </p>
+                <h3 className="text-lg font-display leading-8 tracking-tight text-pink-300">{person.name}</h3>
+                <p className="text-base leading-7 text-pink-100">{person.role}</p>
+                <p className="mt-6 text-base leading-7 text-pink-100">{person.bio}</p>
               </div>
             </li>
           ))}
