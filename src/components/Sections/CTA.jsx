@@ -4,7 +4,7 @@ import { Container } from '@/components/Container'
 import partner from '@/images/partner.svg'
 export function CallToAction() {
   return (
-    <div className="relative overflow-hidden lg:mt-24">
+    <div className="relative overflow-hidden mt-10 lg:mt-16">
       <div className="mx-auto max-w-7xl px-6 pb-32  sm:pt-60 lg:px-8 lg:pt-0">
         <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
           <div className="mb-12  w-full max-w-xl lg:mt-0 lg:shrink-0 xl:max-w-2xl">

@@ -40,7 +40,7 @@ const people = [
 export default function Team() {
   return (
     <div className=" ">
-      <div className="mx-auto mb-20 mt-32 max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto mb-20 mt-32 max-w-7xl px-6 lg:px-8 lg:mt-28">
         <div className="mx-auto max-w-2xl sm:text-center">
           <h2 className="sm:text-45l font-display text-7xl tracking-tight text-pink-300">
             Meet the team

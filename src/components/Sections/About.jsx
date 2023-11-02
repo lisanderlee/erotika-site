@@ -6,7 +6,7 @@ import instagram from '@/images/instagram.svg'
 import lockupimage from '@/images/asset.svg'
 export function About() {
   return (
-    <div className="relative overflow-hidden lg:mt-24">
+    <div className="relative overflow-hidden lg:mt-28">
       <div className="mx-auto max-w-7xl px-6 pb-32 pt-32 sm:pt-60 lg:px-8 lg:pt-0">
         <div className="mx-auto max-w-2xl    gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
           <Image
