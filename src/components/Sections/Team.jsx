@@ -24,7 +24,7 @@ const people = [
   },
   {
     name: 'Federica Pogliani',
-    role: 'Senior Designer',
+    role: 'Digital Strategist',
     twitterUrl: '#',
     linkedinUrl: '#',
     imageUrl:
