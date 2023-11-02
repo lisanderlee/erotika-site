@@ -1,23 +1,27 @@
+'use client'
 import Image from 'next/image'
-import museum from '@/images/museum.jpg'
-import { Carousel } from 'flowbite-react'
-import world from "@/images/world.jpg"
-import eleven from "@/images/eleven.jpg"
-
+import museum from '@/images/museum.png'
+import world from '@/images/world.png'
+import eleven from '@/images/eleven.png'
+import Carousel from 'nuka-carousel'
+import { renderCenterRightControls, renderCenterLeftControls, pagingDotsClassName } from '../Controls'
 export default function Featured() {
   return (
     <div className="relative overflow-hidden lg:mt-24">
-      <div className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
-      <h2 className="font-display  w-100 text-center mb-16 text-6xl tracking-tight text-pink-300 sm:text-4xl">
+      <div className="mx-auto max-w-7xl px-6 pb-32 pt-32 sm:pt-96 lg:px-8 lg:pt-32">
+        {/* <h2 className="font-display  w-100 text-center mb-16 text-6xl tracking-tight text-pink-300 sm:text-4xl">
             Proudly partnering with
-          </h2>
-          <Carousel>
-          
+          </h2> */}
+        <Carousel
+          renderCenterLeftControls={renderCenterLeftControls}
+          renderCenterRightControls={renderCenterRightControls}
+          pagingDotsClassName={pagingDotsClassName}
+          autoplay
+        >
           <Museum />
           <Eleven />
           <Wilzig />
-          </Carousel>
-      
+        </Carousel>
       </div>
     </div>
   )
@@ -27,7 +31,7 @@ function Museum() {
   return (
     <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
       <Image
-        className="h-96  rounded-2xl object-cover object-center "
+        className=" rounded-2xl object-cover object-center "
         src={museum}
         width={500}
         height={500}
@@ -53,7 +57,7 @@ function Eleven() {
   return (
     <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
       <Image
-        className="h-96 rounded-2xl object-cover object-center "
+        className="rounded-2xl object-cover object-center "
         src={eleven}
         width={500}
         height={500}
@@ -81,7 +85,7 @@ function Wilzig() {
   return (
     <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
       <Image
-        className="  h-96 rounded-2xl object-cover object-center "
+        className="rounded-2xl object-cover object-center "
         src={world}
         width={500}
         height={500}
@@ -93,14 +97,12 @@ function Wilzig() {
           The Wilzig Collection
         </h1>
         <p className="relative mt-6 text-lg leading-8 text-pink-100 sm:max-w-md lg:max-w-none">
-          Home to a rich collection of over 4,000 objects spanning centuries,
-          continents, and cultures. This exceptional collection serves as a
-          valuable resource for exploring the cultural history of sexuality,
-          gender, love, emotions, and desires, providing unique insights into
-          culturally specific manifestations of sexuality. The Erotika Biennale
-          will host an educational program at the Wilzig, aimin to present this
-          collection in a fresh context, viewing these objects as evidence of a
-          cultural history of sexuality from antiquity to the present day.
+          The Erotika Biennale at the Wilzig hosts over 4,000 artifacts across
+          centuries and cultures, offering a deep exploration of the history of
+          sexuality, gender, and emotions. This extensive collection presents a
+          unique view of cultural expressions of sexuality. The event includes
+          an educational program, contextualizing these items as historical
+          evidence of evolving sexual norms from antiquity to modern times.
         </p>
       </div>
     </div>

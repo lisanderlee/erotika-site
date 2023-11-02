@@ -36,10 +36,18 @@ export function About() {
               artwork, is our mission.
             </p>
             <div className="mt-10  flex flex-row items-center">
-              <Button href="/register" color="violet">
+              <a
+                target="_blank"
+                href="https://www.clitsplash.art/"
+                className="  ' group inline-flex items-center justify-center rounded-full bg-violet-600 px-8 py-4 text-sm lg:text-lg font-semibold text-white hover:bg-violet-400 hover:text-slate-100 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:bg-violet-800 active:text-violet-100"
+              >
                 ClitSplash
-              </Button>
-              <Link href="https://twitter.com" aria-label="TaxPal on Twitter">
+              </a>
+              <a
+                target="_blank"
+                href="https://www.instagram.com/clitsplash/"
+                aria-label="TaxPal on Twitter"
+              >
                 <Image
                   src={instagram}
                   width={20}
@@ -48,7 +56,7 @@ export function About() {
                   loading="lazy"
                   className="ml-5"
                 />
-              </Link>
+              </a>
             </div>
           </div>
         </div>
