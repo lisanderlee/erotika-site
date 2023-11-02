@@ -107,7 +107,7 @@ export function Header() {
             {/* </div> */}
           </div>
           <p className="rounded-full bg-indigo-500/70 px-3 py-1 text-sm font-light leading-6  text-white ring-1 ring-inset ring-indigo-500/20">
-            Coming soon February 2024
+            Tickets Coming Soon 
           </p>
           {/* <div className="flex items-center gap-x-5 md:gap-x-8">
             <Button href="/register" color="violet">
