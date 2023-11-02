@@ -11,7 +11,7 @@ const people = [
     linkedinUrl: '#',
     imageUrl:
       Gladys,
-    bio: 'Art Curator and professor with a Master&apos;s in Art History, Gladys specializes in art-tech intersections, focusing on contemporary art and themes like feminism and cultural memory. She&apos;s notable in the NFT space for contributing to various projects and introducing over 100 artists to NFTs.',
+    bio: 'Art Curator and professor with a Masters in Art History, Gladys specializes in art-tech intersections, focusing on contemporary art and themes like feminism and cultural memory. She&apos;s notable in the NFT space for contributing to various projects and introducing over 100 artists to NFTs.',
   },
   {
     name: 'Tam Gryn',
@@ -20,7 +20,7 @@ const people = [
     linkedinUrl: '#',
     imageUrl:
       Tam,
-    bio: 'Art Curator and Author Tam, a guest lecturer at Harvard and New York Academy of the Arts, formerly led Fine Arts at Rally and curated at SHOWFIELDS. She&apos;s organized various exhibitions and fundraisers, collaborating with notable museums and brands. Educated in Art History, Politics, and Negotiation at Sorbonne, Reichman, and Tel Aviv Universities.',
+    bio: 'Art Curator and Author Tam, a guest lecturer at Harvard and New York Academy of the Arts, formerly led Fine Arts at Rally and curated at SHOWFIELDS. She curated and organized various exhibitions and fundraisers, collaborating with notable museums and brands. Educated in Art History, Politics, and Negotiation at Sorbonne, Reichman, and Tel Aviv Universities.',
   },
   {
     name: 'Federica Pogliani',
