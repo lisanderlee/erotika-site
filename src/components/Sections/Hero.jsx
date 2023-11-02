@@ -20,8 +20,8 @@ export default function Hero() {
             </h1>
             <p className="mt-6 text-lg leading-8 text-pink-100">
               Join us at the Erotika Biennale in Miami this February, a
-              month-long event celebrating erotic art and culture. Curated by
-              Clitsplash, this vibrant festival features diverse artists,
+              month-long event celebrating erotic art and culture. Curated by 
+               <span className=' text-pink-300'><a target='_blank'  href='http://www.clitsplash.art'> Clitsplash</a></span>, this vibrant festival features diverse artists,
               performances, and workshops, fostering an immersive experience in
               Miami&apos;s erotic communities. It&apos;s a revolution in erotic
               art appreciation, uniting communities, artists, and audiences in a
