@@ -1,14 +1,14 @@
 'use client'
-import { CallToAction } from '@/components/Sections/CTA'
-import { Sponsors } from '@/components/Sections/Sponsors'
 import Hero from '@/components/Sections/Hero'
-import Artists from '@/components/Sections/Artists'
+import { CallToAction } from '@/components/Sections/CTA'
 import { About } from '@/components/Sections/About'
 import { Header } from '@/components/Sections/Header'
 import { Footer } from '@/components/Sections/Footer'
 import Featured from '@/components/Sections/Featured'
-import { motion, useScroll, useSpring, stagger } from 'framer-motion'
+import { motion, useScroll, useSpring } from 'framer-motion'
 import Team from '@/components/Sections/Team'
+
+
 export default function Home() {
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, {
@@ -37,7 +37,7 @@ export default function Home() {
     },
     onscreen: {
       y: 0,
-      opacity:1,
+      opacity: 1,
       transition: {
         ease: 'easeOut',
         duration: 0.1,
@@ -48,9 +48,7 @@ export default function Home() {
   return (
     <>
       <header>
-     
-          <Header />
-      
+        <Header />
       </header>
       <main>
         <motion.div
@@ -97,7 +95,7 @@ export default function Home() {
         </motion.div>
       </main>
       <footer>
-         <motion.div
+        <motion.div
           variants={sectionVariants}
           initial="offscreen"
           whileInView="onscreen"

@@ -98,13 +98,12 @@ export function Header() {
             <Link href="/" aria-label="Home">
               <Logo className="h-10 w-auto" />
             </Link>
-            {/* <div className="hidden w-100 items-center  justify-items-center md:flex md:gap-x-6"> */}
+            <div className="hidden w-100 items-center  justify-items-center md:flex md:gap-x-6"> 
 
-            {/* <NavLink href="/events">Events</NavLink>
-              <NavLink href="/about">About</NavLink>
+            <NavLink href="/events">Events</NavLink>
               <NavLink href="/artists">Artists</NavLink>
-              <NavLink href="/digital">Digital Experiece</NavLink> */}
-            {/* </div> */}
+              <NavLink href="/digital">Digital Experiece</NavLink> 
+             </div>
           </div>
           <p className="rounded-full bg-indigo-500/70 px-3 py-1 text-sm font-light leading-6  text-white ring-1 ring-inset ring-indigo-500/20">
             Tickets Coming Soon 

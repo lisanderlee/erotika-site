@@ -1,6 +1,6 @@
-import { Inter, Lexend } from 'next/font/google'
+import { Inter, Righteous } from 'next/font/google'
 import clsx from 'clsx'
-
+import { Layout } from '@/components/Layout'
 import '@/styles/tailwind.css'
 
 export const metadata = {
@@ -9,8 +9,15 @@ export const metadata = {
     default: 'The Erotika Biennale ',
   },
   description:
-    'Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.',
+    'Join us at the Erotika Biennale in Miami this February, a month-long event celebrating erotic art and culture.',
 }
+
+const righteous = Righteous({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-righteous',
+})
 
 const inter = Inter({
   subsets: ['latin'],
@@ -18,12 +25,6 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
-const lexend = Lexend({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-lexend',
-})
-import { Layout } from '@/components/Layout'
 
 export default function MainLayout({ children }) {
   return (
@@ -32,7 +33,7 @@ export default function MainLayout({ children }) {
       className={clsx(
         'h-full scroll-smooth  bg-slate-950 antialiased',
         inter.variable,
-        lexend.variable,
+        righteous.variable,
       )}
     >
       <body className="flex h-full flex-col">

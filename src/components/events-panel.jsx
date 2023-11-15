@@ -1,7 +1,7 @@
 'use client'
 import useStore from './store'
 import React from 'react'
-import EventsList from './EventsList'
+import EventsList from './events-list'
 
 export default function EventsPanel() {
   const selected = useStore((state) => state.selected)

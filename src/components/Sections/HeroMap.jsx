@@ -1,5 +1,5 @@
-import GoogleMaps from '../GoogleMaps'
-import EventsPanel from '../EventsPanel'
+import GoogleMaps from '../google-maps'
+import EventsPanel from '../events-panel'
 
 export default function Hero() {
   return (

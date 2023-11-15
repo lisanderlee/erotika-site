@@ -1,9 +1,7 @@
-import Link from 'next/link'
-import { Button } from '../Button'
-import tam from '@/images/tam.png'
 import Image from 'next/image'
 import instagram from '@/images/instagram.svg'
 import lockupimage from '@/images/asset.svg'
+
 export function About() {
   return (
     <div className="relative overflow-hidden lg:mt-28">

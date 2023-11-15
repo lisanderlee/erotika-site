@@ -1,12 +1,14 @@
-'use client'
-import ArtistsTable from "@/components/Backend/ArtistsTable"
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
+import VenuesTable from './venues/page'
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+export default async function Account() {
+  const cookieStore = cookies()
+  const supabase = createServerComponentClient({ cookies: () => cookieStore })
 
-export default function home() {
-  <>
-<ArtistsTable />
-  </>
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  return <VenuesTable session={session} />
 }

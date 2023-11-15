@@ -1,5 +1,7 @@
 const formsPlugin = require('@tailwindcss/forms')
 const headlessuiPlugin = require('@headlessui/tailwindcss')
+const aspectPlugin = require('@tailwindcss/aspect-ratio')
+const typographyPlugin =  require('@tailwindcss/typography')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -39,5 +41,5 @@ module.exports = {
       },
     },
   },
-  plugins: [formsPlugin, headlessuiPlugin,require('flowbite/plugin')],
+  plugins: [formsPlugin, headlessuiPlugin,require('flowbite/plugin'), aspectPlugin  ],
 }

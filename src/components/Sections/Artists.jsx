@@ -1,5 +1,5 @@
 import { Button } from '../Button'
-import { ArtistsItem } from '@/components/ArtistItem'
+import { ArtistsItem } from '@/components/artist-item'
 import Link from 'next/link'
 import artists from '@/artists.json'
 import { Container } from '../Container'

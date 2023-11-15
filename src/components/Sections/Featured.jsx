@@ -15,7 +15,7 @@ export default function Featured() {
         <Carousel
           renderCenterLeftControls={renderCenterLeftControls}
           renderCenterRightControls={renderCenterRightControls}
-          pagingDotsClassName={pagingDotsClassName}
+        
           autoplay
          
        
