@@ -1,7 +1,7 @@
 import GoogleMaps from '../google-maps'
 import EventsPanel from '../events-panel'
 
-export default function Hero() {
+export default function HeroMap() {
   return (
     <>
     <div className='w-scree h-screen'>

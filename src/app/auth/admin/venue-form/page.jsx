@@ -3,28 +3,48 @@ import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { useLoadScript } from '@react-google-maps/api'
 
-export default function VenueForm() {
+import 'react-toastify/dist/ReactToastify.css'
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from 'use-places-autocomplete'
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
+} from '@reach/combobox'
+import '@reach/combobox/styles.css'
+
+export default function Places() {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_MAP_API_KEY,
+    libraries: ['places'],
+  })
+
+  if (!isLoaded) return <div>Loading...</div>
+  return <VenueForm />
+}
+
+function VenueForm() {
   const supabase = createClientComponentClient()
   const [loading, setLoading] = useState(false)
   const [name, setName] = useState(null)
-  const [address, setAddress] = useState(null)
-  const [state, setState] = useState(null)
-  const [city, setCity] = useState(null)
-  const [zip, setZip] = useState(null)
+  const [geo, setGeo] = useState(null)
   const [number, setNumber] = useState(null)
+  const [selected, setSelected] = useState(null)
 
-  async function insertVenue({ name, number, address, city, state, zip }) {
+  async function insertVenue() {
     try {
       setLoading(true)
       const { error } = await supabase.from('venues').insert({
         name: name,
         number: number,
-        address: address,
-        city: city,
-        state: state,
-        zip: zip,
+        address: selected[0].formatted_address,
+        geo:geo,
       })
       if (error) throw error
       toast.success('🦄 Venue Added!')
@@ -37,13 +57,11 @@ export default function VenueForm() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    insertVenue({ name, number, address, city, state, zip })
+    insertVenue()
     setName(null)
     setNumber(null)
-    setAddress(null)
-    setCity(null)
-    setState(null)
-    setZip(null)
+    setSelected(null)
+
   }
 
   return (
@@ -102,72 +120,9 @@ export default function VenueForm() {
                   Street address
                 </label>
                 <div className="mt-2">
-                  <input
-                    type="text"
-                    name="street-address"
-                    id="street-address"
-                    value={address || ''}
-                    onChange={(e) => setAddress(e.target.value)}
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-2 sm:col-start-1">
-                <label
-                  htmlFor="city"
-                  className="block text-sm font-medium leading-6 text-white"
-                >
-                  City
-                </label>
-                <div className="mt-2">
-                  <input
-                    type="text"
-                    name="city"
-                    id="city"
-                    value={city || ''}
-                    onChange={(e) => setCity(e.target.value)}
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-2">
-                <label
-                  htmlFor="region"
-                  className="block text-sm font-medium leading-6 text-white"
-                >
-                  State / Province
-                </label>
-                <div className="mt-2">
-                  <input
-                    type="text"
-                    name="state"
-                    id="state"
-                    autoComplete="address-level1"
-                    value={state || ''}
-                    onChange={(e) => setState(e.target.value)}
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-2">
-                <label
-                  htmlFor="postal-code"
-                  className="block text-sm font-medium leading-6 text-white"
-                >
-                  ZIP / Postal code
-                </label>
-                <div className="mt-2">
-                  <input
-                    type="text"
-                    name="postal-code"
-                    id="postal-code"
-                    autoComplete="postal-code"
-                    value={zip || ''}
-                    onChange={(e) => setZip(e.target.value)}
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  <PlacesAutocomplete
+                    setSelected={setSelected}
+                    setGeo={setGeo}
                   />
                 </div>
               </div>
@@ -205,5 +160,45 @@ export default function VenueForm() {
         theme="light"
       />
     </>
+  )
+}
+
+const PlacesAutocomplete = ({ setSelected, setGeo }) => {
+  const {
+    ready,
+    value,
+    setValue,
+    suggestions: { status, data },
+    clearSuggestions,
+  } = usePlacesAutocomplete()
+
+  const handleSelect = async (address) => {
+    setValue(address, false)
+    clearSuggestions()
+
+    const results = await getGeocode({ address })
+    setSelected(results)
+    const { lat, lng } = await getLatLng(results[0])
+    setGeo({ lat, lng })
+  }
+
+  return (
+    <Combobox onSelect={handleSelect}>
+      <ComboboxInput
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        disabled={!ready}
+        className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+        placeholder="Search an address"
+      />
+      <ComboboxPopover>
+        <ComboboxList>
+          {status === 'OK' &&
+            data.map(({ place_id, description }) => (
+              <ComboboxOption key={place_id} value={description} />
+            ))}
+        </ComboboxList>
+      </ComboboxPopover>
+    </Combobox>
   )
 }

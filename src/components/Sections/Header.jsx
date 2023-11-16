@@ -91,7 +91,7 @@ function MobileNavigation() {
 
 export function Header() {
   return (
-    <header className="absolute z-10  w-screen py-5">
+    <header className="absolute z-10 bg-slate-950 w-screen py-5">
       <Container>
         <nav className=" z-50  flex items-center justify-between">
           <div className="flex  md:gap-x-12">
@@ -102,7 +102,7 @@ export function Header() {
 
             <NavLink href="/events">Events</NavLink>
               <NavLink href="/artists">Artists</NavLink>
-              <NavLink href="/digital">Digital Experiece</NavLink> 
+              {/* <NavLink href="/digital">Digital Experiece</NavLink>  */}
              </div>
           </div>
           <p className="rounded-full bg-indigo-500/70 px-3 py-1 text-sm font-light leading-6  text-white ring-1 ring-inset ring-indigo-500/20">

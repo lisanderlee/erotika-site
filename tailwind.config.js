@@ -1,17 +1,19 @@
 const formsPlugin = require('@tailwindcss/forms')
 const headlessuiPlugin = require('@headlessui/tailwindcss')
 const aspectPlugin = require('@tailwindcss/aspect-ratio')
-const typographyPlugin =  require('@tailwindcss/typography')
+const typographyPlugin = require('@tailwindcss/typography')
+import { nextui } from '@nextui-org/react'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
-    "./node_modules/flowbite-react/**/*.js",
-    "./pages/**/*.{ts,tsx,js,jsx}",
-    "./public/**/*.html",
+    './node_modules/flowbite-react/**/*.js',
+    './pages/**/*.{ts,tsx,js,jsx}',
+    './public/**/*.html',
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
-          ],
+    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
@@ -28,6 +30,7 @@ module.exports = {
       '8xl': ['6rem', { lineHeight: '1' }],
       '9xl': ['8rem', { lineHeight: '1' }],
     },
+    darkMode: "class",
     extend: {
       borderRadius: {
         '4xl': '2rem',
@@ -41,5 +44,11 @@ module.exports = {
       },
     },
   },
-  plugins: [formsPlugin, headlessuiPlugin,require('flowbite/plugin'), aspectPlugin  ],
+  plugins: [
+    formsPlugin,
+    headlessuiPlugin,
+    require('flowbite/plugin'),
+    aspectPlugin,
+    nextui(),
+  ],
 }

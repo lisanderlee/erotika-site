@@ -1,11 +1,48 @@
 'use client'
 import { Wrapper } from '@googlemaps/react-wrapper'
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState, useCallback } from 'react'
 import { createRoot } from 'react-dom/client'
 import useStore from './store'
-import events from '@/events.json'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 export default function GoogleMaps() {
+  const supabase = createClientComponentClient()
+  const [events, setEvents] = useState(null)
+  const [loading, setLoading] = useState(null)
+  const [selected, setSelected] = useState(null)
+
+  const getEvents = useCallback(async () => {
+    try {
+      setLoading(true)
+
+      const { data, error } = await supabase.from('events_table').select(`
+      *,
+      venues (
+       *
+      ),
+      event_category(
+        event_category
+      )
+    `)
+
+      if (error && status !== 406) {
+        throw error
+      }
+
+      if (data) {
+        setEvents(data)
+      }
+    } catch (error) {
+      alert('Error loading user data!')
+    } finally {
+      setLoading(false)
+    }
+  }, [supabase])
+
+  useEffect(() => {
+    getEvents()
+  }, [getEvents])
+
   return (
     <>
       <Wrapper
@@ -13,7 +50,7 @@ export default function GoogleMaps() {
         version="beta"
         libraries={['marker']}
       >
-        <MyMap />
+        <MyMap events={events} />
       </Wrapper>
     </>
   )
@@ -26,7 +63,7 @@ const mapOptions = {
   disableDefaultUI: true,
 }
 
-function MyMap() {
+function MyMap({ events }) {
   const [map, setMap] = useState()
   const ref = useRef()
 
@@ -37,43 +74,49 @@ function MyMap() {
   return (
     <>
       <div ref={ref} id="map" />
-      {map && <Locations map={map} />}
+      {events && map && <Locations map={map} events={events} />}
     </>
   )
 }
 
-function Locations({ map }) {
+function Locations({ map, events }) {
   const [highlight, setHighlight] = useState()
-  const { setSelected } = useStore();
+  const { setSelected } = useStore()
+  function createArrayFromNumber(num) {
+    let array = []
+    array.push(num)
+    return array
+  }
   return (
     <>
-      {events.map((event) => (
-        <Marker
-          key={event.EventId}
-          map={map}
-          position={event.EventPosition}
-          onClick={() => setSelected(event.EventId)}
-        >
-          <div
-            className={`marker  ${
-              highlight === event.EventId ? 'highlight' : ''
-            }`}
-            onMouseEnter={() => setHighlight(event.EventId)}
-            onMouseLeave={() => setHighlight(null)}
+      {events &&
+        events.map((event) => (
+          <Marker
+            key={event.id}
+            map={map}
+            position={event.venues.geo}
+            onClick={() => setSelected(createArrayFromNumber(event.id))}
           >
-            <h2 className=" line-clamp-1 text-sm font-semibold text-pink-300">
-              {event.EventName}
-            </h2>
-            {/* 
+            <div
+              className={`marker  ${
+                highlight === event.EventId ? 'highlight' : ''
+              }`}
+              onMouseEnter={() => setHighlight(event.id)}
+              onMouseLeave={() => setHighlight(null)}
+            >
+              <h2 className=" line-clamp-1 text-sm font-semibold text-pink-300">
+                {event.name}
+              </h2>
+              {/* 
             {highlight === event.EventID ? (
               <div className="expanded-marker">
                 <h4>{event.VenueName}</h4>
                 <p>{event.EventStartDate}</p>
               </div>
             ) : null} */}
-          </div>
-        </Marker>
-      ))}
+            </div>
+          </Marker>
+        ))}
     </>
   )
 }

@@ -49,7 +49,6 @@ export default function Page({ params }) {
   }, [getEvents])
 
   return (
-   
     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
       <div className="z-50  mt-10 rounded-xl bg-[#5E18EA]  drop-shadow-xl   ">
         <div className="inner">
@@ -90,7 +89,9 @@ export default function Page({ params }) {
             <div className="mt-6">
               <div
                 className="space-y-6 text-xl text-pink-100"
-                dangerouslySetInnerHTML={{ __html: event && event[0].description }}
+                dangerouslySetInnerHTML={{
+                  __html: event && event[0].description,
+                }}
               />
             </div>
           </div>
@@ -132,7 +133,7 @@ export default function Page({ params }) {
                     Tier:
                   </h4>
                   <h4 className="ml-3 mt-1  flex-none  font-normal text-pink-100 lg:mt-0">
-                  {event && event[0].vip ? "VIP" : "Regular"}
+                    {event && event[0].vip ? 'VIP' : 'Regular'}
                   </h4>
                 </div>
                 <div className="flex flex-row">
@@ -140,7 +141,7 @@ export default function Page({ params }) {
                     RSVP:
                   </h4>
                   <h4 className="ml-3 mt-1  flex-none  font-normal text-pink-100 lg:mt-0">
-                  {event && event[0].rsvp ? "Yes" : "No"}
+                    {event && event[0].rsvp ? 'Yes' : 'No'}
                   </h4>
                 </div>
 
@@ -149,7 +150,7 @@ export default function Page({ params }) {
                     Payed:
                   </h4>
                   <h4 className="ml-3 mt-1 flex-none  font-normal leading-6 text-gray-100  lg:mt-0">
-                    {event && event[0].payed ? "Yes" : "No"}
+                    {event && event[0].payed ? 'Yes' : 'No'}
                   </h4>
                 </div>
               </div>
@@ -160,7 +161,7 @@ export default function Page({ params }) {
                     Venue:
                   </h4>
                   <h4 className="ml-3 flex-none  font-normal text-pink-100">
-                    { event && event[0].venues.name}
+                    {event && event[0].venues.name}
                   </h4>
                 </div>
 
@@ -169,13 +170,7 @@ export default function Page({ params }) {
                     Location:
                   </h4>
                   <h4 className="ml-3 mt-1 w-40  flex-none font-normal text-pink-100  lg:mt-0 lg:w-full">
-                    {event && event[0].venues.address +
-                      ' ' +
-                      event[0].venues.city +
-                      ' ' +
-                      event[0].venues.state +
-                      ' ' +
-                      event[0].venues.zip}
+                    {event && event[0].venues.address}
                   </h4>
                 </div>
                 <div className="flex flex-row">

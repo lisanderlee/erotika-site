@@ -16,7 +16,7 @@ export default function VenuesTable({ session }) {
 
       const { data, error, status } = await supabase
         .from('venues')
-        .select(`name, number, address, city, state, zip`)
+        .select(`*`)
 
       if (error && status !== 406) {
         throw error
@@ -82,24 +82,7 @@ export default function VenuesTable({ session }) {
                           >
                             Address
                           </th>
-                          <th
-                            scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-white"
-                          >
-                            City
-                          </th>
-                          <th
-                            scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-white"
-                          >
-                            State
-                          </th>
-                          <th
-                            scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-white"
-                          >
-                            Zip Code
-                          </th>
+                       
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-800">
@@ -114,15 +97,9 @@ export default function VenuesTable({ session }) {
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
                               {venue.address}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-                              {venue.city}
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-                              {venue.state}
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-                              {venue.zip}
-                            </td>
+                           
+                           
+                            
 
                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                               <a

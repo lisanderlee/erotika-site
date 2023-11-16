@@ -7,8 +7,8 @@ import { Footer } from '@/components/Sections/Footer'
 import Featured from '@/components/Sections/Featured'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import Team from '@/components/Sections/Team'
-
-
+import GoogleMaps from '@/components/google-maps'
+import HeroMap from '@/components/Sections/HeroMap'
 export default function Home() {
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, {
@@ -50,6 +50,13 @@ export default function Home() {
       <header>
         <Header />
       </header>
+      <motion.div
+          variants={sectionVariants1}
+          initial="offscreen"
+          whileInView="onscreen"
+        >
+      <HeroMap />
+      </motion.div>
       <main>
         <motion.div
           variants={sectionVariants1}
