@@ -2,7 +2,9 @@
 import { EyeIcon, PencilIcon, TrashIcon } from '@heroicons/react/20/solid'
 import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-
+import Link from 'next/link'
+import { Suspense } from 'react'
+import Loading from '@/app/(internal)/loading'
 export default function EventsTable() {
   const supabase = createClientComponentClient()
   const [events, setEvents] = useState(null)
@@ -21,7 +23,6 @@ export default function EventsTable() {
         event_category
       )
     `)
- console.log(data)
 
       if (error && status !== 406) {
         throw error
@@ -54,7 +55,7 @@ export default function EventsTable() {
               </div>
               <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                 <a
-                  href="/auth/admin/event-form"
+                  href="/auth/admin/events/event-form"
                   type="button"
                   className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                 >
@@ -101,33 +102,57 @@ export default function EventsTable() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-800">
-                      {events && events.map((event) => (
-                        <tr key={event.id}>
-                          <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
-                            {event.name}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-                            {event.event_category.event_category}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-                            {event.venues.name}
-                          </td>
-                           <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-                            {event.start}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-                            {event.end}
-                          </td>
-                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                            <a
-                              href="#"
-                              className="text-indigo-400 hover:text-indigo-300"
-                            >
-                              <Buttons />
-                            </a>
-                          </td> 
-                        </tr>
-                      ))}
+                      {events &&
+                        events.map((event) => (
+                          <tr key={event.id}>
+                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
+                              {event.name}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+                              {event.event_category.event_category}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+                              {event.venues.name}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+                              {event.start}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+                              {event.end}
+                            </td>
+                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                              <span className="isolate inline-flex rounded-md shadow-sm">
+                                <Link
+                                  href={`/auth/admin/events/event-form-view/${event.id}`}
+                                  className="relative inline-flex items-center rounded-l-md bg-slate-950  px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10"
+                                >
+                                  <EyeIcon
+                                    className="-ml-0.5 mr-1.5 h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                </Link>
+                                <Link
+                                  className="relative -ml-px inline-flex items-center bg-slate-950 px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10"
+                                  href={`/auth/admin/events/event-form-edit/${event.id}`}
+                                >
+                                  <PencilIcon
+                                    className="-ml-0.5 mr-1.5 h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                </Link>
+                                <Link
+                                  href={`/auth/admin/events/artist-form-edit/${event.id}`}
+                                  className="relative -ml-px inline-flex items-center rounded-r-md  bg-slate-950 px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10"
+                                >
+                                  <TrashIcon
+                                    className="-ml-0.5 mr-1.5 h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                </Link>
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
                     </tbody>
                   </table>
                 </div>
@@ -137,30 +162,5 @@ export default function EventsTable() {
         </div>
       </div>
     </div>
-  )
-}
-
-function Buttons() {
-  return (
-    <span className="isolate inline-flex rounded-md shadow-sm">
-      <button
-        type="button"
-        className="relative inline-flex items-center rounded-l-md bg-slate-950  px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10"
-      >
-        <EyeIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-      </button>
-      <button
-        type="button"
-        className="relative -ml-px inline-flex items-center bg-slate-950 px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10"
-      >
-        <PencilIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-      </button>
-      <button
-        type="button"
-        className="relative -ml-px inline-flex items-center rounded-r-md  bg-slate-950 px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10"
-      >
-        <TrashIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-      </button>
-    </span>
   )
 }

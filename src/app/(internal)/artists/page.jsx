@@ -1,14 +1,23 @@
 'use client'
-import { ArtistsItem } from '@/components/artist-item'
-import Link from 'next/link'
-import artists from '@/artists.json'
-import { motion } from 'framer-motion'
 import { Suspense } from 'react'
-import { GetTicketCta } from '@/components/get-ticket-cta'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useCallback, useEffect, useState } from 'react'
 
-export default function Home() {
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { ArtistsItem } from '@/components/artist-item'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+
+// async function getArtists() {
+//   const supabase = createClientComponentClient()
+//   const res = await supabase
+//     .from('artists_table')
+//     .select(`*, artist_category (category)`)
+//     console.log(res)
+
+//   return res.data
+// }
+
+export default function ArtistsInternal() {
   const supabase = createClientComponentClient()
   const [artists, setArtists] = useState(null)
   const [loading, setLoading] = useState(null)
@@ -56,17 +65,18 @@ export default function Home() {
   }
 
   return (
-    <div className="py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto  lg:mx-0">
-          <h2 className="font-display text-pink-300 sm:text-4xl lg:text-7xl">
-            Artists
-          </h2>
-        </div>
-        <Suspense>
+    <>
+      <div className="mb-20 px-5 pt-5 md:px-10 lg:px-14">
+        <div className="mx-auto">
+          <div className="mx-auto lg:mx-0">
+            <h2 className="my-10 font-display text-5xl text-pink-300 lg:mb-0 lg:text-7xl ">
+              Artists
+            </h2>
+          </div>
+
           <ul
             role="list"
-            className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 xl:grid-cols-3"
+            className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-14  lg:gap-y-0 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 xl:grid-cols-3"
           >
             {artists &&
               artists.map((artist, index) => (
@@ -76,7 +86,7 @@ export default function Home() {
                     initial="initial"
                     whileInView="animate"
                     key={artist.Id}
-                    className="mx-auto max-w-xl px-5"
+                    className="mx-auto max-w-xl"
                     custom={index}
                     viewport={{ once: true }}
                     whileHover={{ scale: 1.03 }}
@@ -91,9 +101,9 @@ export default function Home() {
                 </Link>
               ))}
           </ul>
-        </Suspense>
+        </div>
+        {/* <GetTicketCta /> */}
       </div>
-      {/* <GetTicketCta /> */}
-    </div>
+    </>
   )
 }

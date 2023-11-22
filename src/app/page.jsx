@@ -9,6 +9,9 @@ import { motion, useScroll, useSpring } from 'framer-motion'
 import Team from '@/components/Sections/Team'
 import GoogleMaps from '@/components/google-maps'
 import HeroMap from '@/components/Sections/HeroMap'
+import CTATicket from '@/components/Sections/CTA-ticket'
+import Artists from '@/components/Sections/Artists'
+import { Sponsors } from '@/components/Sections/Sponsors'
 export default function Home() {
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, {
@@ -50,20 +53,28 @@ export default function Home() {
       <header>
         <Header />
       </header>
-      <motion.div
+      {/* <motion.div
           variants={sectionVariants1}
           initial="offscreen"
           whileInView="onscreen"
         >
       <HeroMap />
-      </motion.div>
+      </motion.div> */}
       <main>
+      
         <motion.div
           variants={sectionVariants1}
           initial="offscreen"
           whileInView="onscreen"
         >
           <Hero />
+        </motion.div>
+        <motion.div
+          variants={sectionVariants1}
+          initial="offscreen"
+          whileInView="onscreen"
+        >
+          <Sponsors />
         </motion.div>
         {/* <motion.div
           variants={sectionVariants}
@@ -84,15 +95,30 @@ export default function Home() {
           initial="offscreen"
           whileInView="onscreen"
         >
-          <CallToAction />
+          <About />
         </motion.div>
         <motion.div
           variants={sectionVariants}
           initial="offscreen"
           whileInView="onscreen"
         >
-          <About />
+          <CTATicket />
         </motion.div>
+        <motion.div
+          variants={sectionVariants}
+          initial="offscreen"
+          whileInView="onscreen"
+        >
+          <Artists />
+        </motion.div>
+        <motion.div
+          variants={sectionVariants}
+          initial="offscreen"
+          whileInView="onscreen"
+        >
+          <CallToAction />
+        </motion.div>
+ 
         <motion.div
           variants={sectionVariants}
           initial="offscreen"

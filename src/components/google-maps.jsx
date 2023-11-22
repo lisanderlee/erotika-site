@@ -4,6 +4,16 @@ import { useRef, useEffect, useState, useCallback } from 'react'
 import { createRoot } from 'react-dom/client'
 import useStore from './store'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import React from 'react'
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from '@nextui-org/react'
 
 export default function GoogleMaps() {
   const supabase = createClientComponentClient()
@@ -81,6 +91,8 @@ function MyMap({ events }) {
 
 function Locations({ map, events }) {
   const [highlight, setHighlight] = useState()
+
+  const { isOpen, onOpen, onOpenChange } = useDisclosure()
   const { setSelected } = useStore()
   function createArrayFromNumber(num) {
     let array = []
@@ -97,24 +109,49 @@ function Locations({ map, events }) {
             position={event.venues.geo}
             onClick={() => setSelected(createArrayFromNumber(event.id))}
           >
-            <div
-              className={`marker  ${
-                highlight === event.EventId ? 'highlight' : ''
-              }`}
-              onMouseEnter={() => setHighlight(event.id)}
-              onMouseLeave={() => setHighlight(null)}
+            <Button onPress={onOpen} color="secondary">
+              {event.name}
+            </Button>
+            <Modal
+              backdrop="opaque"
+              isOpen={isOpen}
+              onOpenChange={onOpenChange}
+              radius="2xl"
+              classNames={{
+                body: 'py-6',
+                backdrop: 'bg-[#292f46]/50 backdrop-opacity-40',
+                base: 'border-[#292f46] bg-[#19172c] dark:bg-[#19172c] text-[#a8b0d3]',
+                header: 'border-b-[1px] border-[#292f46]',
+                footer: 'border-t-[1px] border-[#292f46]',
+                closeButton: 'hover:bg-white/5 active:bg-white/10',
+              }}
             >
-              <h2 className=" line-clamp-1 text-sm font-semibold text-pink-300">
-                {event.name}
-              </h2>
-              {/* 
-            {highlight === event.EventID ? (
-              <div className="expanded-marker">
-                <h4>{event.VenueName}</h4>
-                <p>{event.EventStartDate}</p>
-              </div>
-            ) : null} */}
-            </div>
+              <ModalContent>
+                {(onClose) => (
+                  <>
+                    <ModalHeader className="flex flex-col gap-1"></ModalHeader>
+                    <ModalBody>
+                      {event.id}
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button
+                        color="foreground"
+                        variant="light"
+                        onPress={onClose}
+                      >
+                        Close
+                      </Button>
+                      <Button
+                        className="bg-[#6f4ef2] shadow-lg shadow-indigo-500/20"
+                        onPress={onClose}
+                      >
+                        Action
+                      </Button>
+                    </ModalFooter>
+                  </>
+                )}
+              </ModalContent>
+            </Modal>
           </Marker>
         ))}
     </>

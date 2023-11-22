@@ -1,14 +1,13 @@
 import GoogleMaps from '../google-maps'
-import EventsPanel from '../events-panel'
+
 
 export default function HeroMap() {
   return (
     <>
-    <div className='w-scree h-screen'>
-      <div className="absolute right-10 top-32 z-10">
-        <EventsPanel />
-      </div>
+    <div className='w-full h-full '>
+    
       <GoogleMaps />
+
       </div>
     </>
   )

@@ -6,8 +6,8 @@ import { NavLink } from '@/components/NavLink'
 
 export function Footer() {
   return (
-    <footer className="">
-      <Container>
+    <footer   className="mb-20 px-5 pt-5 md:px-10 lg:px-14">
+
         <div className="">
           <Logo className="mx-auto h-10 w-auto" />
           <nav className="mt-10 mb-5 text-sm" aria-label="quick links">
@@ -53,7 +53,7 @@ export function Footer() {
             reserved.
           </p>
         </div>
-      </Container>
-    </footer>
+</footer>
+
   )
 }

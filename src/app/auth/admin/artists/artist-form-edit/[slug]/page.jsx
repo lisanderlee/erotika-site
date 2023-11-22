@@ -1,28 +1,33 @@
 'use client'
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { useState, useEffect, useCallback } from 'react'
 import UploadFileWidget from '@/components/upload-file-widget'
 import UploadProfileWidget from '@/components/upload-profile-widget'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { useState, useEffect, useCallback } from 'react'
 
-export default function ArtistsForm() {
+export default function Page({ params }) {
   const supabase = createClientComponentClient()
-  const [name, setName] = useState(null)
-  const [lastName, setLastName] = useState(null)
-  const [phone, setPhone] = useState(false)
-  const [location, setLocation] = useState(false)
-  const [event, setEvent] = useState(null)
-  const [description, setDescription] = useState(null)
-  const [category, setCategory] = useState(null)
-  const [images, setImages] = useState(null)
-  const [portfolio, setPortfolio] = useState(null)
-  const [instagram, setInstagram] = useState(null)
-  const [email, setEmail] = useState(null)
-  const [loading, setLoading] = useState(null)
-  const [categoryList, setCategoryList] = useState(null)
-  const [eventsList, setEventsList] = useState(null)
+
+  // State for form fields
+  const [name, setName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
+  const [location, setLocation] = useState('')
+  const [category, setCategory] = useState('')
+  const [event, setEvent] = useState('')
+  const [description, setDescription] = useState('')
+  const [portfolio, setPortfolio] = useState('')
+  const [instagram, setInstagram] = useState('')
+  // State for validation errors
+  const [errors, setErrors] = useState({})
+  // State for form submission loading status
+  const [loading, setLoading] = useState(false)
   const [imagesToUpload, setImagesToUpload] = useState(null)
   const [profileImagesToUpload, setProfileImagesToUpload] = useState(null)
+  const [categoryList, setCategoryList] = useState(null)
+  const [eventsList, setEventsList] = useState(null)
+  const [artist, setArtist] = useState(null)
+
   const getCategories = useCallback(async () => {
     try {
       const { data, error, status } = await supabase
@@ -61,63 +66,183 @@ export default function ArtistsForm() {
     }
   }, [supabase])
 
-  useEffect(() => {
-    getCategories()
-    getEvents()
-  }, [getCategories, getEvents])
-
-  async function insertArtist() {
+  const getArtists = useCallback(async () => {
     try {
       setLoading(true)
-      const { data, error } = await supabase.from('artists_table').insert({
-        name: name,
-        last: lastName,
-        phone: phone,
-        category: category,
-        event: event,
-        description: description,
-        instagram: instagram,
-        link: portfolio,
-        location: location,
-        images: imagesToUpload,
-        profile: profileImagesToUpload,
-        email:email,
-      
-      })
 
-      if (error) throw error
-      toast.success('🦄 Event Added!')
+      const { data, error } = await supabase
+        .from('artists_table')
+        .select(
+          `
+      *
+    `,
+        )
+        .eq('id', params.slug)
+
+      if (error && status !== 406) {
+        throw error
+      }
+
+      if (data) {
+        setName(data[0].name)
+        setLastName(data[0].last)
+        setPhone(data[0].phone)
+        setEmail(data[0].email)
+        setLocation(data[0].location)
+        setCategory(data[0].category)
+        setEvent(data[0].event)
+        setDescription(data[0].description)
+        setPortfolio(data[0].link)
+        setInstagram(data[0].instagram)
+        setImagesToUpload(data[0].images)
+        setProfileImagesToUpload(data[0].profile)
+        setLoading(false)
+      }
     } catch (error) {
-      alert('Error updating the data!')
+      alert('Error loading user data!')
     } finally {
       setLoading(false)
     }
+  }, [supabase, params.slug])
+
+  useEffect(() => {
+    getCategories()
+    getEvents()
+    getArtists()
+  }, [getCategories, getEvents, getArtists])
+
+  function validateForm() {
+    let errors = {}
+
+    // Name validation
+    if (!name.trim()) {
+      errors.name = 'Name is required'
+    }
+
+    // Last name validation
+    if (!lastName.trim()) {
+      errors.lastName = 'Last name is required'
+    }
+
+    // Phone number validation
+    // You can add more complex validation like format or length
+    if (!phone.trim()) {
+      errors.phone = 'Phone number is required'
+    } else if (!/^[0-9]{10,15}$/.test(phone)) {
+      errors.phone = 'Invalid phone number, should be 10-15 digits'
+    }
+
+    // Email validation
+    // Simple regex for email validation
+    if (!email) {
+      errors.email = 'Email is required'
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      errors.email = 'Email address is invalid'
+    }
+
+    // Location validation
+    if (!location.trim()) {
+      errors.location = 'Location is required'
+    }
+
+    // Category validation
+    if (!category) {
+      errors.category = 'Category is required'
+    }
+
+    // Event validation
+    if (!event) {
+      errors.event = 'Event is required'
+    }
+
+    // Description validation
+    if (!description.trim()) {
+      errors.description = 'Description is required'
+    }
+
+    // Portfolio link validation (if required)
+    // You can also validate URL format
+    if (!portfolio.trim()) {
+      errors.portfolio = 'Portfolio link is required'
+    }
+
+    // Instagram link validation (if required)
+    // You can also validate URL format
+    if (!instagram.trim()) {
+      errors.instagram = 'Instagram link is required'
+    }
+    if (!instagram.trim()) {
+      errors.instagram = 'Instagram link is required'
+    }
+    if (!imagesToUpload) {
+      errors.imagesToUpload = 'Images are required'
+    }
+    if (!profileImagesToUpload) {
+      errors.profileImagesToUpload = 'Image is required'
+    }
+
+    return errors
   }
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    insertArtist()
-    setName(null)
-    setLastName(null)
-    setPhone(null)
-    setLocation(null)
-    setCategory(null)
-    setEvent(null)
-    setDescription(null)
-    setImages(null)
-    setPortfolio(null)
-    setEmail(null)
-    setInstagram(null)
-    setProfileImagesToUpload(null)
-    setImagesToUpload(null)
+
+    // Start by clearing any existing errors
+    setErrors({})
+
+    // Validate the form
+    const formErrors = validateForm()
+
+    if (Object.keys(formErrors).length === 0) {
+      // No validation errors, proceed with submitting the form
+      setLoading(true)
+
+      try {
+        const { data, error } = await supabase.from('artists_table').update({
+          name: name,
+          last: lastName,
+          phone: phone,
+          category: category,
+          event: event,
+          description: description,
+          instagram: instagram,
+          link: portfolio,
+          location: location,
+          images: imagesToUpload,
+          profile: profileImagesToUpload,
+          email: email,
+        }).eq('id', params.slug)
+        if (error) throw error
+      } catch (error) {
+        alert('Error updating the data!')
+      } finally {
+        alert('Success')
+        setName('')
+        setLastName('')
+        setPhone('')
+        setEmail('')
+        setLocation('')
+        setCategory('')
+        setEvent('')
+        setDescription('')
+        setPortfolio('')
+        setInstagram('')
+        setImagesToUpload(null)
+        setLoading(false)
+        setProfileImagesToUpload(null)
+      }
+    } else {
+      // Set errors state to display validation messages
+      setErrors(formErrors)
+    }
   }
 
   return (
-    <form className="px-16">
+    <form className="px-16" onSubmit={handleSubmit}>
       <div className="space-y-12">
         <div className="border-b border-white/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-white">
-            Artists
+            Edit Artist
           </h2>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -133,10 +258,13 @@ export default function ArtistsForm() {
                   type="text"
                   name="first-name"
                   id="first-name"
-                  value={name || ''}
+                  value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
+                {errors.name && (
+                  <p className="text-sm text-red-500">{errors.name}</p>
+                )}
               </div>
             </div>
 
@@ -152,10 +280,13 @@ export default function ArtistsForm() {
                   type="text"
                   name="last-name"
                   id="last-name"
-                  value={lastName || ''}
+                  value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
+                {errors.lastName && (
+                  <p className="text-sm text-red-500">{errors.lastName}</p>
+                )}
               </div>
             </div>
             <div className="sm:col-span-3">
@@ -170,10 +301,13 @@ export default function ArtistsForm() {
                   type="text"
                   name="number"
                   id="number"
-                  value={phone || ''}
+                  value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
+                {errors.phone && (
+                  <p className="text-sm text-red-500">{errors.phone}</p>
+                )}
               </div>
             </div>
 
@@ -189,10 +323,13 @@ export default function ArtistsForm() {
                   type="text"
                   name="location"
                   id="location"
-                  value={email || ''}
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
+                {errors.email && (
+                  <p className="text-sm text-red-500">{errors.email}</p>
+                )}
               </div>
             </div>
             <div className="sm:col-span-3">
@@ -207,10 +344,13 @@ export default function ArtistsForm() {
                   type="text"
                   name="location"
                   id="location"
-                  value={location || ''}
+                  value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
+                {errors.location && (
+                  <p className="text-sm text-red-500">{errors.location}</p>
+                )}
               </div>
             </div>
 
@@ -225,7 +365,7 @@ export default function ArtistsForm() {
                 <select
                   id="venue"
                   name="venue"
-                  value={category || ''}
+                  value={category}
                   onChange={(e) => setCategory(e.target.value)}
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
                 >
@@ -237,6 +377,9 @@ export default function ArtistsForm() {
                   ))}
                 </select>
               </div>
+              {errors.category && (
+                <p className="text-sm text-red-500">{errors.category}</p>
+              )}
             </div>
 
             <div className="sm:col-span-3">
@@ -250,7 +393,7 @@ export default function ArtistsForm() {
                 <select
                   id="venue"
                   name="venue"
-                  value={event || ''}
+                  value={event}
                   onChange={(e) => setEvent(e.target.value)}
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
                 >
@@ -262,6 +405,9 @@ export default function ArtistsForm() {
                   ))}
                 </select>
               </div>
+              {errors.event && (
+                <p className="text-sm text-red-500">{errors.event}</p>
+              )}
             </div>
 
             <div className="col-span-full">
@@ -276,14 +422,17 @@ export default function ArtistsForm() {
                   id="about"
                   name="about"
                   rows={3}
-                  value={description || ''}
+                  value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   defaultValue={''}
                 />
+                {errors.description && (
+                  <p className="text-sm text-red-500">{errors.description}</p>
+                )}
               </div>
               <p className="mt-3 text-sm leading-6 text-gray-400">
-                Write a few sentences about yourself.
+                Write a few sentences about the artist.
               </p>
             </div>
 
@@ -300,9 +449,12 @@ export default function ArtistsForm() {
                   type="text"
                   name="portfolio"
                   id="portfolio"
-                  value={portfolio || ''}
+                  value={portfolio}
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
+                {errors.portfolio && (
+                  <p className="text-sm text-red-500">{errors.portfolio}</p>
+                )}
               </div>
             </div>
             <div className="sm:col-span-3">
@@ -317,18 +469,35 @@ export default function ArtistsForm() {
                   type="text"
                   name="instagram"
                   id="instagram"
-                  value={instagram || ''}
+                  value={instagram}
                   onChange={(e) => setInstagram(e.target.value)}
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
+                {errors.instagram && (
+                  <p className="text-sm text-red-500">{errors.instagram}</p>
+                )}
               </div>
             </div>
           </div>
           <div className="mt-10">
-            <UploadProfileWidget setProfileImagesToUpload={setProfileImagesToUpload} profileImagesToUpload={profileImagesToUpload}/>
+            <UploadProfileWidget
+              setProfileImagesToUpload={setProfileImagesToUpload}
+              profileImagesToUpload={profileImagesToUpload}
+            />
+            {errors.profileImagesToUpload && (
+              <p className="text-sm text-red-500">
+                {errors.profileImagesToUpload}
+              </p>
+            )}
           </div>
           <div className="mt-10">
-            <UploadFileWidget setImagesToUpload={setImagesToUpload} imagesToUpload={imagesToUpload}/>
+            <UploadFileWidget
+              setImagesToUpload={setImagesToUpload}
+              imagesToUpload={imagesToUpload}
+            />
+            {errors.imagesToUpload && (
+              <p className="text-sm text-red-500">{errors.imagesToUpload}</p>
+            )}
           </div>
         </div>
       </div>
@@ -337,16 +506,16 @@ export default function ArtistsForm() {
         <button
           type="button"
           className="text-sm font-semibold leading-6 text-white"
+          // Optional: Add onClick handler to clear the form or navigate
         >
           Cancel
         </button>
         <button
           type="submit"
           className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-          onClick={handleSubmit}
           disabled={loading}
         >
-          {loading ? 'Loading ...' : 'Save'}
+          {loading ? 'Saving ...' : 'Save'}
         </button>
       </div>
     </form>

@@ -5,8 +5,6 @@ import bodyImage from '@/images/body.svg'
 import Carousel from 'nuka-carousel'
 import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import CTATicket from '@/components/Sections/CTA-ticket'
-
 import {
   renderCenterRightControls,
   renderCenterLeftControls,
@@ -51,9 +49,9 @@ export default function Page({ params }) {
   }, [getEvents])
 
   return (
-    <>
-    <div className="px-5 pt-5 md:px-10 mb-20 lg:px-14">
-      <div className="z-50  mt-10 rounded-2xl  overflow-hidden bg-[#5E18EA]  drop-shadow-xl   ">
+    <div className="mx-auto max-w-2xl px-4  sm:px-6 lg:max-w-7xl lg:px-8">
+      <h1 className="text-3xl mb-10 font-bold leading-6 text-pink-300">Event View</h1>
+      <div className="z-50  rounded-xl bg-[#5E18EA]  drop-shadow-xl   ">
         <div className="inner">
           <Carousel
             renderCenterLeftControls={renderCenterLeftControls}
@@ -189,11 +187,6 @@ export default function Page({ params }) {
           </div>
         </div>
       </div>
-      
     </div>
-    <div className='mb-16'>
-    <CTATicket />
-    </div>
-    </>
   )
 }

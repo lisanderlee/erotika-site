@@ -1,8 +1,8 @@
-"use client"
+'use client'
 import { EyeIcon, PencilIcon, TrashIcon } from '@heroicons/react/20/solid'
 import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-
+import Link from 'next/link'
 
 
 export default function ArtistsTable() {
@@ -23,7 +23,6 @@ export default function ArtistsTable() {
         name,start
       )
     `)
- console.log(data)
 
       if (error && status !== 406) {
         throw error
@@ -56,7 +55,7 @@ export default function ArtistsTable() {
               </div>
               <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                 <a
-                  href="/auth/admin/artist-form"
+                  href="/auth/admin/artists/artist-form"
                   type="button"
                   className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                 >
@@ -109,34 +108,54 @@ export default function ArtistsTable() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-800">
-                      {artists && artists.map((artist) => (
-                        <tr key={artist.id}>
-                          <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
-                            {artist.name + " " + artist.last}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-                            {artist.email}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-                            {artist.artist_category.category}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-                            {artist.events_table.name}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-                            {artist.events_table.start}
-                          </td>
-                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                            <a
-                              href="#"
-                              className="text-indigo-400 hover:text-indigo-300"
-                            >
-                              <Buttons />
-                              
-                            </a>
-                          </td>
-                        </tr>
-                      ))}
+                      {artists &&
+                        artists.map((artist) => (
+                          <tr key={artist.id}>
+                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
+                              {artist.name + ' ' + artist.last}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+                              {artist.email}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+                              {artist.artist_category.category}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+                              {artist.events_table.name}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+                              {artist.events_table.start}
+                            </td>
+                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                              <span className="isolate inline-flex rounded-md shadow-sm">
+                                <Link   href={`/auth/admin/artists/artist-form-view/${artist.id}`} 
+                                className="relative inline-flex items-center rounded-l-md bg-slate-950  px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10">
+                                  <EyeIcon
+                                    className="-ml-0.5 mr-1.5 h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                </Link>
+                                <Link
+                                  className="relative -ml-px inline-flex items-center bg-slate-950 px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10"
+                                  href={`/auth/admin/artists/artist-form-edit/${artist.id}`} 
+                                >
+                                  <PencilIcon
+                                    className="-ml-0.5 mr-1.5 h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                </Link>
+                                <Link 
+                                  href={`/auth/admin/artists/artist-form-edit/${artist.id}`} 
+                                className="relative -ml-px inline-flex items-center rounded-r-md  bg-slate-950 px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10">
+                                  <TrashIcon
+                                    className="-ml-0.5 mr-1.5 h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                </Link>
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
                     </tbody>
                   </table>
                 </div>
@@ -146,31 +165,5 @@ export default function ArtistsTable() {
         </div>
       </div>
     </div>
-  )
-}
-
-
-function Buttons() {
-  return (
-    <span className="isolate inline-flex rounded-md shadow-sm">
-      <button
-        type="button"
-        className="relative inline-flex items-center rounded-l-md bg-slate-950  px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10"
-      >
-        <EyeIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-      </button>
-      <button
-        type="button"
-        className="relative -ml-px inline-flex items-center bg-slate-950 px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10"
-      >
-        <PencilIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-      </button>
-      <button
-        type="button"
-        className="relative -ml-px inline-flex items-center rounded-r-md  bg-slate-950 px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10"
-      >
-       <TrashIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-      </button>
-    </span>
   )
 }
