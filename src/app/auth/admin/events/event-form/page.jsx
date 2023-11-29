@@ -2,7 +2,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { ToastContainer, toast } from 'react-toastify'
-import UploadFileWidget from '@/components/upload-file-widget'
 import { Switch } from '@headlessui/react'
 import { UploadButton } from '@bytescale/upload-widget-react'
 import { UploadDropzone } from '@bytescale/upload-widget-react'
@@ -518,25 +517,9 @@ export default function EventForm() {
               </Switch>
             </div>
             <div className="mt-10">
-              {/* <UploadDropzone
-                options={options}
-                onUpdate={({ uploadedFiles }) =>
-                  console.log(uploadedFiles.map((x) => x.fileUrl).join('\n'))
-                }
-                onComplete={(files) =>
-                  files.map((x) => setImagePaths([...imagePaths, x.fileUrl]))
-                }
-                width="600px"
-                height="375px"
-              /> */}
-              <ImageUploadComponent imagePathsUpload={imagePathsUpload} setImagePathsUpload={setImagePathsUpload} />
-              {/* <UploadFileWidget
-                setImagesToUpload={setImagesToUpload}
-                imagesToUpload={imagesToUpload}
-              />
-              {errors.imagesToUpload && (
-                <p className="text-sm text-red-500">{errors.imagesToUpload}</p>
-              )} */}
+        
+              <ImageUploadComponent setImagePathsUpload={setImagePathsUpload} />
+           
 
             </div>
           </div>

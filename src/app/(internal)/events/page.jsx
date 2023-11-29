@@ -95,9 +95,9 @@ export default function Home() {
           ))}
       </ul>
 
-      <section class="b-section  mt-36 overflow-y-hidden ">
-        <div class="b-section-marquee-box   overflow-y-hidden ">
-          <h2 class=" overflow-y-hidden py-5 font-display text-4xl text-pink-300">
+      <section className="b-section  mt-36 overflow-y-hidden ">
+        <div className="b-section-marquee-box   overflow-y-hidden ">
+          <h2 className=" overflow-y-hidden py-5 font-display text-4xl text-pink-300">
             General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • 
           </h2>
         </div>

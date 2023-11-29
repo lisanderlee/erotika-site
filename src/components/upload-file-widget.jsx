@@ -1,10 +1,10 @@
-import { PhotoIcon, XMarkIcon } from '@heroicons/react/24/solid'
+import { XMarkIcon } from '@heroicons/react/24/solid'
 import React, { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image'
 
-function ImageUploadComponent({ imagePathsUpload, setImagePathsUpload }) {
+function ImageUploadComponent({setImagePathsUpload }) {
   const [images, setImages] = useState([])
   const [uploading, setUploading] = useState(false)
   const supabase = createClientComponentClient()
@@ -23,7 +23,7 @@ function ImageUploadComponent({ imagePathsUpload, setImagePathsUpload }) {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: 'image/*',
+    // accept: 'image/*',
   })
 
   const removeImage = (file) => {
@@ -107,13 +107,13 @@ function ImageUploadComponent({ imagePathsUpload, setImagePathsUpload }) {
         </ul>
       </div>
 
-      <button
+      {/* <button
         className=" mt-10 rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
         onClick={uploadImages}
         disabled={uploading}
       >
         {uploading ? 'Uploading...' : 'Submit'}
-      </button>
+      </button> */}
     </div>
   )
 }

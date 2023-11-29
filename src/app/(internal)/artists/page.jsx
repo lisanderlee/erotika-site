@@ -67,9 +67,9 @@ export default function ArtistsInternal() {
   return (
     <>
       <div className="mb-20 px-5 pt-5 md:px-10 lg:mt-28 lg:px-14">
-        <section class="b-section  mt-10 overflow-y-hidden ">
-          <div class="b-section-marquee-box   overflow-y-hidden ">
-            <h2 class=" overflow-y-hidden py-5 font-display text-4xl text-pink-300">
+        <section className="b-section  mt-10 overflow-y-hidden ">
+          <div className="b-section-marquee-box   overflow-y-hidden ">
+            <h2 className=" overflow-y-hidden py-5 font-display text-4xl text-pink-300">
               Guest Artists • Guest Artists • Guest Artists • Guest Artists •
               Guest Artists • Guest Artists • Guest Artists • Guest Artists •
               Guest Artists • Guest Artists • Guest Artists • Guest Artists •

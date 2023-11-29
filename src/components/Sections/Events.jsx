@@ -73,9 +73,9 @@ export default function Events() {
           initial="offscreen"
           whileInView="onscreen"
         >
-          <section class="b-section shadow-3xl overflow-y-hidden rounded-2xl ">
-            <div class="b-section-marquee-box   overflow-y-hidden rounded-2xl   ">
-              <h2 class=" overflow-y-hidden py-5 font-display text-4xl text-pink-300">
+          <section className="b-section shadow-3xl overflow-y-hidden rounded-2xl ">
+            <div className="b-section-marquee-box   overflow-y-hidden rounded-2xl   ">
+              <h2 className=" overflow-y-hidden py-5 font-display text-4xl text-pink-300">
                 Events included with your VIP ticket • Events included with your
                 VIP ticket • Events included with your VIP ticket • Events
                 included with your VIP ticket • Events included with your VIP

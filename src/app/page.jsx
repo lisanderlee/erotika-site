@@ -1,7 +1,6 @@
 'use client'
 import Hero from '@/components/Sections/Hero'
 import { CallToAction } from '@/components/Sections/CTA'
-import { About } from '@/components/Sections/About'
 import { Header } from '@/components/Sections/Header'
 import { Footer } from '@/components/Sections/Footer'
 import Events from '@/components/Sections/Events'
@@ -10,7 +9,7 @@ import CTATicket from '@/components/Sections/CTA-ticket'
 import Partners from '@/components/Sections/Partners'
 import { Sponsors } from '@/components/Sections/Sponsors'
 import Map from '@/components/Sections/Map'
-import PromoBanner from '@/components/Sections/promo-banner'
+
 export default function Home() {
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, {
@@ -49,7 +48,7 @@ export default function Home() {
   }
   return (
     <>
-      <header>
+       <header>
         <Header />
       </header>
 
@@ -70,20 +69,14 @@ export default function Home() {
           <Sponsors />
         </motion.div>
 
-        {/* <motion.div
-          variants={sectionVariants1}
-          initial="offscreen"
-          whileInView="onscreen"
-        >
-          <PromoBanner />
-        </motion.div> */}
-        {/* <motion.div
+ 
+        <motion.div
           variants={sectionVariants1}
           initial="offscreen"
           whileInView="onscreen"
         >
           <Map />
-        </motion.div> */}
+        </motion.div>
 
         <motion.div
           variants={sectionVariants}
@@ -100,6 +93,8 @@ export default function Home() {
         >
           <Events />
         </motion.div>
+
+  
         <motion.div
           variants={sectionVariants}
           initial="offscreen"
@@ -114,7 +109,7 @@ export default function Home() {
         >
           <CTATicket />
         </motion.div>
-
+ 
         <motion.div
           variants={sectionVariants}
           initial="offscreen"
@@ -131,7 +126,7 @@ export default function Home() {
         >
           <Footer />
         </motion.div>
-      </footer>
+      </footer> 
     </>
   )
 }

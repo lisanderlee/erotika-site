@@ -18,7 +18,7 @@ import {
 export default function GoogleMaps() {
   const supabase = createClientComponentClient()
   const [events, setEvents] = useState(null)
-
+  const [loading, setLoading] = useState(null)
 
   const getEvents = useCallback(async () => {
     try {
@@ -50,7 +50,7 @@ export default function GoogleMaps() {
 
   useEffect(() => {
     getEvents()
-  }, [getEvents,position])
+  }, [getEvents])
 
   return (
     <>
@@ -89,11 +89,11 @@ function MyMap({ events }) {
 }
 
 function Locations({ map, events }) {
-  const [highlight, setHighlight] = useState()
+
   const [selected, setSelected] = useState()
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
-  console.log(selected)
+
   function createArrayFromNumber(num) {
     let array = []
     array.push(num)
@@ -209,7 +209,7 @@ function Marker({ map, position, children, onClick }) {
     }
 
     return () => (markerRef.current.map = null)
-  }, [])
+  }, [position])
 
   useEffect(() => {
     rootRef.current.render(children)

@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback } from 'react'
 import ImageUploadComponent from '@/components/upload-file-widget'
 import clsx from 'clsx'
 import { Switch } from '@headlessui/react'
+
+
 export default function Page() {
   const supabase = createClientComponentClient()
 
@@ -176,8 +178,6 @@ export default function Page() {
         setImagePathsUpload([])
         setLoading(false)
         alert('Success')
-        // setProfileImagesToUpload(null)
-        // setImagesToUpload(null)
       }
     } else {
       // Set errors state to display validation messages
@@ -461,7 +461,6 @@ export default function Page() {
               Profile Image
             </label>
             <ImageUploadComponent
-              imagePathsUpload={imageProfilePathsUpload}
               setImagePathsUpload={setImageProfilePathsUpload}
             />
           </div>
@@ -473,7 +472,6 @@ export default function Page() {
               Event Images
             </label>
             <ImageUploadComponent
-              imagePathsUpload={imagePathsUpload}
               setImagePathsUpload={setImagePathsUpload}
             />
 
