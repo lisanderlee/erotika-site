@@ -4,7 +4,7 @@ import { useDropzone } from 'react-dropzone'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image'
 
-function ImageUploadComponent({ setImagePathsUpload }) {
+function ImageUploadComponent({  setImagePathsUpload }) {
   const [images, setImages] = useState([])
   const [uploading, setUploading] = useState(false)
   const supabase = createClientComponentClient()

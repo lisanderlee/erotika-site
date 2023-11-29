@@ -3,7 +3,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useState, useEffect, useCallback } from 'react'
 import { Switch } from '@headlessui/react'
 import clsx from 'clsx'
-
+import ImageUploadComponent from '@/components/upload-file-widget'
 export default function Page({ params }) {
   const supabase = createClientComponentClient()
 
@@ -18,11 +18,12 @@ export default function Page({ params }) {
   const [description, setDescription] = useState('')
   const [portfolio, setPortfolio] = useState('')
   const [instagram, setInstagram] = useState('')
+  const [imagePathsUpload, setImagePathsUpload] = useState([])
 
  
   const [eventsList, setEventsList] = useState(null)
 
-  const [imagesToUpload, setImagesToUpload] = useState(null)
+  const [images , setImages] = useState([])
   const [profileImagesToUpload, setProfileImagesToUpload] = useState(null)
 
   const [errors, setErrors] = useState({})
@@ -78,7 +79,7 @@ export default function Page({ params }) {
         setDescription(data[0].description)
         setPortfolio(data[0].link)
         setInstagram(data[0].instagram)
-        setImagesToUpload(data[0].images)
+        setImages(data[0].images)
         setProfileImagesToUpload(data[0].profile)
         setLoading(false)
       }
@@ -470,7 +471,18 @@ export default function Page({ params }) {
               </div>
             </div>
           </div>
-      
+          <div className="mt-10">
+            <label
+              htmlFor="first-name"
+              className="mb-4 block text-sm font-medium leading-6 text-white"
+            >
+              Profile Image
+            </label>
+            <ImageUploadComponent
+              setImagePathsUpload={setImagePathsUpload}
+           
+            />
+          </div>
         </div>
       </div>
 

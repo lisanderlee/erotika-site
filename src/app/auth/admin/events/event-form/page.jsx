@@ -3,8 +3,6 @@ import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { ToastContainer, toast } from 'react-toastify'
 import { Switch } from '@headlessui/react'
-import { UploadButton } from '@bytescale/upload-widget-react'
-import { UploadDropzone } from '@bytescale/upload-widget-react'
 import ImageUploadComponent from '@/components/upload-file-widget'
 import clsx from 'clsx'
 
@@ -21,9 +19,9 @@ export default function EventForm() {
   const [category, setCategory] = useState('')
   const [venue, setVenue] = useState('')
   const [email, setEmail] = useState('')
-  const [vip, setVip] = useState('')
-  const [payed, setPayed] = useState('')
-  const [rsvp, setRsvp] = useState('')
+  const [vip, setVip] = useState(false)
+  const [payed, setPayed] = useState(false)
+  const [rsvp, setRsvp] = useState(false)
 
   const [imagePathsUpload, setImagePathsUpload] = useState([])
 
@@ -63,8 +61,9 @@ export default function EventForm() {
     }
 
     if (!contactNumber.trim()) {
+      errors.contactNumber = 'Phone number is required'
     } else if (!/^\d{3}-\d{3}-\d{4}$/.test(contactNumber)) {
-      errors.contactNumber = 'Invalid phone number, should be 10-15 digits'
+      errors.contactNumber = 'Format ***-***-****'
     }
 
     if (!email) {
@@ -104,8 +103,8 @@ export default function EventForm() {
       errors.description = 'Description is required'
     }
 
-    // if (!imagesToUpload) {
-    //   errors.imagesToUpload = 'Images are required'
+    // if (!imagePathsUpload) {
+    //   errors.imagePathsUpload = 'Images are required'
     // }
 
     return errors
@@ -143,7 +142,7 @@ export default function EventForm() {
         })
         if (error) throw error
       } catch (error) {
-        alert('Error updating the data!')
+        alert('Error adding the event!')
       } finally {
         setContactName('')
         setContactNumber('')
@@ -155,11 +154,11 @@ export default function EventForm() {
         setStartDate('')
         setEndDate('')
         setDescription('')
-        setVip('')
-        setPayed('')
-        setRsvp('')
-        setImagePathsUpload(null)
-        notify()
+        setVip(false)
+        setPayed(false)
+        setRsvp(false)
+        setImagePathsUpload([])
+        alert('Event Added')
         setLoading(false)
         // alert('Success')
       }
@@ -488,6 +487,9 @@ export default function EventForm() {
             <div className="mt-10">
               <ImageUploadComponent setImagePathsUpload={setImagePathsUpload} />
             </div>
+            {/* {errors.imagePathsUpload && (
+              <p className="text-sm text-red-500">{errors.imagePathsUpload}</p>
+            )} */}
           </div>
         </div>
 
