@@ -1,10 +1,10 @@
 'use client'
+import React from 'react'
 import { Wrapper } from '@googlemaps/react-wrapper'
+import Image from 'next/image'
 import { useRef, useEffect, useState, useCallback } from 'react'
 import { createRoot } from 'react-dom/client'
-import useStore from './store'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import React from 'react'
 import {
   Modal,
   ModalContent,
@@ -18,8 +18,7 @@ import {
 export default function GoogleMaps() {
   const supabase = createClientComponentClient()
   const [events, setEvents] = useState(null)
-  const [loading, setLoading] = useState(null)
-  const [selected, setSelected] = useState(null)
+
 
   const getEvents = useCallback(async () => {
     try {
@@ -51,7 +50,7 @@ export default function GoogleMaps() {
 
   useEffect(() => {
     getEvents()
-  }, [getEvents])
+  }, [getEvents,position])
 
   return (
     <>
@@ -91,9 +90,10 @@ function MyMap({ events }) {
 
 function Locations({ map, events }) {
   const [highlight, setHighlight] = useState()
+  const [selected, setSelected] = useState()
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
-  const { setSelected } = useStore()
+  console.log(selected)
   function createArrayFromNumber(num) {
     let array = []
     array.push(num)
@@ -103,57 +103,92 @@ function Locations({ map, events }) {
     <>
       {events &&
         events.map((event) => (
-          <Marker
-            key={event.id}
-            map={map}
-            position={event.venues.geo}
-            onClick={() => setSelected(createArrayFromNumber(event.id))}
-          >
-            <Button onPress={onOpen} color="secondary">
+          <Marker key={event.id} map={map} position={event.venues.geo}>
+            <Button
+              onPress={onOpen}
+              color="secondary"
+              onClick={(e) => setSelected(event)}
+            >
               {event.name}
             </Button>
-            <Modal
-              backdrop="opaque"
-              isOpen={isOpen}
-              onOpenChange={onOpenChange}
-              radius="2xl"
-              classNames={{
-                body: 'py-6',
-                backdrop: 'bg-[#292f46]/50 backdrop-opacity-40',
-                base: 'border-[#292f46] bg-[#19172c] dark:bg-[#19172c] text-[#a8b0d3]',
-                header: 'border-b-[1px] border-[#292f46]',
-                footer: 'border-t-[1px] border-[#292f46]',
-                closeButton: 'hover:bg-white/5 active:bg-white/10',
-              }}
-            >
-              <ModalContent>
-                {(onClose) => (
-                  <>
-                    <ModalHeader className="flex flex-col gap-1"></ModalHeader>
-                    <ModalBody>
-                      {event.id}
-                    </ModalBody>
-                    <ModalFooter>
-                      <Button
-                        color="foreground"
-                        variant="light"
-                        onPress={onClose}
-                      >
-                        Close
-                      </Button>
-                      <Button
-                        className="bg-[#6f4ef2] shadow-lg shadow-indigo-500/20"
-                        onPress={onClose}
-                      >
-                        Action
-                      </Button>
-                    </ModalFooter>
-                  </>
-                )}
-              </ModalContent>
-            </Modal>
           </Marker>
         ))}
+      <Modal
+        size="5xl"
+        backdrop="opaque"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        radius="2xl"
+        classNames={{
+          body: 'py-6',
+          backdrop: 'bg-[#292f46]/50 backdrop-opacity-40',
+          base: 'border-[#292f46] bg-[#19172c] dark:bg-[#19172c] text-[#a8b0d3]',
+          header: 'border-b-[1px] border-[#292f46]',
+          footer: 'border-t-[1px] border-[#292f46]',
+          closeButton: 'hover:bg-white/5 active:bg-white/10',
+        }}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1"></ModalHeader>
+              <ModalBody>
+                <div>
+                  <div className="flex flex-row">
+                    <div className=" h-1/2 w-1/2 ">
+                      <Image
+                        className="foto2 object-cover object-center  sm:rounded-lg"
+                        src={selected && selected.images[0]}
+                        width={1000}
+                        height={667}
+                        alt="Picture of the author"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    <div>
+            
+                   
+                     
+                      <div className="mt-5 px-5 lg:px-10 ">
+                      <p className="text-xl font-semibold tracking-tight text-pink-100">
+                          {selected && selected.vip === true
+                            ? 'VIP Access Event '
+                            : 'Regular Access Event'}
+                        </p>
+                        <h1 className="font-display text-5xl  tracking-tight text-pink-300 lg:text-7xl">
+                          {selected && selected.name}
+                        </h1>
+                        <div className="mt-3">
+                          <p className="text-xl font-semibold tracking-tight text-pink-100">
+                            {selected && selected.event_category.event_category}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-6">
+                    <div className="space-y-6 text-xl text-pink-100" />
+                    {selected && selected.description}
+                  </div>
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="foreground" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+                <Button
+                  className="bg-[#6f4ef2] shadow-lg shadow-indigo-500/20"
+                  onPress={onClose}
+                >
+                  See Event
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </>
   )
 }

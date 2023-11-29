@@ -9,6 +9,10 @@ export default function EventsTable() {
   const supabase = createClientComponentClient()
   const [events, setEvents] = useState(null)
   const [loading, setLoading] = useState(null)
+ 
+  const [data, setData] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   const getEvents = useCallback(async () => {
     try {
@@ -41,6 +45,36 @@ export default function EventsTable() {
   useEffect(() => {
     getEvents()
   }, [getEvents])
+
+
+  const deleteEvent = async (eventId) => {
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      console.log("entra")
+      // Replace with your API endpoint
+      const { error } = await supabase
+        .from('events_table')
+        .delete()
+        .eq('id', eventId )
+
+      if (!error.ok) {
+        throw new Error('Network response was not ok')
+      }
+
+
+      setData(result)
+    } catch (error) {
+      setError(error.message)
+    } finally {
+      setEvents(currentEvents => currentEvents.filter(event => event.id !== eventId));
+
+      setIsLoading(false)
+    }
+  }
+
+
 
   return (
     <div className="bg-gray-900">
@@ -77,7 +111,19 @@ export default function EventsTable() {
                         </th>
                         <th
                           scope="col"
-                          className="px-3 py-3.5 text-left text-sm font-semibold text-white"
+                          className=" py-3.5 text-left text-sm font-semibold text-white"
+                        >
+                          VIP
+                        </th>
+                        <th
+                          scope="col"
+                          className="py-3.5 text-left text-sm font-semibold text-white"
+                        >
+                          Featured
+                        </th>
+                        <th
+                          scope="col"
+                          className=" py-3.5 text-left text-sm font-semibold text-white"
                         >
                           Category
                         </th>
@@ -108,9 +154,21 @@ export default function EventsTable() {
                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
                               {event.name}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
+                            {event && event.vip === true
+                            ? 'VIP'
+                            : 'Regular'}
+                            </td>
+                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
+                            {event && event.features === true
+                            ? 'Yes'
+                            : 'No'}
+                            </td>
+                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
                               {event.event_category.event_category}
                             </td>
+                       
+                       
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
                               {event.venues.name}
                             </td>
@@ -140,15 +198,15 @@ export default function EventsTable() {
                                     aria-hidden="true"
                                   />
                                 </Link>
-                                <Link
-                                  href={`/auth/admin/events/artist-form-edit/${event.id}`}
+                        
+                                <button onClick={(e) => deleteEvent(event.id)} 
                                   className="relative -ml-px inline-flex items-center rounded-r-md  bg-slate-950 px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10"
                                 >
                                   <TrashIcon
                                     className="-ml-0.5 mr-1.5 h-5 w-5"
                                     aria-hidden="true"
                                   />
-                                </Link>
+                                </button>
                               </span>
                             </td>
                           </tr>

@@ -12,8 +12,8 @@ import logoTuple from '@/images/logos/tuple.svg'
 export function Sponsors() {
   return (
 
-        <div className=" w-full my-24 ">
-          <p className="font-display  text-center  text-4xl text-[#5E18EA]">Our Sponsors</p>
+        <div className=" w-full  ">
+          <p className="font-display  text-center  text-4xl  text-pink-300">Our Sponsors</p>
           <ul
             role="list"
             className="mt-8 flex items-center justify-center gap-x-8 sm:flex-col sm:gap-x-0 sm:gap-y-10 xl:flex-row xl:gap-x-12 xl:gap-y-0"

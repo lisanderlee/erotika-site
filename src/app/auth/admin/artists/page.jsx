@@ -3,12 +3,15 @@ import { EyeIcon, PencilIcon, TrashIcon } from '@heroicons/react/20/solid'
 import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Link from 'next/link'
-
+import { useRouter } from "next/router";
 
 export default function ArtistsTable() {
   const supabase = createClientComponentClient()
   const [artists, setArtists] = useState(null)
   const [loading, setLoading] = useState(null)
+  const [data, setData] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   const getArtists = useCallback(async () => {
     try {
@@ -42,6 +45,33 @@ export default function ArtistsTable() {
     getArtists()
   }, [getArtists])
 
+  const deleteArtist = async (artistId) => {
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      console.log("entra")
+      // Replace with your API endpoint
+      const { error } = await supabase
+        .from('artists_table')
+        .delete()
+        .eq('id', artistId )
+
+      if (!error.ok) {
+        throw new Error('Network response was not ok')
+      }
+
+
+      setData(result)
+    } catch (error) {
+      setError(error.message)
+    } finally {
+      setArtists(currentArtists => currentArtists.filter(artist => artist.id !== artistId));
+
+      setIsLoading(false)
+    }
+  }
+
   return (
     <div className="bg-gray-900">
       <div className="mx-auto max-w-7xl">
@@ -74,6 +104,12 @@ export default function ArtistsTable() {
                           className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-0"
                         >
                           Name
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-3 py-3.5 text-left text-sm font-semibold text-white"
+                        >
+                          Partner
                         </th>
                         <th
                           scope="col"
@@ -115,6 +151,9 @@ export default function ArtistsTable() {
                               {artist.name + ' ' + artist.last}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+                              {artist && artist.partner === true ? 'Yes' : 'No'}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
                               {artist.email}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
@@ -128,8 +167,10 @@ export default function ArtistsTable() {
                             </td>
                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                               <span className="isolate inline-flex rounded-md shadow-sm">
-                                <Link   href={`/auth/admin/artists/artist-form-view/${artist.id}`} 
-                                className="relative inline-flex items-center rounded-l-md bg-slate-950  px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10">
+                                <Link
+                                  href={`/auth/admin/artists/artist-form-view/${artist.id}`}
+                                  className="relative inline-flex items-center rounded-l-md bg-slate-950  px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10"
+                                >
                                   <EyeIcon
                                     className="-ml-0.5 mr-1.5 h-5 w-5"
                                     aria-hidden="true"
@@ -137,21 +178,22 @@ export default function ArtistsTable() {
                                 </Link>
                                 <Link
                                   className="relative -ml-px inline-flex items-center bg-slate-950 px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10"
-                                  href={`/auth/admin/artists/artist-form-edit/${artist.id}`} 
+                                  href={`/auth/admin/artists/artist-form-edit/${artist.id}`}
                                 >
                                   <PencilIcon
                                     className="-ml-0.5 mr-1.5 h-5 w-5"
                                     aria-hidden="true"
                                   />
                                 </Link>
-                                <Link 
-                                  href={`/auth/admin/artists/artist-form-edit/${artist.id}`} 
-                                className="relative -ml-px inline-flex items-center rounded-r-md  bg-slate-950 px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10">
+                                <button onClick={(e) => deleteArtist(artist.id)} 
+                              
+                                  className="relative -ml-px inline-flex items-center rounded-r-md  bg-slate-950 px-3 py-2 text-sm font-semibold text-gray-300  hover:bg-slate-700 focus:z-10"
+                                >
                                   <TrashIcon
                                     className="-ml-0.5 mr-1.5 h-5 w-5"
                                     aria-hidden="true"
                                   />
-                                </Link>
+                                </button>
                               </span>
                             </td>
                           </tr>

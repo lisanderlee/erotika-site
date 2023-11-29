@@ -3,9 +3,9 @@ import Image from 'next/image'
 export function ArtistsItem({name, image, category, location }) {
   return (
     <>
-      <div className="mx-auto flex flex-col  rounded-2xl bg-[#5E18EA] hover:bg-[#5E18EA]/80  sm:mt-20">
+      <div className="mx-auto flex flex-col  bg-[#5E18EA] hover:bg-[#5E18EA]/80  sm:mt-20">
         <Image
-          className="aspect-[14/13] w-full shadow-xl rounded-2xl object-cover"
+          className="aspect-[14/13] w-full shadow-xl  object-cover"
           src={image}
           width={1000}
           height={667}

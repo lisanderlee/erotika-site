@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import Link from 'next/link'
 import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
-import { Logo } from '@/components/Logo'
+import { LogoSm } from '../LogoSm'
 import { Button } from '../Button'
 function MobileNavLink({ href, children }) {
   return (
@@ -72,9 +72,8 @@ function MobileNavigation() {
         >
           <Popover.Panel
             as="div"
-            className="absolute z-50 top-12 w-2/3  right-5  gap-y-5 mt-4 flex origin-top flex-col rounded-2xl bg-[#5E18EA] pt-10 px-7 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
+            className="absolute right-5 top-12 z-50  mt-4  flex w-2/3 origin-top flex-col gap-y-5 rounded-2xl bg-[#5E18EA] px-7 pt-10 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
           >
-           
             <Link
               className="font-display text-lg text-pink-300 hover:text-pink-500 "
               href="/events"
@@ -89,25 +88,37 @@ function MobileNavigation() {
             </Link>
             <Link
               className="font-display text-lg text-pink-300 hover:text-pink-500 "
+              href="/partners"
+            >
+              Partners
+            </Link>
+            <Link
+              className="font-display text-lg text-pink-300 hover:text-pink-500 "
               href="/artists"
             >
               About
             </Link>
- 
+            <Link
+              className="font-display text-lg text-pink-300 hover:text-pink-500 "
+              href="/artists"
+            >
+              Become a partner
+            </Link>
+
             <hr className="m-2 border-slate-300/40" />
             <div>
-            <p className="font-display text-center text-xl text-pink-300 ">
-              <span className="mr-2">❤️</span> The Erotika Biennale Miami
-              <span className="ml-2">👇</span>
-            </p>
-          </div>
+              <p className="text-center font-display text-xl text-pink-300 ">
+                <span className="mr-2">❤️</span> The Erotika Biennale Miami
+                <span className="ml-2">👇</span>
+              </p>
+            </div>
             <a
-          target="_blank"
-          href="https://docs.google.com/forms/d/1MGwkbWZ8mdiAJ58tvA7ip47ZEHir4qZ-i0uvz-A7i9I/viewform?edit_requested=true"
-          className="group flex-none items-center justify-center rounded-full bg-slate-950 px-8 py-4 mb-5 font-display text-sm text-white hover:bg-violet-400 hover:text-slate-100 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:bg-violet-800 active:text-violet-100 "
-        >
-          Get Tickets
-        </a>
+              target="_blank"
+              href="https://docs.google.com/forms/d/1MGwkbWZ8mdiAJ58tvA7ip47ZEHir4qZ-i0uvz-A7i9I/viewform?edit_requested=true"
+              className="group mb-5 flex-none items-center justify-center rounded-full bg-slate-950 px-8 py-4 font-display text-sm hover:bg-violet-400 hover:text-slate-100 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:bg-violet-800 active:text-violet-100 "
+            >
+              Get Tickets
+            </a>
           </Popover.Panel>
         </Transition.Child>
       </Transition.Root>
@@ -117,49 +128,50 @@ function MobileNavigation() {
 
 export function Header() {
   return (
-    <header className="z-50 px-7 md:px-10 lg:px-14 pt-5 ">
+    <header className=" z-50 w-full py-2 md:px-10 lg:fixed lg:px-14 ">
       <nav className="  flex h-16 w-full items-center justify-between gap-x-5">
         <div className="">
           <Link href="/" aria-label="Home">
-            <Logo className="h-10 w-auto" />
+            <LogoSm className="h-10 w-auto" />
           </Link>
         </div>
-        <div className="  w-full items-center justify-between rounded-2xl bg-[#5E18EA] px-10   hidden md:flex lg:flex">
+        <div className="  hidden w-full items-center justify-between  rounded-2xl   px-10 md:flex lg:flex">
           <div className=" flex h-16 items-center gap-x-10 ">
             <Link
-              className="font-display text-lg text-pink-300 hover:text-pink-500 "
+              className="font-display text-base text-white   hover:text-pink-500 "
               href="/events"
             >
               Events
             </Link>
             <Link
-              className="font-display text-lg text-pink-300 hover:text-pink-500 "
+              className="font-display text-base text-white   hover:text-pink-500 "
               href="/artists"
             >
               Artists
             </Link>
             <Link
-              className="font-display text-lg text-pink-300 hover:text-pink-500 "
-              href="/artists"
+              className="font-display text-base text-white   hover:text-pink-500 "
+              href="/partners"
+            >
+              Partners
+            </Link>
+            <Link
+              className="font-display text-base text-white  hover:text-pink-500 "
+              href="/about"
             >
               About
             </Link>
-          </div>
-          <div>
-            <p className="font-display text-xl text-pink-300 md:hidden lg:flex">
-              <span className="mr-2">❤️</span> The Erotika Biennale Miami
-              <span className="ml-2">👉</span>
-            </p>
+            <Link
+              className="font-display text-base text-white  hover:text-pink-500 "
+              href="/artists"
+            >
+              Become a partner
+            </Link>
           </div>
         </div>
-        <a
-            target="_blank"
-            href="https://docs.google.com/forms/d/17U4nQC4NmQDeHGe1eUN-5DqL2fSSxeINtgz1pQ5_oLk/viewform?edit_requested=true"
-            className="flex-none group  inline-flex items-center justify-center rounded-full bg-violet-600 px-8 py-4 text-sm font-semibold text-white hover:bg-violet-400 hover:text-slate-100 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:bg-violet-800 active:text-violet-100 lg:text-lg"
-          >
-            But tickets
-          </a>
-
+        <Button className="hidden lg:block" color="pink">
+          Get tickets
+        </Button>
         <div className="-mr-1 md:hidden">
           <MobileNavigation />
         </div>
@@ -167,6 +179,3 @@ export function Header() {
     </header>
   )
 }
-
-
-

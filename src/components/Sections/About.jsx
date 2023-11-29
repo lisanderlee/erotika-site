@@ -4,8 +4,8 @@ import lockupimage from '@/images/asset.svg'
 
 export function About() {
   return (
-    <div className="flex w-screen flex-col gap-y-5 px-5 pt-5 md:px-10 mt-10 lg:flex-row  lg:gap-x-10 lg:px-14">
-      <div className="flex-1 basis-1/2 overflow-hidden lg:h-full my-auto h-full">
+    <div className="flex w-screen h-screen flex-col gap-y-5 px-5 pt-5 md:px-10 mt-10 lg:flex-row  lg:gap-x-10 lg:px-14">
+      <div className="flex-1 items-center flex  basis-1/2 overflow-hidden lg:h-full my-auto h-full">
         <Image
           className="rounded-2xl  object-center"
           src={lockupimage}
@@ -15,7 +15,7 @@ export function About() {
           loading="lazy"
         />
       </div>
-      <div className="flex-1 basis-1/2 rounded-2xl bg-[#5E18EA]">
+      <div className="flex-1 basis-1/2 rounded-2xl ">
           <div className="flex flex-col p-8 lg:p-12  max-w-7xl items-center h-full justify-center ">
           <p className="relative mt-6 text-lg leading-8 text-pink-100 ">
             The Erotika Biennale is brought to you by{' '}

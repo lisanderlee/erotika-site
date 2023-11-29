@@ -1,12 +1,13 @@
 'use client'
-import UploadFileWidget from '@/components/upload-file-widget'
-import UploadProfileWidget from '@/components/upload-profile-widget'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useState, useEffect, useCallback } from 'react'
-
+import ImageUploadComponent from '@/components/upload-file-widget'
+import clsx from 'clsx'
+import { Switch } from '@headlessui/react'
 export default function Page() {
   const supabase = createClientComponentClient()
-  // State for form fields
+
+  const [partner, setPartner] = useState(false)
   const [name, setName] = useState('')
   const [lastName, setLastName] = useState('')
   const [phone, setPhone] = useState('')
@@ -17,14 +18,15 @@ export default function Page() {
   const [description, setDescription] = useState('')
   const [portfolio, setPortfolio] = useState('')
   const [instagram, setInstagram] = useState('')
-  // State for validation errors
-  const [errors, setErrors] = useState({})
-  // State for form submission loading status
-  const [loading, setLoading] = useState(false)
-  const [imagesToUpload, setImagesToUpload] = useState(null)
-  const [profileImagesToUpload, setProfileImagesToUpload] = useState(null)
+
   const [categoryList, setCategoryList] = useState(null)
   const [eventsList, setEventsList] = useState(null)
+
+  const [imagePathsUpload, setImagePathsUpload] = useState([])
+  const [imageProfilePathsUpload, setImageProfilePathsUpload] = useState([])
+
+  const [errors, setErrors] = useState({})
+  const [loading, setLoading] = useState(false)
 
   const getCategories = useCallback(async () => {
     try {
@@ -72,72 +74,56 @@ export default function Page() {
   function validateForm() {
     let errors = {}
 
-    // Name validation
     if (!name.trim()) {
       errors.name = 'Name is required'
     }
 
-    // Last name validation
     if (!lastName.trim()) {
       errors.lastName = 'Last name is required'
     }
 
-    // Phone number validation
-    // You can add more complex validation like format or length
     if (!phone.trim()) {
       errors.phone = 'Phone number is required'
     } else if (!/^[0-9]{10,15}$/.test(phone)) {
       errors.phone = 'Invalid phone number, should be 10-15 digits'
     }
 
-    // Email validation
-    // Simple regex for email validation
     if (!email) {
       errors.email = 'Email is required'
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       errors.email = 'Email address is invalid'
     }
 
-    // Location validation
     if (!location.trim()) {
       errors.location = 'Location is required'
     }
 
-    // Category validation
     if (!category) {
       errors.category = 'Category is required'
     }
 
-    // Event validation
     if (!event) {
       errors.event = 'Event is required'
     }
 
-    // Description validation
     if (!description.trim()) {
       errors.description = 'Description is required'
     }
 
-    // Portfolio link validation (if required)
-    // You can also validate URL format
     if (!portfolio.trim()) {
       errors.portfolio = 'Portfolio link is required'
     }
 
-    // Instagram link validation (if required)
-    // You can also validate URL format
     if (!instagram.trim()) {
       errors.instagram = 'Instagram link is required'
     }
-    if (!instagram.trim()) {
-      errors.instagram = 'Instagram link is required'
-    }
-    if (!imagesToUpload) {
-      errors.imagesToUpload = 'Images are required'
-    }
-    if (!profileImagesToUpload) {
-      errors.profileImagesToUpload = 'Image is required'
-    }
+
+    // if (!imagesToUpload) {
+    //   errors.imagesToUpload = 'Images are required'
+    // }
+    // if (!profileImagesToUpload) {
+    //   errors.profileImagesToUpload = 'Image is required'
+    // }
 
     return errors
   }
@@ -157,24 +143,25 @@ export default function Page() {
 
       try {
         const { data, error } = await supabase.from('artists_table').insert({
+          partner: partner,
           name: name,
           last: lastName,
           phone: phone,
+          email: email,
+          location: location,
           category: category,
           event: event,
           description: description,
           instagram: instagram,
           link: portfolio,
-          location: location,
-          images: imagesToUpload,
-          profile: profileImagesToUpload,
-          email: email,
+          images: imagePathsUpload,
+          profile: imageProfilePathsUpload,
         })
         if (error) throw error
       } catch (error) {
         alert('Error updating the data!')
       } finally {
-        alert('Success')
+        setPartner(false)
         setName('')
         setLastName('')
         setPhone('')
@@ -185,9 +172,12 @@ export default function Page() {
         setDescription('')
         setPortfolio('')
         setInstagram('')
-        setImagesToUpload(null)
+        setImageProfilePathsUpload([])
+        setImagePathsUpload([])
         setLoading(false)
-        setProfileImagesToUpload(null)
+        alert('Success')
+        // setProfileImagesToUpload(null)
+        // setImagesToUpload(null)
       }
     } else {
       // Set errors state to display validation messages
@@ -203,6 +193,32 @@ export default function Page() {
             Artists
           </h2>
 
+          <label
+            htmlFor="about"
+            className="mt-10 block text-sm  font-medium leading-6 text-white"
+          >
+            Partner
+          </label>
+          <Switch
+            checked={partner}
+            onChange={setPartner}
+            className={clsx(
+              partner ? 'bg-indigo-600' : 'bg-gray-200',
+              'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2',
+            )}
+          >
+            <span className="sr-only">Partner</span>
+            <span
+              aria-hidden="true"
+              className={clsx(
+                partner ? 'translate-x-5' : 'translate-x-0',
+                'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
+              )}
+            />
+          </Switch>
+          {errors.partner && (
+            <p className="text-sm text-red-500">{errors.partner}</p>
+          )}
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <label
@@ -220,7 +236,9 @@ export default function Page() {
                   onChange={(e) => setName(e.target.value)}
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
-                {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+                {errors.name && (
+                  <p className="text-sm text-red-500">{errors.name}</p>
+                )}
               </div>
             </div>
 
@@ -241,7 +259,7 @@ export default function Page() {
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
                 {errors.lastName && (
-                  <p className="text-red-500 text-sm">{errors.lastName}</p>
+                  <p className="text-sm text-red-500">{errors.lastName}</p>
                 )}
               </div>
             </div>
@@ -261,7 +279,9 @@ export default function Page() {
                   onChange={(e) => setPhone(e.target.value)}
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
-                {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
+                {errors.phone && (
+                  <p className="text-sm text-red-500">{errors.phone}</p>
+                )}
               </div>
             </div>
 
@@ -281,7 +301,9 @@ export default function Page() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
-                {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+                {errors.email && (
+                  <p className="text-sm text-red-500">{errors.email}</p>
+                )}
               </div>
             </div>
             <div className="sm:col-span-3">
@@ -301,7 +323,7 @@ export default function Page() {
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
                 {errors.location && (
-                  <p className="text-red-500 text-sm">{errors.location}</p>
+                  <p className="text-sm text-red-500">{errors.location}</p>
                 )}
               </div>
             </div>
@@ -330,7 +352,7 @@ export default function Page() {
                 </select>
               </div>
               {errors.category && (
-                <p className="text-red-500 text-sm">{errors.category}</p>
+                <p className="text-sm text-red-500">{errors.category}</p>
               )}
             </div>
 
@@ -357,7 +379,9 @@ export default function Page() {
                   ))}
                 </select>
               </div>
-              {errors.event && <p className="text-red-500 text-sm">{errors.event}</p>}
+              {errors.event && (
+                <p className="text-sm text-red-500">{errors.event}</p>
+              )}
             </div>
 
             <div className="col-span-full">
@@ -378,7 +402,7 @@ export default function Page() {
                   defaultValue={''}
                 />
                 {errors.description && (
-                  <p className="text-red-500 text-sm">{errors.description}</p>
+                  <p className="text-sm text-red-500">{errors.description}</p>
                 )}
               </div>
               <p className="mt-3 text-sm leading-6 text-gray-400">
@@ -403,7 +427,7 @@ export default function Page() {
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
                 {errors.portfolio && (
-                  <p className="text-red-500 text-sm">{errors.portfolio}</p>
+                  <p className="text-sm text-red-500">{errors.portfolio}</p>
                 )}
               </div>
             </div>
@@ -424,27 +448,37 @@ export default function Page() {
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
                 {errors.instagram && (
-                  <p className="text-red-500 text-sm">{errors.instagram}</p>
+                  <p className="text-sm text-red-500">{errors.instagram}</p>
                 )}
               </div>
             </div>
           </div>
           <div className="mt-10">
-            <UploadProfileWidget
-              setProfileImagesToUpload={setProfileImagesToUpload}
-              profileImagesToUpload={profileImagesToUpload}
+            <label
+              htmlFor="first-name"
+              className="block text-sm mb-4 font-medium leading-6 text-white"
+            >
+              Profile Image
+            </label>
+            <ImageUploadComponent
+              imagePathsUpload={imageProfilePathsUpload}
+              setImagePathsUpload={setImageProfilePathsUpload}
             />
-            {errors.profileImagesToUpload && (
-              <p className="text-red-500 text-sm">{errors.profileImagesToUpload}</p>
-            )}
           </div>
           <div className="mt-10">
-            <UploadFileWidget
-              setImagesToUpload={setImagesToUpload}
-              imagesToUpload={imagesToUpload}
+            <label
+              htmlFor="first-name"
+              className="block text-sm font-medium leading-6 mb-4 text-white"
+            >
+              Event Images
+            </label>
+            <ImageUploadComponent
+              imagePathsUpload={imagePathsUpload}
+              setImagePathsUpload={setImagePathsUpload}
             />
+
             {errors.imagesToUpload && (
-              <p className="text-red-500 text-sm">{errors.imagesToUpload}</p>
+              <p className="text-sm text-red-500">{errors.imagesToUpload}</p>
             )}
           </div>
         </div>

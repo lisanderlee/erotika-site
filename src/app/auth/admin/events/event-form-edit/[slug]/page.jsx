@@ -1,15 +1,11 @@
 'use client'
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import { Datepicker } from 'flowbite-react'
 import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { ToastContainer, toast } from 'react-toastify'
-import UploadFileWidget from '@/components/upload-file-widget'
 import { Switch } from '@headlessui/react'
-import { Loading } from '@/components/Loading'
 import clsx from 'clsx'
 export default function EventForm({ params }) {
   const supabase = createClientComponentClient()
+
   const [contactName, setContactName] = useState('')
   const [contactNumber, setContactNumber] = useState('')
   const [eventName, setEventName] = useState('')
@@ -23,12 +19,15 @@ export default function EventForm({ params }) {
   const [vip, setVip] = useState('')
   const [payed, setPayed] = useState('')
   const [rsvp, setRsvp] = useState('')
+
+  const [imagesToUpload, setImagesToUpload] = useState(null)
+
   const [categoryList, setCategoryList] = useState(null)
   const [venuesList, setVenuesList] = useState(null)
-  const [loading, setLoading] = useState(null)
-  const [imagesToUpload, setImagesToUpload] = useState(null)
+
   const [errors, setErrors] = useState({})
-  const [event, setEvent] = useState(null)
+  const [loading, setLoading] = useState(null)
+
   const getCategories = useCallback(async () => {
     try {
       const { data, error, status } = await supabase
@@ -98,7 +97,7 @@ export default function EventForm({ params }) {
         setVip(data[0].vip)
         setPayed(data[0].payed)
         setRsvp(data[0].rsvp)
-        setImagesToUpload(data[0].images)
+        // setImagesToUpload(data[0].images)
       }
     } catch (error) {
       alert('Error loading user data!')
@@ -136,36 +135,33 @@ export default function EventForm({ params }) {
       errors.eventName = 'Event name is required'
     }
 
-    if (!venue) {
-      errors.venue = 'Venue is required'
-    }
-
-    if (!category.trim()) {
+    if (!category && !category.trim()) {
       errors.category = 'Category is required'
     }
 
-    if (!venue.trim()) {
-      errors.venue = 'Portfolio link is required'
+    if (!venue && !venue.trim()) {
+      errors.venue = 'Venue is required'
     }
 
-    if (!timeStart.trim()) {
+    if (!timeStart) {
       errors.timeStart = 'Time start is required'
     }
 
-    if (!startDate.trim()) {
+    if (!startDate) {
       errors.startDate = 'Start date is required'
     }
-    if (!endDate.trim()) {
+
+    if (!endDate) {
       errors.endDate = 'End date is required'
     }
 
-    if (!description.trim()) {
+    if (!description) {
       errors.description = 'Description is required'
     }
 
-    if (!imagesToUpload) {
-      errors.imagesToUpload = 'Images are required'
-    }
+    // if (!imagesToUpload) {
+    //   errors.imagesToUpload = 'Images are required'
+    // }
 
     return errors
   }
@@ -190,23 +186,23 @@ export default function EventForm({ params }) {
             phone: contactNumber,
             email: email,
             name: eventName,
-            time: timeStart,
-            category: category,
             venue: venue,
+            category: category,
+            time: timeStart,
             start: startDate,
             end: endDate,
             description: description,
             vip: vip,
-            rsvp: rsvp,
             payed: payed,
-            images: imagesToUpload,
+            rsvp: rsvp,
+            // profile: profileImagesToUpload,
+            // images: imagesToUpload,
           })
           .eq('id', params.slug)
         if (error) throw error
       } catch (error) {
         alert('Error updating the data!')
       } finally {
-        alert('Success')
         setContactName('')
         setEmail('')
         setContactNumber('')
@@ -220,7 +216,8 @@ export default function EventForm({ params }) {
         setVip('')
         setPayed('')
         setRsvp('')
-        setImagesToUpload(null)
+        alert('Success')
+        // setImagesToUpload(null)
       }
     } else {
       // Set errors state to display validation messages
@@ -395,8 +392,7 @@ export default function EventForm({ params }) {
                     type="time"
                     id="appt"
                     name="appt"
-                    min="09:00"
-                    max="18:00"
+                    value={timeStart}
                   />
                   {errors.timeStart && (
                     <p className="text-sm text-red-500">{errors.timeStart}</p>
@@ -419,6 +415,7 @@ export default function EventForm({ params }) {
                     name="event-start"
                     min="2024-01-01"
                     max="2024-05-31"
+                    value={startDate}
                   />
                   {errors.startDate && (
                     <p className="text-sm text-red-500">{errors.startDate}</p>
@@ -442,6 +439,7 @@ export default function EventForm({ params }) {
                     name="event-end"
                     min="2024-01-01"
                     max="2024-05-31"
+                    value={endDate}
                   />
                   {errors.endDate && (
                     <p className="text-sm text-red-500">{errors.endDate}</p>
@@ -550,15 +548,7 @@ export default function EventForm({ params }) {
                 />
               </Switch>
             </div>
-            <div className="mt-10">
-              <UploadFileWidget
-                setImagesToUpload={setImagesToUpload}
-                imagesToUpload={imagesToUpload}
-              />
-              {errors.imagesToUpload && (
-                <p className="text-sm text-red-500">{errors.imagesToUpload}</p>
-              )}
-            </div>
+    
           </div>
         </div>
 

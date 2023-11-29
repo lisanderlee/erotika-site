@@ -52,8 +52,8 @@ export default function Page({ params }) {
 
   return (
     <>
-    <div className="px-5 pt-5 md:px-10 mb-20 lg:px-14">
-      <div className="z-50  mt-10 rounded-2xl  overflow-hidden bg-[#5E18EA]  drop-shadow-xl   ">
+  <div className="px-5 pt-5 lg:mt-20 mt-0  md:px-10 mb-20 lg:px-40">
+      <div className="z-50  mt-10  overflow-hidden bg-[#5E18EA] ">
         <div className="inner">
           <Carousel
             renderCenterLeftControls={renderCenterLeftControls}
@@ -67,7 +67,7 @@ export default function Page({ params }) {
               event[0].images.map((image, index) => (
                 <Image
                   key={index}
-                  className="foto rounded-lg object-cover object-center  sm:rounded-lg"
+                  className="foto  object-cover object-center "
                   src={image}
                   width={1000}
                   height={667}

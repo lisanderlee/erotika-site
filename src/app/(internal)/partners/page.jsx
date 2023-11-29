@@ -1,21 +1,12 @@
 'use client'
 import { Suspense } from 'react'
 import { useCallback, useEffect, useState } from 'react'
-
+import CTATicket from '@/components/Sections/CTA-ticket'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { ArtistsItem } from '@/components/artist-item'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-// async function getArtists() {
-//   const supabase = createClientComponentClient()
-//   const res = await supabase
-//     .from('artists_table')
-//     .select(`*, artist_category (category)`)
-//     console.log(res)
-
-//   return res.data
-// }
 
 export default function ArtistsInternal() {
   const supabase = createClientComponentClient()
@@ -66,16 +57,11 @@ export default function ArtistsInternal() {
 
   return (
     <>
-      <div className="mb-20 px-5 pt-5 md:px-10 lg:mt-28 lg:px-14">
+       <div className="mb-20 px-5 pt-5 md:px-10 lg:mt-28 lg:px-14">
         <section class="b-section  mt-10 overflow-y-hidden ">
           <div class="b-section-marquee-box   overflow-y-hidden ">
             <h2 class=" overflow-y-hidden py-5 font-display text-4xl text-pink-300">
-              Guest Artists • Guest Artists • Guest Artists • Guest Artists •
-              Guest Artists • Guest Artists • Guest Artists • Guest Artists •
-              Guest Artists • Guest Artists • Guest Artists • Guest Artists •
-              Guest Artists • Guest Artists • Guest Artists • Guest Artists •
-              Guest Artists • Guest Artists • Guest Artists • Guest Artists •
-              Guest Artists • Guest Artists • Guest Artists • Guest Artists •
+              Guest Partners • Guest Partners • Guest Partners • Guest Partners • Guest Partners • Guest Partners • Guest Partners • Guest Partners • Guest Partners • Guest Partners • Guest Partners • Guest Partners • Guest Partners • 
             </h2>
           </div>
         </section>
@@ -85,7 +71,9 @@ export default function ArtistsInternal() {
           className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-14  sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-y-0 xl:grid-cols-3"
         >
           {artists &&
-            artists.map((artist, index) => (
+            artists
+              .filter((artist) => artist.partner === true) 
+              .map((artist, index) => (
               <Link key={artist.id} href={`/artists/${artist.id}`}>
                 <motion.li
                   variants={sectionVariants}
@@ -108,7 +96,7 @@ export default function ArtistsInternal() {
             ))}
         </ul>
       </div>
-      {/* <GetTicketCta /> */}
+      <CTATicket />
     </>
   )
 }

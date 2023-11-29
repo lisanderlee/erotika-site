@@ -6,16 +6,16 @@ import AuthForm from '@/components/auth-form'
 export default function NotFound() {
 
   return (
-    <SlimLayout>
+<div className='w-screen flex flex-col items-center p-20 h-screen'>
       <div className="flex">
         <Link href="/" aria-label="Home">
           <Logo className="h-10 w-auto" />
         </Link>
       </div>
-
+   
       <AuthForm />
-  
-    </SlimLayout>
+
+      </div>
   )
 }
 

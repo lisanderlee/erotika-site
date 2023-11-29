@@ -1,7 +1,7 @@
 'use client'
 import { EventItem } from '@/components/event-item'
 import Link from 'next/link'
-import events from '@/events.json'
+import CTATicket from '@/components/Sections/CTA-ticket'
 import { motion } from 'framer-motion'
 import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
@@ -55,20 +55,24 @@ export default function Home() {
   }
 
   return (
-    <div className="mb-20 px-5 pt-5 md:px-10 lg:px-14">
-    
-      <div className="mx-auto lg:mx-0">
-        <h2 className="my-10 font-display text-5xl text-pink-300 lg:mb-0 lg:text-7xl ">
-          Events
-        </h2>
-      </div>
+    <>
+    <div className="mb-20 px-5 pt-5 md:px-10 lg:mt-28 lg:px-14">
+      <section class="b-section  mt-10 overflow-y-hidden ">
+        <div class="b-section-marquee-box   overflow-y-hidden ">
+          <h2 class=" overflow-y-hidden py-5 font-display text-4xl text-pink-300">
+            VIP Access Events •  VIP Access Events •  VIP Access Events •  VIP Access Events •  VIP Access Events •  VIP Access Events •  VIP Access Events •  VIP Access Events •  VIP Access Events • 
+          </h2>
+        </div>
+      </section>
 
       <ul
         role="list"
-        className="mx-auto grid max-w-2xl  grid-cols-1 gap-x-8 gap-y-14  lg:gap-y-0 sm:grid-cols-1 lg:mx-0 lg:max-w-none lg:grid-cols-2 xl:grid-cols-3"
+        className="mx-auto grid max-w-2xl  grid-cols-1 gap-x-8 gap-y-14  sm:grid-cols-1 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:gap-y-0 xl:grid-cols-3"
       >
-        {events &&
-          events.map((event, index) => (
+          {events &&
+            events
+              .filter((event) => event.vip === true) // Filtering events where vip is true
+              .map((event, index) => (
             <Link key={event.EventId} href={`/events/${event.id}`}>
               <motion.li
                 variants={sectionVariants}
@@ -90,6 +94,48 @@ export default function Home() {
             </Link>
           ))}
       </ul>
+
+      <section class="b-section  mt-36 overflow-y-hidden ">
+        <div class="b-section-marquee-box   overflow-y-hidden ">
+          <h2 class=" overflow-y-hidden py-5 font-display text-4xl text-pink-300">
+            General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • 
+          </h2>
+        </div>
+      </section>
+
+      <ul
+        role="list"
+        className="mx-auto grid max-w-2xl  grid-cols-1 gap-x-8 gap-y-14  sm:grid-cols-1 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:gap-y-0 xl:grid-cols-3"
+      >
+        {events &&
+            events
+              .filter((event) => event.vip === false) // Filtering events where vip is true
+              .map((event, index) => (
+            <Link key={event.EventId} href={`/events/${event.id}`}>
+              <motion.li
+                variants={sectionVariants}
+                initial="initial"
+                whileInView="animate"
+                key={event.EventId}
+                className="mx-auto max-w-xl"
+                custom={index}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.03 }}
+              >
+                <EventItem
+                  id={event.id}
+                  title={event.name}
+                  image={event.images[0]}
+                  description={event.description}
+                />
+              </motion.li>
+            </Link>
+          ))}
+      </ul>
+
+   
     </div>
+    <CTATicket />
+    </>
   )
 }

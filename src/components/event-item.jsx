@@ -3,9 +3,9 @@ import Image from 'next/image'
 export function EventItem({ id, title, image, description, StartDate }) {
   return (
     <>
-      <div className="mx-auto flex h-5/6  flex-col  rounded-2xl bg-[#5E18EA] hover:bg-[#5E18EA]/80 sm:mt-20">
+      <div className="mx-auto flex h-5/6  flex-col   bg-[#5E18EA] hover:bg-[#5E18EA]/80 sm:mt-20">
         <Image
-          className=" aspect-[14/13] w-full rounded-2xl object-cover shadow-xl"
+          className=" aspect-[14/13] w-full  object-cover shadow-xl"
           src={image}
           width={1000}
           height={667}
@@ -18,7 +18,7 @@ export function EventItem({ id, title, image, description, StartDate }) {
             <p className="font-display text-base text-pink-300"> {StartDate}</p>
           </div>
           <div>
-            <h3 className="font-display text-3xl tracking-tight text-pink-300">
+            <h3 className="line-clamp-1  font-display text-3xl tracking-tight text-pink-300">
               {title}
             </h3>
           </div>

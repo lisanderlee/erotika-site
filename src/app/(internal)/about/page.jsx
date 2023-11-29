@@ -1,24 +1,16 @@
 "use client"
 import { Carousel } from "flowbite-react"
+import Team from "@/components/Sections/Team"
+import { About } from "@/components/Sections/About"
+import CTATicket from "@/components/Sections/CTA-ticket"
+import { CallToAction } from "@/components/Sections/CTA"
 export default function Home() {
   return (
     <main className="isolate">
-    
-    <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
-      <Carousel>
-        <div className="flex h-full items-center justify-center bg-gray-400 dark:bg-gray-700 dark:text-white">
-          Slide 1
-        </div>
-        <div className="flex h-full items-center justify-center bg-gray-400 dark:bg-gray-700 dark:text-white">
-          Slide 2
-        </div>
-        <div className="flex h-full items-center justify-center bg-gray-400 dark:bg-gray-700 dark:text-white">
-          Slide 3
-        </div>
-      </Carousel>
-    </div>
-     
-
+    <About />
+ <Team />
+  <CTATicket />
+  <CallToAction />
   
     </main>
   )

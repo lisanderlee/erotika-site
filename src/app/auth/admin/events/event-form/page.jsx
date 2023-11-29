@@ -1,13 +1,17 @@
 'use client'
-
 import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { ToastContainer, toast } from 'react-toastify'
 import UploadFileWidget from '@/components/upload-file-widget'
 import { Switch } from '@headlessui/react'
+import { UploadButton } from '@bytescale/upload-widget-react'
+import { UploadDropzone } from '@bytescale/upload-widget-react'
+import ImageUploadComponent from '@/components/upload-file-widget'
 import clsx from 'clsx'
+
 export default function EventForm() {
   const supabase = createClientComponentClient()
+
   const [contactName, setContactName] = useState('')
   const [contactNumber, setContactNumber] = useState('')
   const [eventName, setEventName] = useState('')
@@ -21,11 +25,16 @@ export default function EventForm() {
   const [vip, setVip] = useState('')
   const [payed, setPayed] = useState('')
   const [rsvp, setRsvp] = useState('')
+
+  const [imagePathsUpload, setImagePathsUpload] = useState([])
+
   const [categoryList, setCategoryList] = useState(null)
   const [venuesList, setVenuesList] = useState(null)
-  const [loading, setLoading] = useState(null)
-  const [imagesToUpload, setImagesToUpload] = useState(null)
+
   const [errors, setErrors] = useState({})
+  const [loading, setLoading] = useState(null)
+
+
   const notify = () => toast('Event Added!')
 
   const getCategories = useCallback(async () => {
@@ -119,15 +128,16 @@ export default function EventForm() {
       errors.description = 'Description is required'
     }
 
-    if (!imagesToUpload) {
-      errors.imagesToUpload = 'Images are required'
-    }
+    // if (!imagesToUpload) {
+    //   errors.imagesToUpload = 'Images are required'
+    // }
 
     return errors
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     // Start by clearing any existing errors
     setErrors({})
 
@@ -144,44 +154,45 @@ export default function EventForm() {
           phone: contactNumber,
           email: email,
           name: eventName,
-          time: timeStart,
-          category: category,
           venue: venue,
+          category: category,
+          time: timeStart,
           start: startDate,
           end: endDate,
           description: description,
           vip: vip,
-          rsvp: rsvp,
           payed: payed,
-          images: imagesToUpload,
+          rsvp: rsvp,
+          images: imagePathsUpload,
         })
         if (error) throw error
       } catch (error) {
         alert('Error updating the data!')
       } finally {
-        alert('Success')
         setContactName('')
-        setEmail('')
         setContactNumber('')
+        setEmail('')
         setEventName('')
+        setVenue('')
+        setCategory('')
         setTimeStart('')
-        setDescription('')
         setStartDate('')
         setEndDate('')
-        setCategory('')
-        setVenue('')
+        setDescription('')
         setVip('')
         setPayed('')
         setRsvp('')
-        setImagesToUpload(null)
+        setImagePathsUpload(null)
         notify()
         setLoading(false)
+        // alert('Success')
       }
     } else {
       // Set errors state to display validation messages
       setErrors(formErrors)
     }
   }
+
 
   return (
     <>
@@ -350,8 +361,7 @@ export default function EventForm() {
                     type="time"
                     id="appt"
                     name="appt"
-                    min="09:00"
-                    max="18:00"
+                    value={timeStart}
                   />
                   {errors.timeStart && (
                     <p className="text-sm text-red-500">{errors.timeStart}</p>
@@ -374,6 +384,7 @@ export default function EventForm() {
                     name="event-start"
                     min="2024-01-01"
                     max="2024-05-31"
+                    value={startDate}
                   />
                   {errors.startDate && (
                     <p className="text-sm text-red-500">{errors.startDate}</p>
@@ -397,6 +408,7 @@ export default function EventForm() {
                     name="event-end"
                     min="2024-01-01"
                     max="2024-05-31"
+                    value={endDate}
                   />
                   {errors.endDate && (
                     <p className="text-sm text-red-500">{errors.endDate}</p>
@@ -460,7 +472,7 @@ export default function EventForm() {
                 htmlFor="about"
                 className="block text-sm font-medium leading-6 text-white"
               >
-                Payed
+                Paid
               </label>
               <Switch
                 checked={payed}
@@ -506,13 +518,26 @@ export default function EventForm() {
               </Switch>
             </div>
             <div className="mt-10">
-              <UploadFileWidget
+              {/* <UploadDropzone
+                options={options}
+                onUpdate={({ uploadedFiles }) =>
+                  console.log(uploadedFiles.map((x) => x.fileUrl).join('\n'))
+                }
+                onComplete={(files) =>
+                  files.map((x) => setImagePaths([...imagePaths, x.fileUrl]))
+                }
+                width="600px"
+                height="375px"
+              /> */}
+              <ImageUploadComponent imagePathsUpload={imagePathsUpload} setImagePathsUpload={setImagePathsUpload} />
+              {/* <UploadFileWidget
                 setImagesToUpload={setImagesToUpload}
                 imagesToUpload={imagesToUpload}
               />
               {errors.imagesToUpload && (
                 <p className="text-sm text-red-500">{errors.imagesToUpload}</p>
-              )}
+              )} */}
+
             </div>
           </div>
         </div>

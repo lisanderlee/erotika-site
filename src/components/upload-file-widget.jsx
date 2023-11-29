@@ -1,147 +1,121 @@
-import React, { use, useState } from 'react'
 import { PhotoIcon, XMarkIcon } from '@heroicons/react/24/solid'
+import React, { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { useCallback } from 'react'
 import Image from 'next/image'
-import { Loading } from './Loading'
-import { Suspense } from 'react'
 
-export default function UploadFileWidget({
-  imagesToUpload,
-  setImagesToUpload,
-}) {
-  const [selectedImages, setSelectedImages] = useState([])
-  const supabase = createClientComponentClient()
-  const [urlToShow, setUrlToShow] = useState(null)
+function ImageUploadComponent({ imagePathsUpload, setImagePathsUpload }) {
+  const [images, setImages] = useState([])
   const [uploading, setUploading] = useState(false)
-  const uploadedUrls = []
+  const supabase = createClientComponentClient()
 
-  const onDrop = useCallback(async (acceptedFiles) => {
-    setUploading(true)
-    for (const file of acceptedFiles) {
-      const fileExt = file.name.split('.').pop()
-      const fileName = `${Math.random()}.${fileExt}`
-      const { data, error } = await supabase.storage
-        .from('images')
-        .upload(fileName, file)
-
-      if (error) {
-        console.error('Error uploading file: ', error)
-        continue
-      }
-      const fileUrl = `${supabase.storageUrl}/object/public/images/${fileName}`
-      uploadedUrls.push(fileUrl)
-      setImagesToUpload(uploadedUrls)
-    }
-    setUploading(false)
+  const onDrop = useCallback((acceptedFiles) => {
+    // Add the new files to the current images array
+    setImages((prevImages) => [
+      ...prevImages,
+      ...acceptedFiles.map((file) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        }),
+      ),
+    ])
   }, [])
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop })
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: 'image/*',
+  })
 
-  async function deleteFile(pathname) {
-    const pathSegments = pathname.split('/')
-    const url = '/' + pathSegments[7] + '/' + pathSegments[8]
+  const removeImage = (file) => {
+    setImages(images.filter((image) => image !== file))
+  }
 
-    try {
-      console.log(url)
-      const { data, error } = await supabase.storage.from('images').remove(url)
+  const uploadImages = async () => {
+    setUploading(true)
 
-      if (error) throw error
-      alert('Profile updated!')
-    } catch (error) {
-      alert('Error updating the data!')
-    } finally {
+    // Initialize an array to hold the URLs of the uploaded images
+    const uploadedImageUrls = []
+
+    for (let image of images) {
+      const filePath = `uploads/${Date.now()}-${image.name}`
+
+      try {
+        const { data, error } = await supabase.storage
+          .from('images')
+          .upload(filePath, image, {
+            cacheControl: '3600',
+            upsert: false,
+          })
+
+        if (error) {
+          console.error('Error uploading image:', error.message)
+        } else {
+          // Construct the URL for the uploaded image and add it to the array
+          const url = `https://grgbwbcnguxjlihzzawp.supabase.co/storage/v1/object/public/images/${filePath}`
+          uploadedImageUrls.push(url)
+          setImagePathsUpload(uploadedImageUrls)
+        }
+      } catch (error) {
+        console.error('Error during upload:', error.message)
+      }
     }
+
+    // Do something with the array of URLs, such as updating a state or sending to a backend
+    console.log('Uploaded Image URLs:', uploadedImageUrls)
+    setImages([])
+    setUploading(false)
   }
 
   return (
-    <section className="">
-      <div className="col-span-full">
-        <label
-          htmlFor="cover-photo"
-          className="block text-sm font-medium leading-6 text-white"
-        >
-          Event photo up to 5
-        </label>
-        <div
-          className="mt-2 flex justify-center rounded-lg border border-dashed border-white/25 px-6 py-10"
-          {...getRootProps()}
-        >
-          <div className="text-center">
-            <PhotoIcon
-              className="mx-auto h-12 w-12 text-gray-500"
-              aria-hidden="true"
-            />
-            <div className="mt-4 flex text-sm leading-6 text-gray-400">
-              <label
-                htmlFor="file-upload"
-                className="relative cursor-pointer rounded-md bg-gray-900 font-semibold text-white focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 focus-within:ring-offset-gray-900 hover:text-indigo-500"
-              >
-                <input
-                  {...getInputProps()}
-                  type="file"
-                  name="images"
-                  onChange={onDrop}
-                  multiple
-                  accept="image/png , image/jpeg, image/webp"
-                />
-              </label>
-            </div>
-            <p className="text-xs leading-5 text-gray-400">
-              PNG, JPG up to 10MB
-            </p>
-          </div>
-        </div>
+    <div>
+      <div
+        {...getRootProps()}
+        style={{
+          border: '2px dashed #ccc',
+          padding: '20px',
+          textAlign: 'center',
+        }}
+      >
+        <input {...getInputProps()} />
+        Drag and drop some images here, or click to select images
       </div>
-      {/* 
-      {selectedImages.length > 0 &&
-        (selectedImages.length > 10 ? (
-          <p className="error">
-            You can't upload more than 10 images! <br />
-            <span>
-              please delete <b> {selectedImages.length - 10} </b> of them{' '}
-            </span>
-          </p>
-        ) : (
-          <button
-            className="upload-btn"
-            onClick={() => {
-              console.log(selectedImages)
-            }}
-          >
-            UPLOAD {selectedImages.length} IMAGE
-            {selectedImages.length === 1 ? '' : 'S'}
-          </button>
-        ))} */}
-
       <div className="mx-auto max-w-7xl ">
         <ul
           role="list"
           className="mx-auto mt-5 grid max-w-2xl grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-5"
         >
-          {imagesToUpload &&
-            imagesToUpload.map((url, index) => {
-              return (
-                <li key={index} className="relative">
-                  <Image
-                    className="aspect-[3/2] w-full rounded-2xl object-cover"
-                    src={url}
-                    height={200}
-                    width={200}
-                    alt="upload"
-                  />
-                  <button
-                    className=" absolute -right-2 bottom-4 rounded-xl bg-red-600 p-2 hover:bg-red-500 "
-                    onClick={() => deleteFile(url)}
-                  >
-                    <XMarkIcon className=" h-5 w-5 text-white" />
-                  </button>
-                </li>
-              )
-            })}
+          {images.map((file, index) => (
+            <div key={index}>
+              <li key={index} className="relative">
+                <Image
+                  className=" w-full rounded-2xl object-cover"
+                  src={file.preview}
+                  alt={`Preview ${index}`}
+                  height={150}
+                  width={200}
+                />
+
+                <button
+                  className=" absolute bottom-4 right-0 rounded-xl bg-red-600 p-2 hover:bg-red-500 "
+                  onClick={() => removeImage(file)}
+                >
+                  <XMarkIcon className=" h-5 w-5 text-white" />
+                </button>
+              </li>
+            </div>
+          ))}
         </ul>
       </div>
-    </section>
+
+      <button
+        className=" mt-10 rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+        onClick={uploadImages}
+        disabled={uploading}
+      >
+        {uploading ? 'Uploading...' : 'Submit'}
+      </button>
+    </div>
   )
 }
+
+export default ImageUploadComponent

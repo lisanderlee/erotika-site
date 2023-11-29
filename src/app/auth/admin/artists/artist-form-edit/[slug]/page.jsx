@@ -1,13 +1,13 @@
 'use client'
-import UploadFileWidget from '@/components/upload-file-widget'
-import UploadProfileWidget from '@/components/upload-profile-widget'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useState, useEffect, useCallback } from 'react'
+import { Switch } from '@headlessui/react'
+import clsx from 'clsx'
 
 export default function Page({ params }) {
   const supabase = createClientComponentClient()
 
-  // State for form fields
+  const [partner, setPartner] = useState(false)
   const [name, setName] = useState('')
   const [lastName, setLastName] = useState('')
   const [phone, setPhone] = useState('')
@@ -18,15 +18,15 @@ export default function Page({ params }) {
   const [description, setDescription] = useState('')
   const [portfolio, setPortfolio] = useState('')
   const [instagram, setInstagram] = useState('')
-  // State for validation errors
-  const [errors, setErrors] = useState({})
-  // State for form submission loading status
-  const [loading, setLoading] = useState(false)
-  const [imagesToUpload, setImagesToUpload] = useState(null)
-  const [profileImagesToUpload, setProfileImagesToUpload] = useState(null)
+
   const [categoryList, setCategoryList] = useState(null)
   const [eventsList, setEventsList] = useState(null)
-  const [artist, setArtist] = useState(null)
+
+  const [imagesToUpload, setImagesToUpload] = useState(null)
+  const [profileImagesToUpload, setProfileImagesToUpload] = useState(null)
+
+  const [errors, setErrors] = useState({})
+  const [loading, setLoading] = useState(false)
 
   const getCategories = useCallback(async () => {
     try {
@@ -84,6 +84,7 @@ export default function Page({ params }) {
       }
 
       if (data) {
+        setPartner(data[0].partner)
         setName(data[0].name)
         setLastName(data[0].last)
         setPhone(data[0].phone)
@@ -114,66 +115,51 @@ export default function Page({ params }) {
   function validateForm() {
     let errors = {}
 
-    // Name validation
     if (!name.trim()) {
       errors.name = 'Name is required'
     }
 
-    // Last name validation
     if (!lastName.trim()) {
       errors.lastName = 'Last name is required'
     }
 
-    // Phone number validation
-    // You can add more complex validation like format or length
     if (!phone.trim()) {
       errors.phone = 'Phone number is required'
     } else if (!/^[0-9]{10,15}$/.test(phone)) {
       errors.phone = 'Invalid phone number, should be 10-15 digits'
     }
 
-    // Email validation
-    // Simple regex for email validation
     if (!email) {
       errors.email = 'Email is required'
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       errors.email = 'Email address is invalid'
     }
 
-    // Location validation
     if (!location.trim()) {
       errors.location = 'Location is required'
     }
-
-    // Category validation
+    
     if (!category) {
       errors.category = 'Category is required'
     }
 
-    // Event validation
     if (!event) {
       errors.event = 'Event is required'
     }
 
-    // Description validation
+
     if (!description.trim()) {
       errors.description = 'Description is required'
     }
 
-    // Portfolio link validation (if required)
-    // You can also validate URL format
     if (!portfolio.trim()) {
       errors.portfolio = 'Portfolio link is required'
     }
-
-    // Instagram link validation (if required)
-    // You can also validate URL format
+   
     if (!instagram.trim()) {
       errors.instagram = 'Instagram link is required'
     }
-    if (!instagram.trim()) {
-      errors.instagram = 'Instagram link is required'
-    }
+  
     if (!imagesToUpload) {
       errors.imagesToUpload = 'Images are required'
     }
@@ -198,25 +184,29 @@ export default function Page({ params }) {
       setLoading(true)
 
       try {
-        const { data, error } = await supabase.from('artists_table').update({
-          name: name,
-          last: lastName,
-          phone: phone,
-          category: category,
-          event: event,
-          description: description,
-          instagram: instagram,
-          link: portfolio,
-          location: location,
-          images: imagesToUpload,
-          profile: profileImagesToUpload,
-          email: email,
-        }).eq('id', params.slug)
+        const { data, error } = await supabase
+          .from('artists_table')
+          .update({
+            partner: partner,
+            name: name,
+            last: lastName,
+            phone: phone,
+            category: category,
+            event: event,
+            description: description,
+            instagram: instagram,
+            link: portfolio,
+            location: location,
+            images: imagesToUpload,
+            profile: profileImagesToUpload,
+            email: email,
+          })
+          .eq('id', params.slug)
         if (error) throw error
       } catch (error) {
         alert('Error updating the data!')
       } finally {
-        alert('Success')
+        setPartner(false)
         setName('')
         setLastName('')
         setPhone('')
@@ -227,9 +217,10 @@ export default function Page({ params }) {
         setDescription('')
         setPortfolio('')
         setInstagram('')
-        setImagesToUpload(null)
         setLoading(false)
-        setProfileImagesToUpload(null)
+        alert('Success')
+        // setImagesToUpload(null)
+        // setProfileImagesToUpload(null)
       }
     } else {
       // Set errors state to display validation messages
@@ -242,9 +233,35 @@ export default function Page({ params }) {
       <div className="space-y-12">
         <div className="border-b border-white/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-white">
-            Edit Artist
+            Artists
           </h2>
 
+          <label
+            htmlFor="about"
+            className="mt-10 block text-sm  font-medium leading-6 text-white"
+          >
+            Partner
+          </label>
+          <Switch
+            checked={partner}
+            onChange={setPartner}
+            className={clsx(
+              partner ? 'bg-indigo-600' : 'bg-gray-200',
+              'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2',
+            )}
+          >
+            <span className="sr-only">Partner</span>
+            <span
+              aria-hidden="true"
+              className={clsx(
+                partner ? 'translate-x-5' : 'translate-x-0',
+                'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
+              )}
+            />
+          </Switch>
+          {errors.partner && (
+            <p className="text-sm text-red-500">{errors.partner}</p>
+          )}
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <label
@@ -479,26 +496,7 @@ export default function Page({ params }) {
               </div>
             </div>
           </div>
-          <div className="mt-10">
-            <UploadProfileWidget
-              setProfileImagesToUpload={setProfileImagesToUpload}
-              profileImagesToUpload={profileImagesToUpload}
-            />
-            {errors.profileImagesToUpload && (
-              <p className="text-sm text-red-500">
-                {errors.profileImagesToUpload}
-              </p>
-            )}
-          </div>
-          <div className="mt-10">
-            <UploadFileWidget
-              setImagesToUpload={setImagesToUpload}
-              imagesToUpload={imagesToUpload}
-            />
-            {errors.imagesToUpload && (
-              <p className="text-sm text-red-500">{errors.imagesToUpload}</p>
-            )}
-          </div>
+      
         </div>
       </div>
 
