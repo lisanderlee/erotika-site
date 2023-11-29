@@ -4,7 +4,7 @@ import { useDropzone } from 'react-dropzone'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image'
 
-function ImageUploadComponent({setImagePathsUpload }) {
+function ImageUploadComponent({ setImagePathsUpload }) {
   const [images, setImages] = useState([])
   const [uploading, setUploading] = useState(false)
   const supabase = createClientComponentClient()
@@ -61,7 +61,7 @@ function ImageUploadComponent({setImagePathsUpload }) {
     }
 
     // Do something with the array of URLs, such as updating a state or sending to a backend
-   
+
     setImages([])
     setUploading(false)
   }
@@ -106,14 +106,15 @@ function ImageUploadComponent({setImagePathsUpload }) {
           ))}
         </ul>
       </div>
-
-      <button
-        className=" mt-10 rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-        onClick={uploadImages}
-        disabled={uploading}
-      >
-        {uploading ? 'Uploading...' : 'Submit'}
-      </button>
+      {images && images.length > 0 && (
+        <button
+          className=" mt-10 rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+          onClick={uploadImages}
+          disabled={uploading}
+        >
+          {uploading ? 'Uploading...' : 'Submit'}
+        </button>
+      )}
     </div>
   )
 }

@@ -100,7 +100,7 @@ export default function EventForm({ params }) {
 
     if (!contactNumber.trim()) {
       errors.contactNumber = 'Phone number is required'
-    } else if (!/^\d{3}-\d{3}-\d{4}$/.test(contactName)) {
+    } else if (!/^\d{3}-\d{3}-\d{4}$/.test(contactNumber)) {
       errors.contactNumber = 'Invalid phone number, should be 10-15 digits'
     }
 
