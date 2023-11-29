@@ -27,33 +27,12 @@ export default function EventForm() {
 
   const [imagePathsUpload, setImagePathsUpload] = useState([])
 
-  const [categoryList, setCategoryList] = useState(null)
   const [venuesList, setVenuesList] = useState(null)
 
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(null)
 
-
   const notify = () => toast('Event Added!')
-
-  const getCategories = useCallback(async () => {
-    try {
-      const { data, error, status } = await supabase
-        .from('event_category')
-        .select()
-
-      if (error && status !== 406) {
-        throw error
-      }
-
-      if (data) {
-        setCategoryList(data)
-      }
-    } catch (error) {
-      alert('Error loading user data!')
-    } finally {
-    }
-  }, [supabase])
 
   const getVenues = useCallback(async () => {
     try {
@@ -74,8 +53,7 @@ export default function EventForm() {
 
   useEffect(() => {
     getVenues()
-    getCategories()
-  }, [getCategories, getVenues])
+  }, [getVenues])
 
   function validateForm() {
     let errors = {}
@@ -85,8 +63,7 @@ export default function EventForm() {
     }
 
     if (!contactNumber.trim()) {
-      errors.contactNumber = 'Phone number is required'
-    } else if (!/^[0-9]{10,15}$/.test(contactNumber)) {
+    } else if (!/^\d{3}-\d{3}-\d{4}$/.test(contactName)) {
       errors.contactNumber = 'Invalid phone number, should be 10-15 digits'
     }
 
@@ -191,7 +168,6 @@ export default function EventForm() {
       setErrors(formErrors)
     }
   }
-
 
   return (
     <>
@@ -327,20 +303,13 @@ export default function EventForm() {
                   Category
                 </label>
                 <div className="mt-2">
-                  <select
+                  <input
                     id="category"
                     name="category"
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
-                  >
-                    <option></option>
-                    {categoryList?.map((category) => (
-                      <option key={category.id} value={category.id}>
-                        {category.event_category}
-                      </option>
-                    ))}
-                  </select>
+                  />
                 </div>
                 {errors.category && (
                   <p className="text-sm text-red-500">{errors.category}</p>
@@ -517,10 +486,7 @@ export default function EventForm() {
               </Switch>
             </div>
             <div className="mt-10">
-        
               <ImageUploadComponent setImagePathsUpload={setImagePathsUpload} />
-           
-
             </div>
           </div>
         </div>

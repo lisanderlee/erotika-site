@@ -18,7 +18,7 @@ export default function ArtistsInternal() {
       setLoading(true)
 
       const { data, error } = await supabase.from('artists_table').select(`
-      *, artist_category (category)`)
+      *`)
 
       if (error && status !== 406) {
         throw error
@@ -89,7 +89,7 @@ export default function ArtistsInternal() {
                     image={artist.profile[0]}
                     name={artist.name + ' ' + artist.last}
                     location={artist.location}
-                    category={artist.artist_category.category}
+                    category={artist.category}
                   />
                 </motion.li>
               </Link>

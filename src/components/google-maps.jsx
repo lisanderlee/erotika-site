@@ -28,10 +28,8 @@ export default function GoogleMaps() {
       *,
       venues (
        *
-      ),
-      event_category(
-        event_category
       )
+    
     `)
 
       if (error && status !== 406) {
@@ -161,7 +159,7 @@ function Locations({ map, events }) {
                         </h1>
                         <div className="mt-3">
                           <p className="text-xl font-semibold tracking-tight text-pink-100">
-                            {selected && selected.event_category.event_category}
+                            {selected && selected.category}
                           </p>
                         </div>
                       </div>

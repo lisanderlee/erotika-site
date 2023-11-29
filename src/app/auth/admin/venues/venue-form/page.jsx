@@ -9,13 +9,8 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from 'use-places-autocomplete'
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxPopover,
-  ComboboxList,
-  ComboboxOption,
-} from '@reach/combobox'
+
+
 
 
 export default function Places() {
@@ -47,7 +42,7 @@ function VenueForm() {
     }
     if (!number.trim()) {
       errors.number = 'Phone number is required'
-    } else if (!/^[0-9]{10,15}$/.test(number)) {
+    } else if (!/^\d{3}-\d{3}-\d{4}$/.test(number)) {
       errors.number = 'Invalid phone number, should be 10-15 digits'
     }
     return errors
@@ -190,41 +185,52 @@ function VenueForm() {
 }
 
 const PlacesAutocomplete = ({ setSelected, setGeo }) => {
-  const {
-    ready,
-    value,
-    setValue,
-    suggestions: { status, data },
-    clearSuggestions,
-  } = usePlacesAutocomplete()
+  const [input, setInput] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const { ready, value, suggestions: { status, data }, setValue, clearSuggestions } = usePlacesAutocomplete();
+
+  const handleInput = (e) => {
+    setInput(e.target.value);
+    setValue(e.target.value);
+  };
 
   const handleSelect = async (address) => {
-    setValue(address, false)
-    clearSuggestions()
+    setInput(address);
+    setValue(address, false);
+    clearSuggestions();
 
-    const results = await getGeocode({ address })
-    setSelected(results)
-    const { lat, lng } = await getLatLng(results[0])
-    setGeo({ lat, lng })
-  }
+    try {
+      const results = await getGeocode({ address });
+      setSelected(results);
+      const { lat, lng } = await getLatLng(results[0]);
+      setGeo({ lat, lng });
+    } catch (error) {
+      console.error("Error: ", error);
+    }
+  };
 
   return (
-    <Combobox onSelect={handleSelect}>
-      <ComboboxInput
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+    <div>
+      <input
+        value={input}
+        onChange={handleInput}
         disabled={!ready}
         className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
         placeholder="Search an address"
       />
-      <ComboboxPopover>
-        <ComboboxList>
-          {status === 'OK' &&
-            data.map(({ place_id, description }) => (
-              <ComboboxOption key={place_id} value={description} />
-            ))}
-        </ComboboxList>
-      </ComboboxPopover>
-    </Combobox>
-  )
-}
+      {status === 'OK' && (
+        <ul className="list-none m-0 p-0">
+          {data.map(({ place_id, description }) => (
+            <li
+              key={place_id}
+              onClick={() => handleSelect(description)}
+              className="cursor-pointer p-2 hover:bg-gray-200"
+            >
+              {description}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};

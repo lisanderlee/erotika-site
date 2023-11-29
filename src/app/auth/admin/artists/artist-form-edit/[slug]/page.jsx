@@ -19,7 +19,7 @@ export default function Page({ params }) {
   const [portfolio, setPortfolio] = useState('')
   const [instagram, setInstagram] = useState('')
 
-  const [categoryList, setCategoryList] = useState(null)
+ 
   const [eventsList, setEventsList] = useState(null)
 
   const [imagesToUpload, setImagesToUpload] = useState(null)
@@ -28,24 +28,7 @@ export default function Page({ params }) {
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
 
-  const getCategories = useCallback(async () => {
-    try {
-      const { data, error, status } = await supabase
-        .from('artist_category')
-        .select()
 
-      if (error && status !== 406) {
-        throw error
-      }
-
-      if (data) {
-        setCategoryList(data)
-      }
-    } catch (error) {
-      alert('Error loading user data!')
-    } finally {
-    }
-  }, [supabase])
 
   const getEvents = useCallback(async () => {
     try {
@@ -107,10 +90,9 @@ export default function Page({ params }) {
   }, [supabase, params.slug])
 
   useEffect(() => {
-    getCategories()
     getEvents()
     getArtists()
-  }, [getCategories, getEvents, getArtists])
+  }, [ getEvents, getArtists])
 
   function validateForm() {
     let errors = {}
@@ -125,7 +107,7 @@ export default function Page({ params }) {
 
     if (!phone.trim()) {
       errors.phone = 'Phone number is required'
-    } else if (!/^[0-9]{10,15}$/.test(phone)) {
+    } else if (!/^\d{3}-\d{3}-\d{4}$/.test(phone)) {
       errors.phone = 'Invalid phone number, should be 10-15 digits'
     }
 
@@ -370,7 +352,6 @@ export default function Page({ params }) {
                 )}
               </div>
             </div>
-
             <div className="sm:col-span-3">
               <label
                 htmlFor="country"
@@ -379,20 +360,13 @@ export default function Page({ params }) {
                 Category
               </label>
               <div className="mt-2">
-                <select
-                  id="venue"
-                  name="venue"
+                <input
+                  id="category"
+                  name="category"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
-                >
-                  <option></option>
-                  {categoryList?.map((category) => (
-                    <option key={category.id} value={category.id}>
-                      {category.category}
-                    </option>
-                  ))}
-                </select>
+                />
               </div>
               {errors.category && (
                 <p className="text-sm text-red-500">{errors.category}</p>

@@ -22,9 +22,6 @@ export default function EventsTable() {
       *,
       venues (
         name
-      ),
-      event_category(
-        event_category
       )
     `)
 
@@ -165,7 +162,7 @@ export default function EventsTable() {
                             : 'No'}
                             </td>
                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
-                              {event.event_category.event_category}
+                              {event.category}
                             </td>
                        
                        

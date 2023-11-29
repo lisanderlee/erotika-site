@@ -28,7 +28,7 @@ export default function Page({ params }) {
 
       const { data, error } = await supabase
         .from('artists_table')
-        .select(`*, events_table (*, venues(*)) , artist_category(category)  `)
+        .select(`*, events_table (*, venues(*))  `)
         .eq('id', params.slug)
       console.log(data[0].link)
       if (error && status !== 406) {
@@ -86,7 +86,7 @@ export default function Page({ params }) {
             </h1>
             <div className="mt-3">
               <p className="text-xl font-semibold tracking-tight text-pink-100">
-                {artist && artist[0].artist_category.category}
+                {artist && artist[0].category}
               </p>
             </div>
             <div className="mt-6">

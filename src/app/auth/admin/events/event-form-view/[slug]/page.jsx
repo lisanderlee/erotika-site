@@ -7,8 +7,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import {
   renderCenterRightControls,
-  renderCenterLeftControls,
-  pagingDotsClassName,
+  renderCenterLeftControls
+
 } from '@/components/Controls'
 
 function classNames(...classes) {
@@ -26,7 +26,7 @@ export default function Page({ params }) {
 
       const { data, error } = await supabase
         .from('events_table')
-        .select(`*, venues (*) , event_category(event_category)  `)
+        .select(`*, venues (*)   `)
         .eq('id', params.slug)
 
       if (error && status !== 406) {
@@ -84,7 +84,7 @@ export default function Page({ params }) {
             </h1>
             <div className="mt-3">
               <p className="text-xl font-semibold tracking-tight text-pink-100">
-                {event && event[0].event_category.event_category}
+                {event && event[0].category}
               </p>
             </div>
             <div className="mt-6">

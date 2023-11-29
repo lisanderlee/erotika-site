@@ -19,9 +19,6 @@ export default function ArtistsTable() {
 
       const { data, error } = await supabase.from('artists_table').select(`
       *,
-      artist_category (
-        category
-      ),
       events_table(
         name,start
       )
@@ -157,7 +154,7 @@ export default function ArtistsTable() {
                               {artist.email}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-                              {artist.artist_category.category}
+                              {artist.category}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
                               {artist.events_table.name}
