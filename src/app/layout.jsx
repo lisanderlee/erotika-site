@@ -1,8 +1,7 @@
 import { Inter, Lexend, Righteous } from 'next/font/google'
 import clsx from 'clsx'
-
 import '@/styles/tailwind.css'
-
+import { Providers } from './provider'
 export const metadata = {
   title: {
     template: '%s - Erotika',
@@ -30,12 +29,14 @@ export default function MainLayout({ children }) {
     <html
       lang="en"
       className={clsx(
-        'h-full scroll-smooth  bg-slate-950 antialiased',
+        'dark h-full scroll-smooth antialiased ',
         inter.variable,
         righteous.variable,
       )}
     >
-      <body className="flex h-full flex-col">{children}</body>
+ 
+        <body className="flex h-full flex-col">     <Providers>{children}     </Providers></body>
+ 
     </html>
   )
 }

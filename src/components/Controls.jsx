@@ -13,7 +13,7 @@ export const renderCenterLeftControls = ({
       'me border-none bg-transparent',
       'cursor-pointer disabled:cursor-not-allowed',
       'm-3 flex appearance-none items-center invisible lg:visible',
-      'text-violet-800 opacity-70 hover:opacity-100 disabled:opacity-30 ',
+      'text-pink-300 opacity-70 hover:opacity-100 disabled:opacity-30 ',
     )}
     disabled={previousDisabled}
     onClick={previousSlide}
@@ -29,7 +29,7 @@ export const renderCenterRightControls = ({ nextDisabled, nextSlide }) => (
       'border-none bg-transparent',
       'cursor-pointer disabled:cursor-not-allowed',
       'm-3 flex appearance-none items-center invisible lg:visible',
-      'text-violet-800 opacity-70 hover:opacity-100 disabled:opacity-30',
+      'text-pink-300 opacity-70 hover:opacity-100 disabled:opacity-30',
     )}
     disabled={nextDisabled}
     onClick={nextSlide}

@@ -3,11 +3,8 @@ import { Fragment } from 'react'
 import Link from 'next/link'
 import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-import { Logo } from '@/components/Logo'
-import { NavLink } from '@/components/NavLink'
-
+import { LogoSm } from '../LogoSm'
+import { Button } from '../Button'
 function MobileNavLink({ href, children }) {
   return (
     <Popover.Button as={Link} href={href} className="block w-full p-2">
@@ -20,7 +17,7 @@ function MobileNavIcon({ open }) {
   return (
     <svg
       aria-hidden="true"
-      className="h-3.5 w-3.5 overflow-visible stroke-slate-700"
+      className="h-3.5 w-3.5 overflow-visible stroke-white"
       fill="none"
       strokeWidth={2}
       strokeLinecap="round"
@@ -47,7 +44,7 @@ function MobileNavigation() {
   return (
     <Popover>
       <Popover.Button
-        className="relative z-10 flex h-8 w-8 items-center justify-center ui-not-focus-visible:outline-none"
+        className="relative z-50 flex h-8 w-8  items-center justify-end ui-not-focus-visible:outline-none"
         aria-label="Toggle Navigation"
       >
         {({ open }) => <MobileNavIcon open={open} />}
@@ -75,13 +72,53 @@ function MobileNavigation() {
         >
           <Popover.Panel
             as="div"
-            className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
+            className="absolute right-5 top-12 z-50  mt-4  flex w-2/3 origin-top flex-col gap-y-5 rounded-2xl bg-[#5E18EA] px-7 pt-10 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
           >
-            <MobileNavLink href="#features">Features</MobileNavLink>
-            <MobileNavLink href="#testimonials">Testimonials</MobileNavLink>
-            <MobileNavLink href="#pricing">Pricing</MobileNavLink>
+            {/* <Link
+              className="font-display text-lg text-pink-300 hover:text-pink-500 "
+              href="/events"
+            >
+              Events
+            </Link>
+            <Link
+              className="font-display text-lg text-pink-300 hover:text-pink-500 "
+              href="/artists"
+            >
+              Artists
+            </Link>
+            <Link
+              className="font-display text-lg text-pink-300 hover:text-pink-500 "
+              href="/partners"
+            >
+              Partners
+            </Link> */}
+            <Link
+              className="font-display text-lg text-pink-300 hover:text-pink-500 "
+              href="/artists"
+            >
+              About
+            </Link>
+            <Link
+              className="font-display text-lg text-pink-300 hover:text-pink-500 "
+              href="/artists"
+            >
+              Become a partner
+            </Link>
+
             <hr className="m-2 border-slate-300/40" />
-            <MobileNavLink href="/login">Sign in</MobileNavLink>
+            <div>
+              <p className="text-center font-display text-xl text-pink-300 ">
+                <span className="mr-2">❤️</span> The Erotika Biennale Miami
+                <span className="ml-2">👇</span>
+              </p>
+            </div>
+            <a
+              target="_blank"
+              href="https://docs.google.com/forms/d/1MGwkbWZ8mdiAJ58tvA7ip47ZEHir4qZ-i0uvz-A7i9I/viewform?edit_requested=true"
+              className="group mb-5 flex-none items-center justify-center rounded-full bg-slate-950 px-8 py-4 font-display text-sm hover:bg-violet-400 hover:text-slate-100 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:bg-violet-800 active:text-violet-100 "
+            >
+              Tickets Coming Soon
+            </a>
           </Popover.Panel>
         </Transition.Child>
       </Transition.Root>
@@ -91,34 +128,54 @@ function MobileNavigation() {
 
 export function Header() {
   return (
-    <header className="absolute z-10  w-screen py-5">
-      <Container>
-        <nav className=" z-50  flex items-center justify-between">
-          <div className="flex  md:gap-x-12">
-            <Link href="/" aria-label="Home">
-              <Logo className="h-10 w-auto" />
+    <header className=" z-50 w-full py-2 md:px-10 lg:fixed lg:px-14 px-5 ">
+      <nav className="  flex h-16 w-full items-center justify-between gap-x-5">
+        <div className="">
+          <Link href="/" aria-label="Home">
+            <LogoSm className="h-10 w-auto" />
+          </Link>
+        </div>
+        <div className="  hidden w-full items-center justify-between  rounded-2xl   px-10 md:flex lg:flex">
+          <div className=" flex h-16 items-center gap-x-10 ">
+            {/* <Link
+              className="font-display text-base text-white   hover:text-pink-500 "
+              href="/events"
+            >
+              Events
             </Link>
-            {/* <div className="hidden w-100 items-center  justify-items-center md:flex md:gap-x-6"> */}
-
-            {/* <NavLink href="/events">Events</NavLink>
-              <NavLink href="/about">About</NavLink>
-              <NavLink href="/artists">Artists</NavLink>
-              <NavLink href="/digital">Digital Experiece</NavLink> */}
-            {/* </div> */}
+            <Link
+              className="font-display text-base text-white   hover:text-pink-500 "
+              href="/artists"
+            >
+              Artists
+            </Link>
+            <Link
+              className="font-display text-base text-white   hover:text-pink-500 "
+              href="/partners"
+            >
+              Partners
+            </Link> */}
+            <Link
+              className="font-display text-base text-white  hover:text-pink-500 "
+              href="/about"
+            >
+              About
+            </Link>
+            <Link
+              className="font-display text-base text-white  hover:text-pink-500 "
+              href="#partner"
+            >
+              Become a partner
+            </Link>
           </div>
-          <p className="rounded-full bg-indigo-500/70 px-3 py-1 text-sm font-light leading-6  text-white ring-1 ring-inset ring-indigo-500/20">
-            Tickets Coming Soon 
-          </p>
-          {/* <div className="flex items-center gap-x-5 md:gap-x-8">
-            <Button href="/register" color="violet">
-              <span>Get your tickets</span>
-            </Button>
-            <div className="-mr-1 md:hidden">
-              <MobileNavigation />
-            </div>
-          </div> */}
-        </nav>
-      </Container>
+        </div>
+        <Button className="hidden lg:block" color="violet">
+        Tickets Coming Soon
+        </Button>
+        <div className="-mr-1 md:hidden">
+          <MobileNavigation />
+        </div>
+      </nav>
     </header>
   )
 }

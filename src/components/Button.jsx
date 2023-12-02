@@ -3,8 +3,11 @@ import clsx from 'clsx'
 
 const baseStyles = {
   solid:
-    'group inline-flex items-center justify-center rounded-full py-4 px-8 text-lg font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2',
-  outline:
+    'group inline-flex items-center justify-center rounded-full py-2 px-8 text-lg font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2',
+    header:
+    'group inline-flex items-center justify-center rounded-full py-2 px-8 text-lg font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2',
+
+    outline:
     'group inline-flex ring-1 items-center justify-center rounded-full py-2 px-4 text-sm focus:outline-none',
 }
 
@@ -15,7 +18,9 @@ const variantStyles = {
     blue: 'bg-blue-600 text-white hover:text-slate-100 hover:bg-blue-500 active:bg-blue-800 active:text-blue-100 focus-visible:outline-blue-600',
     white:
       'bg-white text-slate-900 hover:bg-blue-50 active:bg-blue-200 active:text-slate-600 focus-visible:outline-white',
-    violet: ' bg-violet-600 text-white hover:text-slate-100 hover:bg-violet-400 active:bg-violet-800 active:text-violet-100 focus-visible:outline-blue-600',
+    violet: ' flex-none bg-[#5E18EA] text-white hover:text-slate-100 hover:bg-violet-900/90 active:bg-violet-800 active:text-violet-100 focus-visible:outline-blue-600',
+    pink: '   flex-none bg-pink-300 text-[#5E18EA] hover:text-[#5E18EA] hover:bg-pink-200 active:bg-pink-400 active:text-violet-100 focus-visible:outline-blue-600',
+
 
   },
   outline: {

@@ -1,21 +1,17 @@
 'use client'
-import { CallToAction } from '@/components/Sections/CTA'
-import { Sponsors } from '@/components/Sections/Sponsors'
 import Hero from '@/components/Sections/Hero'
-import Artists from '@/components/Sections/Artists'
-import { About } from '@/components/Sections/About'
+import { CallToAction } from '@/components/Sections/CTA'
 import { Header } from '@/components/Sections/Header'
 import { Footer } from '@/components/Sections/Footer'
-import Featured from '@/components/Sections/Featured'
-import { motion, useScroll, useSpring, stagger } from 'framer-motion'
-import Team from '@/components/Sections/Team'
+import Events from '@/components/Sections/Events'
+import { motion  } from 'framer-motion'
+import CTATicket from '@/components/Sections/CTA-ticket'
+import Partners from '@/components/Sections/Partners'
+import { Sponsors } from '@/components/Sections/Sponsors'
+import Map from '@/components/Sections/Map'
+
 export default function Home() {
-  const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  })
+
 
   const sectionVariants = {
     offscreen: {
@@ -37,7 +33,7 @@ export default function Home() {
     },
     onscreen: {
       y: 0,
-      opacity:1,
+      opacity: 1,
       transition: {
         ease: 'easeOut',
         duration: 0.1,
@@ -47,11 +43,10 @@ export default function Home() {
   }
   return (
     <>
-      <header>
-     
-          <Header />
-      
+       <header>
+        <Header />
       </header>
+
       <main>
         <motion.div
           variants={sectionVariants1}
@@ -61,19 +56,48 @@ export default function Home() {
           <Hero />
         </motion.div>
         {/* <motion.div
-          variants={sectionVariants}
+          variants={sectionVariants1}
           initial="offscreen"
           whileInView="onscreen"
         >
           <Sponsors />
+        </motion.div> */}
+        {/* <motion.div
+          variants={sectionVariants1}
+          initial="offscreen"
+          whileInView="onscreen"
+        >
+          <Map />
+        </motion.div>
+        <motion.div
+          variants={sectionVariants}
+          initial="offscreen"
+          whileInView="onscreen"
+        >
+          <CTATicket />
+        </motion.div> */}
+
+        {/* <motion.div
+          variants={sectionVariants}
+          initial="offscreen"
+          whileInView="onscreen"
+        >
+          <Events />
         </motion.div> */}
         <motion.div
           variants={sectionVariants}
           initial="offscreen"
           whileInView="onscreen"
         >
-          <Featured />
+          <Partners />
         </motion.div>
+        {/* <motion.div
+          variants={sectionVariants}
+          initial="offscreen"
+          whileInView="onscreen"
+        >
+          <CTATicket />
+        </motion.div> */}
         <motion.div
           variants={sectionVariants}
           initial="offscreen"
@@ -81,30 +105,16 @@ export default function Home() {
         >
           <CallToAction />
         </motion.div>
-        <motion.div
-          variants={sectionVariants}
-          initial="offscreen"
-          whileInView="onscreen"
-        >
-          <About />
-        </motion.div>
-        <motion.div
-          variants={sectionVariants}
-          initial="offscreen"
-          whileInView="onscreen"
-        >
-          <Team />
-        </motion.div>
       </main>
       <footer>
-         <motion.div
+        <motion.div
           variants={sectionVariants}
           initial="offscreen"
           whileInView="onscreen"
         >
           <Footer />
         </motion.div>
-      </footer>
+      </footer> 
     </>
   )
 }

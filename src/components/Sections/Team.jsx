@@ -40,7 +40,7 @@ const people = [
 export default function Team() {
   return (
     <div className=" ">
-      <div className="mx-auto mb-20 mt-32 max-w-7xl px-6 lg:px-8 lg:mt-28">
+      <div className="mx-auto mb-48 mt-32 max-w-7xl px-6 lg:px-8 lg:mt-28">
         <div className="mx-auto max-w-2xl sm:text-center">
           <h2 className="sm:text-45l font-display text-7xl tracking-tight text-pink-300">
             Meet the team
@@ -53,7 +53,7 @@ export default function Team() {
           {people.map((person) => (
             <li key={person.name} className="flex flex-col gap-6 xl:flex-row">
               <Image
-                className="aspect-[4/5] w-52 flex-none rounded-2xl object-cover"
+                className="aspect-[4/5] w-52 flex-none  object-cover"
                 src={person.imageUrl}
                 alt=""
               />

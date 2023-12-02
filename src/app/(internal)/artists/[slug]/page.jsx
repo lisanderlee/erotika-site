@@ -1,151 +1,177 @@
 'use client'
 import artists from '@/artists.json'
-import { Tab } from '@headlessui/react'
 import Image from 'next/image'
+import bodyImage from '@/images/body.svg'
+import CTATicket from '@/components/Sections/CTA-ticket'
+import Carousel from 'nuka-carousel'
+import {
+  renderCenterRightControls,
+  renderCenterLeftControls,
+  pagingDotsClassName,
+} from '@/components/Controls'
+import { useCallback, useEffect, useState } from 'react'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { BsLink45Deg } from 'react-icons/bs'
+import { BsInstagram } from 'react-icons/bs'
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-function findById(arr, id) {
-  return arr.find((item) => item.Id === id)
-}
-
 export default function Page({ params }) {
-  const artist = findById(artists, params.slug)
+  const supabase = createClientComponentClient()
+  const [artist, setArtist] = useState(null)
+  const [loading, setLoading] = useState(null)
+
+  const getArtist = useCallback(async () => {
+    try {
+      setLoading(true)
+
+      const { data, error } = await supabase
+        .from('artists_table')
+        .select(`*, events_table (*, venues(*))  `)
+        .eq('id', params.slug)
+      console.log(data[0].link)
+      if (error && status !== 406) {
+        throw error
+      }
+
+      if (data) {
+        setArtist(data)
+        console.log(data[0].name)
+      }
+    } catch (error) {
+      alert('Error loading user data!')
+    } finally {
+      setLoading(false)
+    }
+  }, [supabase, params.slug])
+
+  useEffect(() => {
+    getArtist()
+  }, [getArtist])
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-      <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
-        {/* Image gallery */}
-
-        <Tab.Group as="div" className="flex flex-col-reverse">
-          {/* Image selector */}
-          <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
-            <Tab.List className="grid grid-cols-4 gap-6">
-              {artist.Images.map((image) => (
-                <Tab
-                  key={image.id}
-                  className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
-                >
-                  {({ selected }) => (
-                    <>
-                      <span className="absolute inset-0  overflow-hidden rounded-md">
-                        <Image
-                          className="h-full w-full object-cover object-center"
-                          src={image.url}
-                          width={500}
-                          height={500}
-                          alt="Picture of the author"
-                          loading="lazy"
-                        />
-                      </span>
-                      <span
-                        className={classNames(
-                          selected ? 'ring-indigo-500' : 'ring-transparent',
-                          'pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2',
-                        )}
-                        aria-hidden="true"
-                      />
-                    </>
-                  )}
-                </Tab>
-              ))}
-            </Tab.List>
-          </div>
-
-          <Tab.Panels className="aspect-h-1 aspect-w-1 w-full">
-            {artist.Images.map((image) => (
-              <Tab.Panel key={image.id}>
+    <>
+    <div className="px-5 pt-5 lg:mt-20 mt-0  md:px-10 mb-20 lg:px-40">
+      <div className="z-50  mt-10  overflow-hidden bg-[#5E18EA]   ">
+        <div className="inner">
+          <Carousel
+            renderCenterLeftControls={renderCenterLeftControls}
+            renderCenterRightControls={renderCenterRightControls}
+            autoplay
+            className="drop-shadow-xl"
+            wrapAround={true}
+            autoplayInterval={3000}
+          >
+            {artist &&
+              artist[0].images.map((image, index) => (
                 <Image
-                  className="h-full w-full object-cover object-center sm:rounded-lg"
-                  src={image.url}
-                  width={500}
-                  height={500}
+                  key={index}
+                  className="foto object-cover object-center  "
+                  src={image}
+                  width={1000}
+                  height={667}
                   alt="Picture of the author"
                   loading="lazy"
                 />
-              </Tab.Panel>
-            ))}
-          </Tab.Panels>
-        </Tab.Group>
+              ))}
+          </Carousel>
+        </div>
 
         {/* Artist info */}
-        <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
-          <h1 className="text-3xl font-bold tracking-tight text-pink-300">
-            {artist.Name + ' ' + artist.LastName}
-          </h1>
-          <div className="mt-3">
-            <p className="text-2xl tracking-tight text-pink-100">
-              {artist.Category}
-            </p>
+        <div>
+          <div className="mt-5 px-5 lg:px-10">
+            <h1 className="font-display text-5xl  tracking-tight text-pink-300 lg:text-7xl">
+              {artist && artist[0].name + ' ' + artist[0].last}
+            </h1>
+            <div className="mt-3">
+              <p className="text-xl font-semibold tracking-tight text-pink-100">
+                {artist && artist[0].category}
+              </p>
+            </div>
+            <div className="mt-6">
+              <div
+                className="space-y-6 text-xl text-pink-100"
+                dangerouslySetInnerHTML={{
+                  __html: artist && artist[0].description,
+                }}
+              />
+            </div>
+            <div className="mt-5 flex flex-row items-center">
+              <div className="">
+                <a
+                  target="_blank"
+                  className="  hover:text-gray-600 text-gray-400"
+                  href={artist && artist[0].instagram}
+                >
+                  <BsInstagram size={24} />
+                </a>
+              </div>
+              <div className="ml-5">
+                <a
+                  target="_blank"
+                  className="text-gray-400  hover:text-gray-600"
+                  href={artist && artist[0].link}
+                >
+                  <BsLink45Deg size={24} />
+                </a>
+              </div>
+            </div>
           </div>
-          <div className="mt-6">
+
+          {/* Divider */}
+          <div className="relative mt-5">
             <div
-              className="space-y-6 text-xl text-pink-100"
-              dangerouslySetInnerHTML={{ __html: artist.Bio }}
-            />
-          </div>
- <div className=" mt-16 flex flex-row">
-            <div className=" text-left sm:flex-col lg:flex-col">
-              <div className="flex flex-row">
-                <h4 className="flex-none text-sm font-semibold  text-violet-600">
-                  Start Date:
-                </h4>
-                <h4 className="flex-none text-sm font-normal text-gray-600">
-                  {event.EventStartDate}
-                </h4>
-              </div>
-              <div className="flex flex-row">
-                <h4 className="flex-none text-sm font-semibold  text-violet-600">
-                  End Date:
-                </h4>
-                <h4 className="flex-none text-sm font-normal text-gray-600">
-                  {event.EventStartDate}
-                </h4>
-              </div>
-
-              <div className="flex flex-row">
-                <h4 className="flex-none text-sm font-semibold text-violet-600">
-                  Tier:
-                </h4>
-                <h4 className="flex-none text-sm font-normal text-gray-600">
-                  {event.EventTier}
-                </h4>
-              </div>
-
-              <div className="flex flex-row">
-                <h4 className="flex-none text-sm font-semibold leading-6 text-violet-600">
-                  Payed:
-                </h4>
-                <h4 className="flex-none text-sm font-semibold leading-6  text-gray-600">
-                  $$$
-                </h4>
-              </div>
+              className="absolute inset-0 flex items-center"
+              aria-hidden="true"
+            >
+              <div className="w-full border-t border-pink-300/20" />
             </div>
+          </div>
 
-            <div className=" ml-16 text-left sm:flex-col lg:flex-col">
-              <div className="flex flex-row">
-                <h4 className="flex-none text-sm font-semibold text-violet-600">
-                  Venue:
-                </h4>
-                <h4 className="flex-none text-sm font-normal text-gray-600">
-                  {event.VenueName}
-                </h4>
-              </div>
-
-              <div className="flex flex-row">
-                <h4 className="flex-none text-sm font-semibold text-violet-600">
-                  Location:
-                </h4>
-                <h4 className="flex-none text-sm font-normal text-gray-600">
-                  {event.VenueLocation}
-                </h4>
+          {/* More Info */}
+          <div className="flex flex-col rounded-b-xl bg-[#4B21CE]/40 text-lg  lg:flex-col lg:justify-between">
+            <div className="p-5 lg:px-10 lg:py-10">
+              <div className="  text-left sm:flex-col lg:flex-col">
+                <div className="flex flex-col items-center justify-between lg:flex-row">
+                  <div className="flex w-full flex-col justify-between lg:flex-row">
+                    <div className="flex flex-row">
+                      <h4 className=" font-semibold  text-pink-300">
+                        Event Name:
+                      </h4>
+                      <h4 className="ml-3 flex-none font-normal text-pink-100">
+                      {artist && artist[0].events_table.name}
+                      </h4>
+                    </div>
+                    <div className="flex  flex-row">
+                      <h4 className="flex-none  font-semibold  text-pink-300">
+                        Venue:
+                      </h4>
+                      <h4 className="ml-3 flex-none font-normal text-pink-100">
+                        {artist && artist[0].events_table.venues.name}
+                      </h4>
+                    </div>
+                    <div className="flex  flex-row">
+                      <h4 className="flex-none  font-semibold  text-pink-300">
+                        Start Date:
+                      </h4>
+                      <h4 className="ml-3 flex-none font-normal text-pink-100">
+                        {artist && artist[0].events_table.start}
+                      </h4>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-         
         </div>
       </div>
+  
     </div>
+    <div className='mb-16'>
+    <CTATicket />
+    </div>
+    </>
   )
 }
