@@ -54,49 +54,49 @@ export default function Page() {
   function validateForm() {
     let errors = {}
 
-    if (!name.trim()) {
-      errors.name = 'Name is required'
-    }
+  //   if (!name.trim()) {
+  //     errors.name = 'Name is required'
+  //   }
 
-    if (!lastName.trim()) {
-      errors.lastName = 'Last name is required'
-    }
+  //   if (!lastName.trim()) {
+  //     errors.lastName = 'Last name is required'
+  //   }
 
-    if (!phone.trim()) {
-      errors.phone = 'Phone number is required'
-    } else if (!/^\d{3}-\d{3}-\d{4}$/.test(phone)) {
-      errors.phone = 'Invalid phone number, should be 10-15 digits'
-    }
+  //   if (!phone.trim()) {
+  //     errors.phone = 'Phone number is required'
+  //   } else if (!/^\d{3}-\d{3}-\d{4}$/.test(phone)) {
+  //     errors.phone = 'Invalid phone number, should be 10-15 digits'
+  //   }
 
-    if (!email) {
-      errors.email = 'Email is required'
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      errors.email = 'Email address is invalid'
-    }
+  //   if (!email) {
+  //     errors.email = 'Email is required'
+  //   } else if (!/\S+@\S+\.\S+/.test(email)) {
+  //     errors.email = 'Email address is invalid'
+  //   }
 
-    if (!location.trim()) {
-      errors.location = 'Location is required'
-    }
+  //   if (!location.trim()) {
+  //     errors.location = 'Location is required'
+  //   }
 
-    if (!category) {
-      errors.category = 'Category is required'
-    }
+  //   if (!category) {
+  //     errors.category = 'Category is required'
+  //   }
 
-    if (!event) {
-      errors.event = 'Event is required'
-    }
+  //   if (!event) {
+  //     errors.event = 'Event is required'
+  //   }
 
-    if (!description.trim()) {
-      errors.description = 'Description is required'
-    }
+  //   if (!description.trim()) {
+  //     errors.description = 'Description is required'
+  //   }
 
-    if (!portfolio.trim()) {
-      errors.portfolio = 'Portfolio link is required'
-    }
+  //   if (!portfolio.trim()) {
+  //     errors.portfolio = 'Portfolio link is required'
+  //   }
 
-    if (!instagram.trim()) {
-      errors.instagram = 'Instagram link is required'
-    }
+  //   if (!instagram.trim()) {
+  //     errors.instagram = 'Instagram link is required'
+  //   }
 
     // if (!imagesToUpload) {
     //   errors.imagesToUpload = 'Images are required'

@@ -29,7 +29,7 @@ export default function MainLayout({ children }) {
     <html
       lang="en"
       className={clsx(
-        'dark h-full scroll-smoothantialiased ',
+        'dark h-full scroll-smooth antialiased ',
         inter.variable,
         righteous.variable,
       )}

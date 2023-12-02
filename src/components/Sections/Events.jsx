@@ -105,12 +105,14 @@ export default function Events() {
                     viewport={{ once: true }}
                     whileHover={{ scale: 1.03 }}
                   >
+               
                     <EventItem
                       id={event.id}
                       title={event.name}
                       image={event.images[0]}
                       description={event.description}
                     />
+               
                   </motion.li>
                 </Link>
               ))}

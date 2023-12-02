@@ -27,7 +27,7 @@ export default function CTATicket() {
       viewport={{ once: true }}
      
     >
-      <div className="mt-12 flex  w-screen flex-col gap-y-5 px-5 pt-5 md:px-10 lg:flex-row  lg:gap-x-10 lg:px-14">
+      <div className="mt-12 flex  w-screen flex-col gap-y-5 px-5 pt-5 md:px-10 lg:flex-row px-5 lg:gap-x-10 lg:px-14">
         <div className="border-border-[#5E18EA] flex  h-full basis-1/2 flex-col items-center justify-center gap-y-8   bg-gradient-to-b from-[#5E18EA] via-pink-500 to-[#5E18EA] p-12 ">
           <p className=" text-center font-display text-3xl tracking-tight	 text-white lg:text-4xl ">
             Get VIP Access Now!

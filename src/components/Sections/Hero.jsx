@@ -17,8 +17,8 @@ export default function Hero() {
   }
   return (
     <>
-      <div className="flex h-screen w-screen items-center justify-center gap-x-48 p-10 lg:mt-0 lg:px-14 ">
-        <div className="flex h-full flex-col gap-x-0 lg:flex-row lg:gap-x-44 ">
+      <div className="flex flex-col-reverse lg:flex h-screen w-screen items-center justify-center gap-x-48 p-10 lg:mt-0 lg:px-14 ">
+        <div className="flex h-full  flex-col lg:flex-row lg:gap-x-44 ">
           <div className="flex h-full    max-w-3xl flex-col justify-center  ">
             <h1 className="   w-full text-right font-display  text-8xl  leading-[6rem] tracking-tight text-pink-300	lg:text-[10rem] lg:leading-[8rem] ">
               <motion.div
@@ -41,7 +41,7 @@ export default function Hero() {
                 whileInView="onscreen"
               >
                 February 2024 <br />
-                3rd to 22nd <br /> Miami
+                1st to 29th <br /> Miami, FL
               </motion.div>
             </h1>
           </div>
@@ -64,13 +64,13 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="absolute hidden md:absolute top-28 lg:z-50 lg:block">
-          <Spline scene="https://prod.spline.design/FZqU56yeDW-xZcNq/scene.splinecode" />
+        <div className="ralative  lg:absolute lg:top-28 lg:z-50 lg:block h-10 ">
+        <Spline scene="https://prod.spline.design/FZqU56yeDW-xZcNq/scene.splinecode" />
         </div>
       </div>
-      <div className="-mt-52 flex lg:hidden">
+      {/* <div className="-mt-52 flex lg:hidden">
         <Spline scene="https://prod.spline.design/FZqU56yeDW-xZcNq/scene.splinecode" />
-      </div>
+      </div> */}
       {/* <div className="absolute right-64 top-14">
 
         <motion.div

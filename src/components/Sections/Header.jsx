@@ -74,7 +74,7 @@ function MobileNavigation() {
             as="div"
             className="absolute right-5 top-12 z-50  mt-4  flex w-2/3 origin-top flex-col gap-y-5 rounded-2xl bg-[#5E18EA] px-7 pt-10 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
           >
-            <Link
+            {/* <Link
               className="font-display text-lg text-pink-300 hover:text-pink-500 "
               href="/events"
             >
@@ -91,7 +91,7 @@ function MobileNavigation() {
               href="/partners"
             >
               Partners
-            </Link>
+            </Link> */}
             <Link
               className="font-display text-lg text-pink-300 hover:text-pink-500 "
               href="/artists"
@@ -117,7 +117,7 @@ function MobileNavigation() {
               href="https://docs.google.com/forms/d/1MGwkbWZ8mdiAJ58tvA7ip47ZEHir4qZ-i0uvz-A7i9I/viewform?edit_requested=true"
               className="group mb-5 flex-none items-center justify-center rounded-full bg-slate-950 px-8 py-4 font-display text-sm hover:bg-violet-400 hover:text-slate-100 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:bg-violet-800 active:text-violet-100 "
             >
-              Get Tickets
+              Tickets Coming Soon
             </a>
           </Popover.Panel>
         </Transition.Child>
@@ -128,7 +128,7 @@ function MobileNavigation() {
 
 export function Header() {
   return (
-    <header className=" z-50 w-full py-2 md:px-10 lg:fixed lg:px-14 ">
+    <header className=" z-50 w-full py-2 md:px-10 lg:fixed lg:px-14 px-5 ">
       <nav className="  flex h-16 w-full items-center justify-between gap-x-5">
         <div className="">
           <Link href="/" aria-label="Home">
@@ -137,7 +137,7 @@ export function Header() {
         </div>
         <div className="  hidden w-full items-center justify-between  rounded-2xl   px-10 md:flex lg:flex">
           <div className=" flex h-16 items-center gap-x-10 ">
-            <Link
+            {/* <Link
               className="font-display text-base text-white   hover:text-pink-500 "
               href="/events"
             >
@@ -154,7 +154,7 @@ export function Header() {
               href="/partners"
             >
               Partners
-            </Link>
+            </Link> */}
             <Link
               className="font-display text-base text-white  hover:text-pink-500 "
               href="/about"
@@ -163,14 +163,14 @@ export function Header() {
             </Link>
             <Link
               className="font-display text-base text-white  hover:text-pink-500 "
-              href="/artists"
+              href="#partner"
             >
               Become a partner
             </Link>
           </div>
         </div>
-        <Button className="hidden lg:block" color="pink">
-          Get tickets
+        <Button className="hidden lg:block" color="violet">
+        Tickets Coming Soon
         </Button>
         <div className="-mr-1 md:hidden">
           <MobileNavigation />

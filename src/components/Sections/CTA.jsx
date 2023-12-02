@@ -4,7 +4,7 @@ import { Container } from '@/components/Container'
 import partner from '@/images/partner.svg'
 export function CallToAction() {
   return (
-    <div className="mt-40 flex flex-col gap-y-5 mb-10 pt-5 md:px-10 lg:flex-row  lg:gap-x-10 ">
+    <div id="partner" className="mt-40 flex flex-col gap-y-5 mb-10 pt-5 md:px-10 px-5 lg:flex-row  lg:gap-x-10 ">
       <div className="flex w-full  flex-col items-center justify-center  p-5 bg-slate-900 py-20">
         <h1 className="mb-6   font-display  text-4xl tracking-tight text-white sm:text-6xl">
           Do you have your own erotic initiative?

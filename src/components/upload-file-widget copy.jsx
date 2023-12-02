@@ -4,11 +4,11 @@ import { useDropzone } from 'react-dropzone'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image'
 
-function ImageUploadComponent({ currentImages, setCurrentImages, setImagePathsUpload }) {
+function ImageUploadComponent({  setImagePathsUpload }) {
   const [images, setImages] = useState([])
   const [uploading, setUploading] = useState(false)
   const supabase = createClientComponentClient()
- 
+
   const onDrop = useCallback((acceptedFiles) => {
     // Add the new files to the current images array
     setImages((prevImages) => [
@@ -25,10 +25,6 @@ function ImageUploadComponent({ currentImages, setCurrentImages, setImagePathsUp
     onDrop,
     // accept: 'image/*',
   })
-
-  // const removeUrl = (url) => {
-  //   setCurrentImages(currentImages.filter((current) => current !== url))
-  // }
 
   const removeImage = (file) => {
     setImages(images.filter((image) => image !== file))
@@ -110,33 +106,6 @@ function ImageUploadComponent({ currentImages, setCurrentImages, setImagePathsUp
           ))}
         </ul>
       </div>
-      {/* <div className="mx-auto max-w-7xl ">
-        <ul
-          role="list"
-          className="mx-auto mt-5 grid max-w-2xl grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-5"
-        >
-          {currentImages.map((url, index) => (
-            <div key={index}>
-              <li key={index} className="relative">
-                <Image
-                  className=" w-full rounded-2xl object-cover"
-                  src={url}
-                  alt={`Preview ${index}`}
-                  height={150}
-                  width={200}
-                />
-
-                <button
-                  className=" absolute bottom-4 right-0 rounded-xl bg-red-600 p-2 hover:bg-red-500 "
-                  onClick={() => removeUrl(url)}
-                >
-                  <XMarkIcon className=" h-5 w-5 text-white" />
-                </button>
-              </li>
-            </div>
-          ))}
-        </ul>
-      </div> */}
       {images && images.length > 0 && (
         <button
           className=" mt-10 rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"

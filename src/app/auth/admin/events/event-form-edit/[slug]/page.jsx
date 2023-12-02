@@ -2,6 +2,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Switch } from '@headlessui/react'
+import ImageUploadComponent from '@/components/upload-file-widget'
+
 import clsx from 'clsx'
 export default function EventForm({ params }) {
   const supabase = createClientComponentClient()
@@ -20,7 +22,8 @@ export default function EventForm({ params }) {
   const [payed, setPayed] = useState('')
   const [rsvp, setRsvp] = useState('')
 
-  const [imagesToUpload, setImagesToUpload] = useState(null)
+  const [imagesToUpload, setImagesToUpload] = useState([])
+  const [imagePathsUpload, setImagePathsUpload] = useState([])
 
   const [venuesList, setVenuesList] = useState(null)
 
@@ -76,7 +79,7 @@ export default function EventForm({ params }) {
         setVip(data[0].vip)
         setPayed(data[0].payed)
         setRsvp(data[0].rsvp)
-        // setImagesToUpload(data[0].images)
+        setImagesToUpload(data[0].images)
       }
     } catch (error) {
       alert('Error loading user data!')
@@ -519,6 +522,9 @@ export default function EventForm({ params }) {
                   )}
                 />
               </Switch>
+            </div>
+            <div className="mt-10">
+              <ImageUploadComponent currentImages={imagesToUpload} setCurrentImages={setImagesToUpload}  setImagePathsUpload={setImagePathsUpload} />
             </div>
           </div>
         </div>

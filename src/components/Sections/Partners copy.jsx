@@ -1,11 +1,11 @@
 'use client'
 import { Suspense } from 'react'
-import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
 import { Button } from '../Button'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { PartnerItem } from '../partner-item'
+import { ArtistsItem } from '@/components/artist-item'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 
 export default function Partners() {
@@ -79,8 +79,8 @@ export default function Partners() {
         >
         <section className="b-section rounded-2xl  overflow-y-hidden ">
           <div className="b-section-marquee-box   overflow-y-hidden rounded-2xl]">
-            <h2 className=" overflow-y-hidden py-5 font-display text-8xl text-pink-300">
-              Our Partners •  Our Partners •  Our Partners •  Our Partners •  Our Partners •  Our Partners •  Our Partners •  Our Partners •  Our Partners •  Our Partners •  Our Partners • 
+            <h2 className=" overflow-y-hidden py-5 font-display text-4xl text-pink-300">
+              Partners • Partners • Partners • Partners • Partners • Partners • Partners • Partners • Partners • Partners • Partners • Partners • Partners • Partners • Partners • 
             </h2>
           </div>
         </section>
@@ -88,42 +88,39 @@ export default function Partners() {
 
         <ul
           role="list"
-          className="mx-auto"
+          className="mx-auto grid max-w-2xl  grid-cols-1 gap-x-8 gap-y-14  sm:grid-cols-1 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:gap-y-0 xl:grid-cols-3"
         >
           {artists &&
             artists
               .filter((artist) => artist.partner === true) // Filtering events where vip is true
               .slice(0, 6) // Taking only the first 3 events after filtering
               .map((artist, index) => (
-   
+              <Link key={artist.id} href={`/artists/${artist.id}`}>
                 <motion.li
                   variants={sectionVariants}
                   initial="initial"
                   whileInView="animate"
                   key={artist.Id}
-            
+                  className="mx-auto max-w-xl"
                   custom={index}
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.03 }}
                 >
-                  <PartnerItem
+                  <ArtistsItem
                     image={artist.profile[0]}
-                    name={artist.name }
+                    name={artist.name + ' ' + artist.last}
                     location={artist.location}
                     category={artist.category}
-                    link={artist.link}
-                    instagram={artist.instagram}
-                    description={artist.description}
                   />
                 </motion.li>
-      
+              </Link>
             ))}
         </ul>
-        {/* <div className="mt-20  flex w-full justify-center	">
+        <div className="mt-20  flex w-full justify-center	">
    <Button color="violet" href="/partners">
     See all partners
    </Button>
-      </div> */}
+      </div>
       </div>
    
     </>
