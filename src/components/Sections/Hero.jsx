@@ -64,7 +64,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="ralative  -z-10 lg:absolute lg:top-28 lg:z-50 lg:block h-10 ">
+        <div className="lg:ralative hidden  -z-10 lg:absolute lg:top-28 lg:z-50 lg:block h-10 ">
         <Spline scene="https://prod.spline.design/FZqU56yeDW-xZcNq/scene.splinecode" />
         </div>
       </div>
