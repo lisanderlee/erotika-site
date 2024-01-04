@@ -90,7 +90,7 @@ export default function ArtistsInternal() {
                 >
                   <ArtistsItem
                     image={artist.profile[0]}
-                    name={artist.name + ' ' + artist.last}
+                    name={artist.name }
                     location={artist.location}
                     category={artist.category}
                   />
