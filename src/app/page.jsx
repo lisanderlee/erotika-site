@@ -68,14 +68,14 @@ export default function Home() {
           whileInView="onscreen"
         >
           <Map />
-        </motion.div>
+        </motion.div> */}
         <motion.div
           variants={sectionVariants}
           initial="offscreen"
           whileInView="onscreen"
         >
           <CTATicket />
-        </motion.div> */}
+        </motion.div>
 
         {/* <motion.div
           variants={sectionVariants}
