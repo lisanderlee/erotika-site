@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { Button } from '../Button'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { PartnerItem } from '../partner-item'
-
+import { Weam } from '../weam-item'
 
 export default function Partners() {
   const supabase = createClientComponentClient()
@@ -90,6 +90,7 @@ export default function Partners() {
           role="list"
           className="mx-auto"
         >
+          <Weam />
           {artists &&
             artists
               .filter((artist) => artist.partner === true) // Filtering events where vip is true

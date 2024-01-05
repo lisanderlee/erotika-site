@@ -53,8 +53,8 @@ export default function Page({ params }) {
 
   return (
     <>
-    <div className="px-5 pt-5 lg:mt-20 mt-0  md:px-10 mb-20 lg:px-40">
-      <div className="z-50  mt-10  overflow-hidden bg-[#5E18EA]   ">
+    <div className="px-5 pt-5 lg:mt-20 mt-0 md:px-10 mb-20 lg:px-40">
+      <div className="z-50  mt-10 rounded-2xl  overflow-hidden bg-[#5E18EA]   ">
         <div className="inner">
           <Carousel
             renderCenterLeftControls={renderCenterLeftControls}
@@ -68,7 +68,7 @@ export default function Page({ params }) {
               artist[0].images.map((image, index) => (
                 <Image
                   key={index}
-                  className="foto object-cover object-center  "
+                  className="foto object-cover rounded-2xl object-center  "
                   src={image}
                   width={1000}
                   height={667}
@@ -83,7 +83,7 @@ export default function Page({ params }) {
         <div>
           <div className="mt-5 px-5 lg:px-10">
             <h1 className="font-display text-5xl  tracking-tight text-pink-300 lg:text-7xl">
-              {artist && artist[0].name + ' ' + artist[0].last}
+              {artist && artist[0].name }
             </h1>
             <div className="mt-3">
               <p className="text-xl font-semibold tracking-tight text-pink-100">
@@ -135,7 +135,7 @@ export default function Page({ params }) {
             <div className="p-5 lg:px-10 lg:py-10">
               <div className="  text-left sm:flex-col lg:flex-col">
                 <div className="flex flex-col items-center justify-between lg:flex-row">
-                  <div className="flex w-full flex-col justify-between lg:flex-row">
+                  {/* <div className="flex w-full flex-col justify-between lg:flex-row">
                     <div className="flex flex-row">
                       <h4 className=" font-semibold  text-pink-300">
                         Event Name:
@@ -160,7 +160,7 @@ export default function Page({ params }) {
                         {artist && artist[0].events_table.start}
                       </h4>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
