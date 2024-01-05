@@ -80,12 +80,12 @@ function MobileNavigation() {
             >
               Events
             </Link> */}
-            <Link
+            {/* <Link
               className="font-display text-lg text-pink-300 hover:text-pink-500 "
               href="/artists"
             >
               Artists
-            </Link>
+            </Link> */}
             {/* <Link
               className="font-display text-lg text-pink-300 hover:text-pink-500 "
               href="/partners"
@@ -115,9 +115,8 @@ function MobileNavigation() {
             <a
               target="_blank"
               href="https://shotgun.live/festivals/the-erotika-biennale"
-              className="group mb-5 flex-none items-center justify-center rounded-full bg-slate-950 px-8 py-4 font-display text-sm hover:bg-violet-400 hover:text-slate-100 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:bg-violet-800 active:text-violet-100 "
             >
-              Get your tickets now!
+              <Button color="violet">Get Tickets Now</Button>
             </a>
           </Popover.Panel>
         </Transition.Child>
@@ -143,12 +142,12 @@ export function Header() {
             >
               Events
             </Link> */}
-            <Link
+            {/* <Link
               className="font-display text-base text-white   hover:text-pink-500 "
               href="/artists"
             >
               Artists
-            </Link>
+            </Link> */}
             {/* <Link
               className="font-display text-base text-white   hover:text-pink-500 "
               href="/partners"
@@ -169,9 +168,18 @@ export function Header() {
             </Link>
           </div>
         </div>
-        <Button className="hidden lg:block" color="violet">
-        Get your tickets now!
-        </Button>
+       
+          <Button className="hidden  lg:block" color="pink">
+          <a
+          target="_blank"
+          className='block'
+          href="https://shotgun.live/festivals/the-erotika-biennale"
+        >
+            Get your tickets now!
+            </a>
+          </Button>
+       
+
         <div className="-mr-1 md:hidden">
           <MobileNavigation />
         </div>
