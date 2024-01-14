@@ -10,14 +10,14 @@ import { Weam } from '../weam-item'
 
 export default function Partners() {
   const supabase = createClientComponentClient()
-  const [artists, setArtists] = useState(null)
+  const [partners, setPartners] = useState(null)
   const [loading, setLoading] = useState(null)
 
   const getArtists = useCallback(async () => {
     try {
       setLoading(true)
 
-      const { data, error } = await supabase.from('artists_table').select(`
+      const { data, error } = await supabase.from('partners').select(`
       *`)
 
       if (error && status !== 406) {
@@ -25,7 +25,7 @@ export default function Partners() {
       }
 
       if (data) {
-        setArtists(data)
+        setPartners(data)
       }
     } catch (error) {
       alert('Error loading user data!')
@@ -90,31 +90,32 @@ export default function Partners() {
           role="list"
           className="mx-auto"
         >
-          <Weam />
-          {artists &&
-            artists
-              .filter((artist) => artist.partner === true) // Filtering events where vip is true
+          {/* <Weam /> */}
+          {partners &&
+            partners
+            .sort((a, b) => a.order - b.order)
+
               .slice(0, 6) // Taking only the first 3 events after filtering
-              .map((artist, index) => (
+              .map((partner, index) => (
    
                 <motion.li
                   variants={sectionVariants}
                   initial="initial"
                   whileInView="animate"
-                  key={artist.Id}
+                  key={partner.Id}
             
                   custom={index}
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.03 }}
                 >
                   <PartnerItem
-                    image={artist.profile[0]}
-                    name={artist.name }
-                    location={artist.location}
-                    category={artist.category}
-                    link={artist.link}
-                    instagram={artist.instagram}
-                    description={artist.description}
+                    image={partner.profile[0]}
+                    name={partner.name }
+                    location={partner.location}
+                    category={partner.category}
+                    link={partner.link}
+                    instagram={partner.instagram}
+                    description={partner.description}
                   />
                 </motion.li>
       

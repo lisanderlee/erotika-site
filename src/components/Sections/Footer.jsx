@@ -17,7 +17,7 @@ export function Footer() {
               <NavLink href="/artists">Artists</NavLink>
               <NavLink href="/digital">Digital Experiece</NavLink>
               <NavLink href="#pricing">Partner</NavLink> */}
-              <NavLink  href="/auth/">Admin</NavLink>
+              {/* <NavLink  href="/auth/">Admin</NavLink> */}
             </div>
           </nav>
         </div>

@@ -27,17 +27,22 @@ export default function CTATicket() {
       viewport={{ once: true }}
 
     >
-      <div className="mt-12   w-screen px-5 pt-5 md:px-10 lg:flex-row px-5 lg:gap-x-10 lg:px-14">
-        <div className="border-border-[#5E18EA] flex flex-col  h-full items-center justify-center gap-y-8   bg-gradient-to-b from-[#5E18EA] via-[#5E18EA] to-pink-300   rounded-2xl p-12 ">
-          <p className=" text-center font-display text-3xl tracking-tight	 text-white lg:text-4xl ">
-            Get Early Bird Tickets Now!
+      <div className="mt-12   w-screen  pt-5 md:px-10 lg:flex-row px-5 lg:gap-x-10 lg:px-14">
+        <div className="border-border-[#5E18EA] flex flex-col  h-full items-center justify-center gap-y-8   bg-gradient-to-b from-[#5E18EA] via-[#5E18EA] to-pink-300    p-12 ">
+          <p className=" text-center font-display text-5xl tracking-tight	 text-white lg:text-6xl ">
+            Get your Tickets Now!
           </p>
-          <p className=" text-center font-display text-2xl tracking-tight lg:text-3xl ">
-            Main Venue: The Wilzig Collection
-         
+          <p className=" text-center font-display text-3xl tracking-tight lg:text-3xl ">
+Each ticket includes:         
           </p>
-
-          <p className=" text-center font-display text-2xl tracking-tight lg:text-2xl ">
+          <ul className=" text-center font-display text-lg tracking-tight lg:text-2xl list-disc	list-inside	leading-loose ">
+          <li>Access to 4 events at the Wilzig Museum</li>
+          <li>Access to all studio visits </li>
+          <li>Free access to Zey Zey + one free drink</li>
+          <li>Free membership to Miami&apos;s sexiest club, Velvet</li>
+          <li>10% discount on Gever Candles</li>
+          </ul>
+          {/* <p className=" text-center font-display text-2xl tracking-tight lg:text-2xl ">
             Collateral exhibitions/ partners  •
             Artist Open Studios  •
             Gallery Openings  •
@@ -50,7 +55,7 @@ export default function CTATicket() {
             Sex-positive parties  •
             Sexy Music Concerts  •
             and more
-          </p>
+          </p> */}
           <a
             target="_blank"
             href="https://shotgun.live/festivals/the-erotika-biennale"

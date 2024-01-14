@@ -74,12 +74,12 @@ function MobileNavigation() {
             as="div"
             className="absolute right-5 top-12 z-50  mt-4  flex w-2/3 origin-top flex-col gap-y-5 rounded-2xl bg-[#5E18EA] px-7 pt-10 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
           >
-            {/* <Link
+            <Link
               className="font-display text-lg text-pink-300 hover:text-pink-500 "
               href="/events"
             >
               Events
-            </Link> */}
+            </Link>
             {/* <Link
               className="font-display text-lg text-pink-300 hover:text-pink-500 "
               href="/artists"
@@ -136,12 +136,12 @@ export function Header() {
         </div>
         <div className="  hidden w-full items-center justify-between  rounded-2xl   px-10 md:flex lg:flex">
           <div className=" flex h-16 items-center gap-x-10 ">
-            {/* <Link
+            <Link
               className="font-display text-base text-white   hover:text-pink-500 "
               href="/events"
             >
               Events
-            </Link> */}
+            </Link>
             {/* <Link
               className="font-display text-base text-white   hover:text-pink-500 "
               href="/artists"

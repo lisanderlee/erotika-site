@@ -15,7 +15,7 @@ export default function Events() {
     try {
       setLoading(true)
 
-      const { data, error } = await supabase.from('events_table').select(`
+      const { data, error } = await supabase.from('eventos').select(`
         *`)
 
       if (error && status !== 406) {
@@ -75,11 +75,8 @@ export default function Events() {
         >
           <section className="b-section shadow-3xl overflow-y-hidden rounded-2xl ">
             <div className="b-section-marquee-box   overflow-y-hidden rounded-2xl   ">
-              <h2 className=" overflow-y-hidden py-5 font-display text-4xl text-pink-300">
-                Events included with your VIP ticket • Events included with your
-                VIP ticket • Events included with your VIP ticket • Events
-                included with your VIP ticket • Events included with your VIP
-                ticket • Events included with your VIP ticket •
+              <h2 className=" overflow-y-hidden py-5 font-display text-9xl text-pink-300">
+                Events included with your ticket •   Events included with your ticket •   Events included with your ticket • Events included with your ticket • Events included with your ticket • Events included with your ticket • Events included with your ticket • Events included with your ticket •  Events included with your ticket • 
               </h2>
             </div>
           </section>
@@ -91,7 +88,7 @@ export default function Events() {
         >
           {events &&
             events
-              .filter((event) => event.vip === true) // Filtering events where vip is true
+            .sort((a, b) => a.order - b.order)
               .slice(0, 3) // Taking only the first 3 events after filtering
               .map((event, index) => (
                 <Link key={event.EventId} href={`/events/${event.id}`}>
@@ -111,6 +108,8 @@ export default function Events() {
                       title={event.name}
                       image={event.images[0]}
                       description={event.description}
+                      category={event.category}
+                      date={event.date}
                     />
                
                   </motion.li>

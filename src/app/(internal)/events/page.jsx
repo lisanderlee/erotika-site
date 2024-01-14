@@ -15,7 +15,7 @@ export default function Home() {
     try {
       setLoading(true)
 
-      const { data, error } = await supabase.from('events_table').select(`
+      const { data, error } = await supabase.from('eventos').select(`
         *`)
       console.log(data)
 
@@ -59,8 +59,8 @@ export default function Home() {
     <div className="mb-20 px-5 pt-5 md:px-10 lg:mt-28 lg:px-14">
       <section class="b-section  mt-10 overflow-y-hidden ">
         <div class="b-section-marquee-box   overflow-y-hidden ">
-          <h2 class=" overflow-y-hidden py-5 font-display text-4xl text-pink-300">
-            VIP Access Events •  VIP Access Events •  VIP Access Events •  VIP Access Events •  VIP Access Events •  VIP Access Events •  VIP Access Events •  VIP Access Events •  VIP Access Events • 
+          <h2 class=" overflow-y-hidden py-5 font-display text-8xl text-pink-300">
+            Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events •  Events • 
           </h2>
         </div>
       </section>
@@ -70,10 +70,10 @@ export default function Home() {
         className="mx-auto grid max-w-2xl  grid-cols-1 gap-x-8 gap-y-14  sm:grid-cols-1 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:gap-y-0 xl:grid-cols-3"
       >
           {events &&
-            events
-              .filter((event) => event.vip === true) // Filtering events where vip is true
+            [...events]  // Create a new array using the spread operator
+            .sort((a, b) => a.order - b.order)  
               .map((event, index) => (
-            <Link key={event.EventId} href={`/events/${event.id}`}>
+            <Link key={event.id} href={`/events/${event.id}`}>
               <motion.li
                 variants={sectionVariants}
                 initial="initial"
@@ -89,50 +89,15 @@ export default function Home() {
                   title={event.name}
                   image={event.images[0]}
                   description={event.description}
+                  category={event.category}
+                  date={event.date}
                 />
               </motion.li>
             </Link>
           ))}
       </ul>
 
-      <section className="b-section  mt-36 overflow-y-hidden ">
-        <div className="b-section-marquee-box   overflow-y-hidden ">
-          <h2 className=" overflow-y-hidden py-5 font-display text-4xl text-pink-300">
-            General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • General Access Events • 
-          </h2>
-        </div>
-      </section>
-
-      <ul
-        role="list"
-        className="mx-auto grid max-w-2xl  grid-cols-1 gap-x-8 gap-y-14  sm:grid-cols-1 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:gap-y-0 xl:grid-cols-3"
-      >
-        {events &&
-            events
-              .filter((event) => event.vip === false) // Filtering events where vip is true
-              .map((event, index) => (
-            <Link key={event.EventId} href={`/events/${event.id}`}>
-              <motion.li
-                variants={sectionVariants}
-                initial="initial"
-                whileInView="animate"
-                key={event.EventId}
-                className="mx-auto max-w-xl"
-                custom={index}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.03 }}
-              >
-                <EventItem
-                  id={event.id}
-                  title={event.name}
-                  image={event.images[0]}
-                  description={event.description}
-                />
-              </motion.li>
-            </Link>
-          ))}
-      </ul>
-
+   
    
     </div>
     <CTATicket />
