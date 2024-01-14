@@ -11,10 +11,10 @@ export function PartnerItem({
 }) {
   return (
     <>
-      <div className="mx-auto rounded-2xl flex w-full mt-10 flex-col lg:flex-row bg-[#5E18EA] hover:bg-[#5E18EA]/80 ">
+      <div className="mx-auto flex w-full mt-10 flex-col lg:flex-row bg-[#5E18EA] hover:bg-[#5E18EA]/80 ">
         <div className=" ">
           <Image
-            className="aspect-square rounded-2xl  h-full object-cover shadow-xl"
+            className="aspect-square   h-full object-cover shadow-xl"
             src={image}
             width={600}
             height={333}

@@ -77,13 +77,13 @@ export default function Home() {
           <CTATicket />
         </motion.div>
 
-        {/* <motion.div
+        <motion.div
           variants={sectionVariants}
           initial="offscreen"
           whileInView="onscreen"
         >
           <Events />
-        </motion.div> */}
+        </motion.div>
         <motion.div
           variants={sectionVariants}
           initial="offscreen"
@@ -91,6 +91,7 @@ export default function Home() {
         >
           <Partners />
         </motion.div>
+     
         {/* <motion.div
           variants={sectionVariants}
           initial="offscreen"
