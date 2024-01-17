@@ -62,13 +62,13 @@ export default function Home() {
         >
           <Sponsors />
         </motion.div> */}
-        {/* <motion.div
+        <motion.div
           variants={sectionVariants1}
           initial="offscreen"
           whileInView="onscreen"
         >
           <Map />
-        </motion.div> */}
+        </motion.div> 
         <motion.div
           variants={sectionVariants}
           initial="offscreen"

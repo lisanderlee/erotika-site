@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { useRef, useEffect, useState, useCallback } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { BsLink45Deg } from 'react-icons/bs'
+import { BsInstagram } from 'react-icons/bs'
 import {
   Modal,
   ModalContent,
@@ -15,6 +17,7 @@ import {
   useDisclosure,
 } from '@nextui-org/react'
 
+
 export default function GoogleMaps() {
   const supabase = createClientComponentClient()
   const [events, setEvents] = useState(null)
@@ -24,13 +27,8 @@ export default function GoogleMaps() {
     try {
       setLoading(true)
 
-      const { data, error } = await supabase.from('events_table').select(`
-      *,
-      venues (
-       *
-      )
-    
-    `)
+      const { data, error } = await supabase.from('eventos').select(`
+      *`)
 
       if (error && status !== 406) {
         throw error
@@ -65,9 +63,9 @@ export default function GoogleMaps() {
 
 const mapOptions = {
   mapId: '6bd0060de5b1673a',
-  center: { lat: 25.792903, lng: -80.20021 },
-  zoom: 12,
-  disableDefaultUI: true,
+  center: { lat: 25.788000, lng: -80.18021 },
+  zoom: 14,
+  disableDefaultUI: false,
 }
 
 function MyMap({ events }) {
@@ -101,7 +99,7 @@ function Locations({ map, events }) {
     <>
       {events &&
         events.map((event) => (
-          <Marker key={event.id} map={map} position={event.venues.geo}>
+          <Marker key={event.id} map={map} position={event.geo}>
             <Button
               onPress={onOpen}
               color="secondary"
@@ -129,31 +127,27 @@ function Locations({ map, events }) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1"></ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 "></ModalHeader>
               <ModalBody>
                 <div>
-                  <div className="flex flex-row">
-                    <div className=" h-1/2 w-1/2 ">
+                  <div className="flex  flex-col lg:flex-row">
+                    <div className="   ">
                       <Image
-                        className="foto2 object-cover object-center  sm:rounded-lg"
+                        className=" object-cover object-center  "
                         src={selected && selected.images[0]}
-                        width={1000}
-                        height={667}
+                        width={500}
+                        height={500}
                         alt="Picture of the author"
                         loading="lazy"
                       />
                     </div>
 
                     <div>
-            
-                   
-                     
-                      <div className="mt-5 px-5 lg:px-10 ">
-                      <p className="text-xl font-semibold tracking-tight text-pink-100">
-                          {selected && selected.vip === true
-                            ? 'VIP Access Event '
-                            : 'Regular Access Event'}
-                        </p>
+
+
+
+                      <div className="mt-5 px-0 lg:px-5  ">
+
                         <h1 className="font-display text-5xl  tracking-tight text-pink-300 lg:text-7xl">
                           {selected && selected.name}
                         </h1>
@@ -171,17 +165,63 @@ function Locations({ map, events }) {
                     {selected && selected.description}
                   </div>
                 </div>
+                <div className=" flex flex-row mt-3 items-center">
+                  <div className="">
+                    <a
+                      target="_blank"
+                      className="  hover:text-gray-600 text-gray-400"
+                      href={selected && selected.instagram}
+                    >
+                      <BsInstagram size={24} />
+                    </a>
+                  </div>
+                  <div className="ml-5">
+                    <a
+                      target="_blank"
+                      className="text-gray-400  hover:text-gray-600"
+                      href={selected && selected.link}
+                    >
+                      <BsLink45Deg size={24} />
+                    </a>
+                  </div>
+                </div>
+                <div className=" mt-5 flex flex-col  text-left lg:flex-row">
+                  <div className="flex flex-col lg:flex-row">
+                    <h4 className="flex-none  font-semibold  text-pink-300">
+                      Date:
+                    </h4>
+                    <h4 className="lg:ml-3 flex-none font-normal text-pink-100">
+                      {selected && selected.date}
+                    </h4>
+                  </div>
+                  <div className="flex flex-col lg:ml-10 ml-0 lg:flex-row mt-3 lg:mt-0">
+                    <h4 className="mt-1 flex-none font-semibold text-pink-300 lg:mt-0">
+                      Location:
+                    </h4>
+                    <h4 className="lg:ml-3 mt-1 w-40  flex-none font-normal text-pink-100  lg:mt-0 lg:w-full">
+                      {selected && selected.location}
+                    </h4>
+                  </div>
+
+
+
+                </div>
               </ModalBody>
               <ModalFooter>
+
                 <Button color="foreground" variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <Button
-                  className="bg-[#6f4ef2] shadow-lg shadow-indigo-500/20"
-                  onPress={onClose}
-                >
-                  See Event
-                </Button>
+                <a href="/events">
+                  <Button
+                    className="bg-[#6f4ef2] shadow-lg shadow-indigo-500/20"
+                    onPress={onClose}
+
+                  >
+
+                    See All Event
+                  </Button>
+                </a>
               </ModalFooter>
             </>
           )}

@@ -12,31 +12,7 @@ export default function Map() {
   const [events, setEvents] = useState(null)
   const [loading, setLoading] = useState(null)
 
-  const getEvents = useCallback(async () => {
-    try {
-      setLoading(true)
 
-      const { data, error } = await supabase.from('events_table').select(`
-        *`)
-      console.log(data)
-
-      if (error && status !== 406) {
-        throw error
-      }
-
-      if (data) {
-        setEvents(data)
-      }
-    } catch (error) {
-      alert('Error loading user data!')
-    } finally {
-      setLoading(false)
-    }
-  }, [supabase])
-
-  useEffect(() => {
-    getEvents()
-  }, [getEvents])
 
   const sectionVariants = {
     initial: {
@@ -65,34 +41,6 @@ export default function Map() {
           </div>
           <GoogleMaps />
         </div>
-
-        {/* <div className="hidden h-full basis-1/3 flex-col  gap-y-10 lg:flex  lg:flex-1 ">
-          <p className=" font-display tracking-tight text-pink-300	 sm:text-xl lg:text-2xl ">
-            VIP Featured Events
-          </p>
-
-          <ul role="list" className="flex h-full flex-col gap-y-5">
-            {events &&
-              events.slice(0, 3).map((event, index) => (
-                <Link key={event.EventId} href={`/events/${event.id}`}>
-                  <motion.li
-                    variants={sectionVariants}
-                    initial="initial"
-                    whileInView="animate"
-                    key={event.EventId}
-                    className="flex flex-col"
-                    custom={index}
-                    viewport={{ once: true }}
-                    whileHover={{ scale: 1.03 }}
-                  >
-                    <div className="  leading-5 font-display text-pink-300 text-xl  justify-center items-center flex  bg-[#5E18EA] p-8 lg:p-5 ">
-                      {event.name}
-                    </div>
-                  </motion.li>
-                </Link>
-              ))}
-          </ul>
-        </div> */}
       </div>
     </>
   )

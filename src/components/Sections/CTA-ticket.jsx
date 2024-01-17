@@ -36,7 +36,7 @@ export default function CTATicket() {
 Each ticket includes:         
           </p>
           <ul className=" text-center font-display text-lg tracking-tight lg:text-2xl list-disc	list-inside	leading-loose ">
-          <li>Access to 4 events at the Wilzig Museum</li>
+          <li>Access to 4 events at the WEAM Wilzig Erotic Art Museum</li>
           <li>Access to all studio visits </li>
           <li>Free access to Zey Zey + one free drink</li>
           <li>Free membership to Miami&apos;s sexiest club, Velvet</li>
