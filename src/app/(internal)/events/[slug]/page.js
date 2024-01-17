@@ -99,25 +99,25 @@ export default function Page({ params }) {
                 />
               </div>
               <div className="mt-5 flex flex-row items-center">
-                    <div className="">
-                      <a
-                        target="_blank"
-                        className="  hover:text-gray-600 text-gray-400"
-                        href={event && event[0].instagram}
-                      >
-                        <BsInstagram size={24} />
-                      </a>
-                    </div>
-                    <div className="ml-5">
-                      <a
-                        target="_blank"
-                        className="text-gray-400  hover:text-gray-600"
-                        href={event && event[0].link}
-                      >
-                        <BsLink45Deg size={24} />
-                      </a>
-                    </div>
-                  </div>
+                <div className="">
+                  <a
+                    target="_blank"
+                    className="  hover:text-gray-600 text-gray-400"
+                    href={event && event[0].instagram}
+                  >
+                    <BsInstagram size={24} />
+                  </a>
+                </div>
+                <div className="ml-5">
+                  <a
+                    target="_blank"
+                    className="text-gray-400  hover:text-gray-600"
+                    href={event && event[0].link}
+                  >
+                    <BsLink45Deg size={24} />
+                  </a>
+                </div>
+              </div>
             </div>
 
             {/* Divider */}
@@ -150,7 +150,7 @@ export default function Page({ params }) {
                       {event && event[0].location}
                     </h4>
                   </div>
-                
+
 
 
                 </div>
