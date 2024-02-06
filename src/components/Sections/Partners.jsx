@@ -95,7 +95,7 @@ export default function Partners() {
             partners
             .sort((a, b) => a.order - b.order)
 
-              .slice(0, 6) // Taking only the first 3 events after filtering
+              .slice(0, 8) // Taking only the first 3 events after filtering
               .map((partner, index) => (
    
                 <motion.li
